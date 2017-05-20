@@ -1,6 +1,6 @@
 // Preprocessor Directives
-#ifndef GLITTER
-#define GLITTER
+#ifndef SGRAPHIC 
+#define SGRAPHIC 
 #pragma once
 
 // System Headers
@@ -21,4 +21,4 @@
 const int mWidth = 800;
 const int mHeight = 600;
 
-#endif //~ Glitter Header
+#endif 
