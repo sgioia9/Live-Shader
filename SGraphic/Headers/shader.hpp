@@ -7,6 +7,8 @@
 
 #include <glad/glad.h>
 
+namespace Core {
+
 class ShaderBuilder;
 
 class Shader {
@@ -43,4 +45,5 @@ private:
   std::vector<std::string> sources;
   BuilderPtr thisPtr;
 };
+}
 #endif // SHADER_HPP

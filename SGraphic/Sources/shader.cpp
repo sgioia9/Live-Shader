@@ -7,6 +7,8 @@
 
 /** Shader **/
 
+namespace Core {
+
 #ifdef DEVELOP
 const std::string ShaderBuilder::SHADER_DIR = "/home/stefano/Repositories/SGraphic/SGraphic/Shaders/";
 #endif
@@ -91,4 +93,6 @@ GLuint ShaderBuilder::buildSpecificShader(const std::string& path) {
           "\nLog: " + std::string(infoLog) + "\n";
   }
   return shaderHandle;
+}
+
 }

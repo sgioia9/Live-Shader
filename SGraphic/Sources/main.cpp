@@ -24,7 +24,7 @@ int main() {
   } else {
     std::cerr << "OpenGL version: " << glGetString(GL_VERSION) << std::endl;
   }
-  Shader shader = ShaderBuilder::createBuilder() 
+  Core::Shader shader = Core::ShaderBuilder::createBuilder() 
                                 ->addSource("simple.vert")
                                 ->addSource("simple.frag")
                                 ->build();
