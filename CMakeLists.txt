@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.0)
 project(SGraphic)
 
+set(CMAKE_BUILD_TYPE Debug)
+
 option(GLFW_BUILD_DOCS OFF)
 option(GLFW_BUILD_EXAMPLES OFF)
 option(GLFW_BUILD_TESTS OFF)
@@ -58,6 +60,7 @@ source_group("Vendors" FILES ${VENDORS_SOURCES})
 set(PROJECT_SHADERS_DIR "SGraphic/Shaders/")
 
 add_definitions(-DGLFW_INCLUDE_NONE
+                -DDEVELOP
                 -DPROJECT_SHADERS_DIR=\"${PROJECT_SHADERS_DIR}\"
                 -DPROJECT_SOURCE_DIR=\"${PROJECT_SOURCE_DIR}\")
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES} ${PROJECT_HEADERS}

@@ -34,11 +34,13 @@ public:
 
   Shader build();
 
+  static const std::string SHADER_DIR;
+
 private:
   static GLuint buildSpecificShader(const std::string& path);
+  
 
   std::vector<std::string> sources;
   BuilderPtr thisPtr;
 };
-
 #endif // SHADER_HPP

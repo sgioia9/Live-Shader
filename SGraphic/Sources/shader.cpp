@@ -5,8 +5,11 @@
 #include <fstream>
 #include <sstream>
 
-
 /** Shader **/
+
+#ifdef DEVELOP
+const std::string ShaderBuilder::SHADER_DIR = "/home/stefano/Repositories/SGraphic/SGraphic/Shaders/";
+#endif
 
 void Shader::use() {
   std::cerr << "Using program " << _program << std::endl;
@@ -33,7 +36,6 @@ Shader ShaderBuilder::build() {
   shaderIds.reserve(sources.size());
   for (const auto& shaderFile : sources) {
     GLuint shader = ShaderBuilder::buildSpecificShader(shaderFile);
-    // TODO: verificar que shader se pudo compilar
     glAttachShader(program, shader);
     shaderIds.push_back(shader);
   }
@@ -51,15 +53,20 @@ Shader ShaderBuilder::build() {
 GLuint ShaderBuilder::buildSpecificShader(const std::string& path) {
   std::ifstream fstream;
   std::stringstream sstream;
-#ifdef PROJECT_SHADERS_DIR
-  fstream.open(PROJECT_SHADERS_DIR + path);
+#ifdef DEVELOP
+  std::cerr << SHADER_DIR + path << std::endl;
+  fstream.open(SHADER_DIR + path);
 #else
+  std::cerr << path << std::endl;
   fstream.open(path);
 #endif
-  // TODO: verify file is open
-  const GLchar* code;
+
+  if (!fstream.is_open()) {
+    throw "Could not open file: " + path + "\n";
+  }
   sstream << fstream.rdbuf();
-  code = sstream.str().c_str();
+  auto shaderSource = sstream.str();
+  const GLchar* code = shaderSource.c_str();
 
   GLuint shaderHandle;
   auto dotIndex = path.rfind(".");
@@ -69,10 +76,19 @@ GLuint ShaderBuilder::buildSpecificShader(const std::string& path) {
   } else if (extension == "frag") {
     shaderHandle = glCreateShader(GL_FRAGMENT_SHADER);
   } else {
-    // TODO: handle this case
-    return -1;
+    throw "Uknown shader extension for " + path + "\n";
   }
   glShaderSource(shaderHandle, 1, &code, NULL);
   glCompileShader(shaderHandle);
+  GLint success;
+  glGetShaderiv(shaderHandle, GL_COMPILE_STATUS, &success);
+  if (!success) {
+    GLchar infoLog[512];
+    glGetShaderInfoLog(shaderHandle, 512, NULL, infoLog);
+    std::cerr << "Shader compilation failed" << std::endl;
+    std::cerr << infoLog << std::endl;
+    throw "Could not compile shader " + path +
+          "\nLog: " + std::string(infoLog) + "\n";
+  }
   return shaderHandle;
 }
