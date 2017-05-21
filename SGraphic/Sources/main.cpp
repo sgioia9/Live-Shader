@@ -24,12 +24,9 @@ int main() {
   } else {
     std::cerr << "OpenGL version: " << glGetString(GL_VERSION) << std::endl;
   }
-
-  std::string vertexPath = "~/Repositories/SGraphic/SGraphic/Shaders/simple.vert";
-  std::string fragmentPath = "~/Repositories/SGraphic/SGraphic/Shaders/simple.frag";
   Shader shader = ShaderBuilder::createBuilder() 
-                                ->addSource(vertexPath)
-                                ->addSource(fragmentPath)
+                                ->addSource("simple.vert")
+                                ->addSource("simple.frag")
                                 ->build();
   shader.use();
   return 0;

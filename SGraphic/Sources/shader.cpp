@@ -51,7 +51,11 @@ Shader ShaderBuilder::build() {
 GLuint ShaderBuilder::buildSpecificShader(const std::string& path) {
   std::ifstream fstream;
   std::stringstream sstream;
+#ifdef PROJECT_SHADERS_DIR
+  fstream.open(PROJECT_SHADERS_DIR + path);
+#else
   fstream.open(path);
+#endif
   const GLchar* code;
   sstream << fstream.rdbuf();
   code = sstream.str().c_str();
