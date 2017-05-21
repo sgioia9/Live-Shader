@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include "shader.hpp"
+#include "mesh.hpp"
 
 static GLFWwindow* create_window(const int width, const int height);
 static void renderLoop(GLFWwindow*, const Core::Shader& shader);
