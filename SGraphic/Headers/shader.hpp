@@ -15,7 +15,7 @@ class Shader {
 
 public:
   /* Enables the shader in the OpenGL context*/
-  void use();
+  void use() const;
   GLuint _program;
 
 private:

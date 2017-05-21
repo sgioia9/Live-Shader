@@ -13,8 +13,9 @@ namespace Core {
 const std::string ShaderBuilder::SHADER_DIR = "/home/stefano/Repositories/SGraphic/SGraphic/Shaders/";
 #endif
 
-void Shader::use() {
+void Shader::use() const {
   std::cerr << "Using program " << _program << std::endl;
+  glUseProgram(_program);
 }
 
 /** ShaderBuilder **/
