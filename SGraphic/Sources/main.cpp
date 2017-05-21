@@ -5,44 +5,54 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-// Standard Headers
-#include <cstdio>
-#include <cstdlib>
+#include <iostream>
+#include "shader.hpp"
 
-int main(int argc, char * argv[]) {
+static GLFWwindow* init_glfw_and_create_window(const int width, const int height);
 
-    // Load GLFW and Create a Window
-    glfwInit();
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-    glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
-    auto mWindow = glfwCreateWindow(mWidth, mHeight, "OpenGL", nullptr, nullptr);
+int main() {
+  auto mWindow = init_glfw_and_create_window(mWidth, mHeight);
 
-    // Check for Valid Context
-    if (mWindow == nullptr) {
-        fprintf(stderr, "Failed to Create OpenGL Context");
-        return EXIT_FAILURE;
-    }
+  if (mWindow == nullptr) {
+    std::cerr << "Failed to create window.\n";
+    return -1;
+  }
 
-    // Create Context and Load OpenGL Functions
-    glfwMakeContextCurrent(mWindow);
-    gladLoadGL();
-    fprintf(stderr, "OpenGL %s\n", glGetString(GL_VERSION));
+  glfwMakeContextCurrent(mWindow);
+  if (!gladLoadGL()) {
+    std::cerr << "Could not load OpenGL.\n";
+  } else {
+    std::cerr << "OpenGL version: " << glGetString(GL_VERSION) << std::endl;
+  }
 
-    // Rendering Loop
-    while (glfwWindowShouldClose(mWindow) == false) {
-        if (glfwGetKey(mWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-            glfwSetWindowShouldClose(mWindow, true);
+  std::string vertexPath = "~/Repositories/SGraphic/SGraphic/Shaders/simple.vert";
+  std::string fragmentPath = "~/Repositories/SGraphic/SGraphic/Shaders/simple.frag";
+  Shader shader = ShaderBuilder::createBuilder() 
+                                ->addSource(vertexPath)
+                                ->addSource(fragmentPath)
+                                ->build();
+  shader.use();
+  return 0;
 
-        // Background Fill Color
-        glClearColor(0.25f, 0.25f, 0.25f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
+  while (glfwWindowShouldClose(mWindow) == false) {
+    if (glfwGetKey(mWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+      glfwSetWindowShouldClose(mWindow, true);
 
-        // Flip Buffers and Draw
-        glfwSwapBuffers(mWindow);
-        glfwPollEvents();
-    }   glfwTerminate();
-    return EXIT_SUCCESS;
+    glClearColor(0.25f, 0.25f, 0.25f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    glfwSwapBuffers(mWindow);
+    glfwPollEvents();
+  }   glfwTerminate();
+  return 0;
+}
+
+GLFWwindow* init_glfw_and_create_window(const int width, const int height) {
+  glfwInit();
+  glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+  glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
+  glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+  glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+  glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+  return glfwCreateWindow(width, height, "OpenGL", nullptr, nullptr);
 }
