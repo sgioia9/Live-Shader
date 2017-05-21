@@ -56,6 +56,7 @@ GLuint ShaderBuilder::buildSpecificShader(const std::string& path) {
 #else
   fstream.open(path);
 #endif
+  // TODO: verify file is open
   const GLchar* code;
   sstream << fstream.rdbuf();
   code = sstream.str().c_str();
@@ -68,7 +69,7 @@ GLuint ShaderBuilder::buildSpecificShader(const std::string& path) {
   } else if (extension == "frag") {
     shaderHandle = glCreateShader(GL_FRAGMENT_SHADER);
   } else {
-    // TODO: Find out what the shader is
+    // TODO: handle this case
     return -1;
   }
   glShaderSource(shaderHandle, 1, &code, NULL);
