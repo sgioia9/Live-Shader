@@ -10,7 +10,11 @@
 namespace Core {
 
 #ifdef DEVELOP
+#ifdef __MACH__
+const std::string ShaderBuilder::SHADER_DIR = "/Users/sgioia/Repositories/SGraphic/SGraphic/Shaders/";
+#else
 const std::string ShaderBuilder::SHADER_DIR = "/home/stefano/Repositories/SGraphic/SGraphic/Shaders/";
+#endif
 #endif
 
 void Shader::use() const {
