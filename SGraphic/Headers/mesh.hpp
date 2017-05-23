@@ -13,7 +13,7 @@ namespace Core {
   struct Vertex {
     glm::vec3 position;
     glm::vec3 normals;
-    glm::vec2 TexCoords;
+    glm::vec2 texCoords;
   };
 
   struct Texture{

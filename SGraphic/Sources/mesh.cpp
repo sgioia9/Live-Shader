@@ -1,5 +1,7 @@
 #include "mesh.hpp"
 
+#include <cstddef>
+
 namespace Core {
   Mesh::Mesh(const Vertices& vertices,
              const Textures& textures,
@@ -32,17 +34,15 @@ namespace Core {
           0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)0);
 
       // vertex normals
-      /*
       glEnableVertexAttribArray(1);
       glVertexAttribPointer(
-          1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, Normal));
-      */
-      // TODO: terminar este método
+          1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, normals));
 
-
-
+      // vertex tex coords
+      glEnableVertexAttribArray(2);
+      glVertexAttribPointer(
+          2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, texCoords)); 
     glBindVertexArray(0);
-
   }
 
   void Mesh::draw(const Shader& shader) const {
