@@ -9,8 +9,19 @@
 #include "shader.hpp"
 #include "mesh.hpp"
 
+#include <QApplication>
+#include <QPushButton>
+
 static GLFWwindow* create_window(const int width, const int height);
 static void renderLoop(GLFWwindow*, const Core::Shader& shader);
+
+int main(int argc, char** argv) {
+  QApplication app(argc, argv);
+  QPushButton button("Hello, World!");
+  button.show();
+  return app.exec();
+}
+/*
 
 int main() {
   glfwInit();
@@ -38,6 +49,7 @@ int main() {
   glfwTerminate();
   return 0;
 }
+*/
 
 void renderLoop(GLFWwindow* window, const Core::Shader& shader) {
 
