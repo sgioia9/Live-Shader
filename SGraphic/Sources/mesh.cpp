@@ -1,6 +1,8 @@
 #include "mesh.hpp"
 
 #include <cstddef>
+#include <sstream>
+#include <string>
 
 namespace Core {
   Mesh::Mesh(const Vertices& vertices,
@@ -9,6 +11,7 @@ namespace Core {
     : _vertices(vertices),
       _textures(textures),
       _indices(indices) { 
+    initializeOpenGLFunctions();
     glGenVertexArrays(1, &_VAO); 
     glGenBuffers(1, &_VBO);
     glGenBuffers(1, &_EBO);
@@ -45,8 +48,20 @@ namespace Core {
     glBindVertexArray(0);
   }
 
-  void Mesh::draw(const Shader& shader) const {
-
+  void Mesh::draw(const Shader& shader) {
+    GLuint diffuseNr = 1;
+    GLuint specularNr = 1;
+    for (GLuint i = 0; i < _textures.size(); ++i) {
+      glActiveTexture(GL_TEXTURE0 + i);
+      std::stringstream ss;
+      std::string number;
+      std::string name = _textures[i].type;
+      if (name == "texture_diffuse")
+        ss << diffuseNr++;
+      else if (name == "texture_specular")
+        ss << specularNr++;
+      number = ss.str();
+    }
   }
 
 }
