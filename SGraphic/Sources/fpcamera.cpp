@@ -1,7 +1,7 @@
 #include "fpcamera.hpp"
 
 namespace Core {
-  FPCamera::FPCamera() { 
+  FPCamera::FPCamera() : speed(0.1f) { 
     initializeOpenGLFunctions();
     up.reset(new glm::vec3(0.0f, 1.0f, 0.0f)); 
     front.reset(new glm::vec3(0.0f, 0.0f, -1.0f)); 
@@ -26,6 +26,24 @@ namespace Core {
     position->x = x;
     position->y = y;
     position->z = z;
+  }
+
+  void FPCamera::moveForward() {
+    *position += speed * *front;
+  }
+
+  void FPCamera::moveRight() {
+    glm::vec3 rightDirection = glm::normalize(glm::cross(*front, *up));
+    *position += speed * rightDirection;
+  }
+
+  void FPCamera::moveLeft() {
+    glm::vec3 leftDirection = glm::normalize(glm::cross(*up, *front));
+    *position += speed * leftDirection;
+  }
+
+  void FPCamera::moveBackward() {
+    *position -= speed * *front;
   }
 
   std::ostream& operator<<(std::ostream& out, const Core::FPCamera& cam) {

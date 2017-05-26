@@ -13,6 +13,7 @@ void TestWindow::initializeGL() {
   OglWindow::initializeGL();
 
   camera.reset(new Core::FPCamera());
+  camera->setPosition(0.0f, 0.0f, 3.0f);
   shader.reset(new Core::Shader(Core::ShaderBuilder::createBuilder() 
                                 ->addSource("simple.vert")
                                 ->addSource("simple.frag")
@@ -81,7 +82,6 @@ void TestWindow::teardownGL() {
 void TestWindow::paintGL() {
   OglWindow::paintGL();
 
-  camera->setPosition(0.0, 0.0, 3.0f);
 
   *view = camera->view();
   GLint modelLoc = glGetUniformLocation(shader->_program, "model");
@@ -96,5 +96,18 @@ void TestWindow::paintGL() {
   glBindVertexArray(VAO);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
   glBindVertexArray(0);
+}
+
+void TestWindow::keyPressEvent(QKeyEvent* event) {
+  if (event->key() == Qt::Key_A) {
+    camera->moveLeft();
+  } else if (event->key() == Qt::Key_S) {
+    camera->moveBackward();
+  } else if (event->key() == Qt::Key_D) {
+    camera->moveRight();
+  } else if (event->key() == Qt::Key_W) {
+    camera->moveForward();
+  }
+  std::cerr << *camera << std::endl;
 }
 

@@ -6,14 +6,16 @@
 #include "fpcamera.hpp"
 
 #include <glm/glm.hpp>
-
 #include <memory>
+#include <iostream>
+#include <QKeyEvent>
 
 class TestWindow : public OglWindow {
 public:
   virtual void initializeGL() override;
   virtual void paintGL() override;
   virtual void teardownGL() override;
+  void keyPressEvent(QKeyEvent* event) override;
 
   std::unique_ptr<Core::Shader> shader;
   std::unique_ptr<glm::mat4> model;
