@@ -3,12 +3,10 @@
 
 #include "camerawindow.hpp"
 #include "shader.hpp"
-#include "fpcamera.hpp"
 
 #include <glm/glm.hpp>
 #include <memory>
 #include <iostream>
-#include <QKeyEvent>
 
 class TestWindow : public CameraWindow {
 public:
