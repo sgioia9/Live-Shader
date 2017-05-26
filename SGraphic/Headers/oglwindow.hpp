@@ -9,12 +9,11 @@ class OglWindow : public QOpenGLWindow,
 Q_OBJECT
 
 public:
-  void initializeGL();
-  void resizeGL(int width, int height);
-  void paintGL();
+  virtual void initializeGL();
+  virtual void resizeGL(int width, int height);
+  virtual void paintGL();
 protected slots:
-  void teardownGL();
-
+  virtual void teardownGL();
 };
                 
 

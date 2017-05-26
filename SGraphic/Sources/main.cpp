@@ -1,5 +1,5 @@
 #include <QGuiApplication>
-#include "oglwindow.hpp"
+#include "testwindow.hpp"
 
 //static GLFWwindow* create_window(const int width, const int height);
 //static void renderLoop(GLFWwindow*, const Core::Shader& shader);
@@ -12,7 +12,7 @@ int main(int argc, char** argv) {
   format.setProfile(QSurfaceFormat::CoreProfile);
   format.setVersion(4, 3);
 
-  OglWindow window;
+  TestWindow window;
   window.setFormat(format);
   window.resize(QSize(800, 600));
   window.show();
