@@ -4,31 +4,30 @@
 #include <string>
 #include <vector>
 #include <memory>
-
-#include <glad/glad.h>
+#include <QOpenGLFunctions>
 
 namespace Core {
 
 class ShaderBuilder;
 
-class Shader {
+class Shader : public QOpenGLFunctions {
 
 public:
   /* Enables the shader in the OpenGL context*/
-  void use() const;
+  void use();
   GLuint _program;
 
 private:
-  Shader() { }
+  Shader() { initializeOpenGLFunctions(); }
 
   friend ShaderBuilder;
 };
 
-class ShaderBuilder {
+class ShaderBuilder : public QOpenGLFunctions {
 using BuilderPtr = std::shared_ptr<ShaderBuilder>;
 
 public:
-  ShaderBuilder() { }
+  ShaderBuilder() { initializeOpenGLFunctions(); }
 
   static BuilderPtr createBuilder();
 
@@ -41,7 +40,7 @@ public:
 #endif
 
 private:
-  static GLuint buildSpecificShader(const std::string& path);
+  GLuint buildSpecificShader(const std::string& path);
   
 
   std::vector<std::string> sources;

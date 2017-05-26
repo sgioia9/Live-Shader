@@ -2,26 +2,27 @@
 #define MESH_HPP
 
 #include <glm/glm.hpp>
-#include <glad/glad.h>
 
 #include <string>
 #include <vector>
 
 #include "shader.hpp"
+#include <QOpenGLFunctions>
+#include <QOpenGLExtraFunctions>
 
 namespace Core {
-  struct Vertex {
-    glm::vec3 position;
-    glm::vec3 normals;
-    glm::vec2 texCoords;
-  };
+struct Vertex {
+  glm::vec3 position;
+  glm::vec3 normals;
+  glm::vec2 texCoords;
+};
 
-  struct Texture{
-    GLuint id;
-    std::string type;
-  };
+struct Texture{
+  GLuint id;
+  std::string type;
+};
 
-class Mesh {
+class Mesh : QOpenGLExtraFunctions {
   using Vertices = std::vector<Vertex>;
   using Textures = std::vector<Texture>;
   using Indices = std::vector<GLuint>;

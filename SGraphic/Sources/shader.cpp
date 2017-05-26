@@ -17,7 +17,7 @@ const std::string ShaderBuilder::SHADER_DIR = "/home/stefano/Repositories/SGraph
 #endif
 #endif
 
-void Shader::use() const {
+void Shader::use() {
   std::cerr << "Using program " << _program << std::endl;
   glUseProgram(_program);
 }
