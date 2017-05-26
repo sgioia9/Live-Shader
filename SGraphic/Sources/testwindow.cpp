@@ -1,5 +1,8 @@
-#include "testwindow.hpp"
 #include <iostream>
+#include "SOIL.h"
+
+#include "testwindow.hpp"
+
 
 void TestWindow::initializeGL() {
   OglWindow::initializeGL();
@@ -8,7 +11,7 @@ void TestWindow::initializeGL() {
                                 ->addSource("simple.vert")
                                 ->addSource("simple.frag")
                                 ->build()));
-  int iwidth, iheight, bpp;
+  int iwidth, iheight;
 #ifdef DEVELOP
   const std::string IMG_DIR = "/home/stefano/Repositories/SGraphic/SGraphic/Textures/";
 #else
@@ -16,6 +19,12 @@ void TestWindow::initializeGL() {
 #endif
   const std::string full_path = IMG_DIR + "container.jpg";
   const char* image_path = full_path.c_str();
+  image = SOIL_load_image(image_path, &iwidth, &iheight, 0, SOIL_LOAD_RGB); 
+  std::cerr << "Loaded image = (" << iwidth << " x " << iheight << ")" << std::endl;
+
+  GLuint texture;
+  glGenTextures(1, &texture);
+  glBindTexture(GL_TEXTURE_2D, texture);
 
   glGenVertexArrays(1, &VAO);
   glGenBuffers(1, &VBO);
@@ -42,6 +51,7 @@ void TestWindow::teardownGL() {
   glDeleteVertexArrays(1, &VAO);
   glDeleteBuffers(1, &VBO);
   glDeleteBuffers(1, &EBO);
+  SOIL_free_image_data(image);
 }
 
 void TestWindow::paintGL() {

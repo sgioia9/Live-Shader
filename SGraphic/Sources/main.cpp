@@ -9,7 +9,7 @@ int main(int argc, char** argv) {
   format.setProfile(QSurfaceFormat::CoreProfile);
   format.setVersion(4, 3);
 
-  OglWindow window;
+  TestWindow window;
   window.setFormat(format);
   window.resize(QSize(800, 600));
   window.show();
