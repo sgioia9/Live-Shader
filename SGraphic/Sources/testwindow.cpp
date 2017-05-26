@@ -1,16 +1,30 @@
 #include <iostream>
 #include "SOIL.h"
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 #include "testwindow.hpp"
 
 
 void TestWindow::initializeGL() {
   OglWindow::initializeGL();
 
+  glEnable(GL_DEPTH_TEST);
+
   shader.reset(new Core::Shader(Core::ShaderBuilder::createBuilder() 
                                 ->addSource("simple.vert")
                                 ->addSource("simple.frag")
                                 ->build()));
+  model.reset(new glm::mat4());
+  view.reset(new glm::mat4());
+  projection.reset(new glm::mat4());
+
+  *model = glm::rotate(*model, glm::radians(-55.0f), glm::vec3(0.5f, 1.0f, 0.0f));
+  *view = glm::translate(*view, glm::vec3(0.0f, 0.0f, -3.0f));
+  *projection = glm::perspective(glm::radians(45.0f), 1.0f * width() / height(), 0.1f, 100.0f);
+
   int iwidth, iheight;
 #ifdef DEVELOP
   const std::string IMG_DIR = "/home/stefano/Repositories/SGraphic/SGraphic/Textures/";
@@ -64,13 +78,26 @@ void TestWindow::teardownGL() {
   glDeleteBuffers(1, &EBO);
 }
 
+static float step = 0.05f;
+
 void TestWindow::paintGL() {
   glClearColor(0.7f, 0.2f, 0.5f, 1.0f);
-  glClear(GL_COLOR_BUFFER_BIT);
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+  *model = glm::rotate(*model, (GLfloat)step, glm::vec3(0.5f, 1.0f, 0.0f));
+
+  GLint modelLoc = glGetUniformLocation(shader->_program, "model");
+  GLint viewLoc = glGetUniformLocation(shader->_program, "view");
+  GLint projectionLoc = glGetUniformLocation(shader->_program, "projection");
+
+  glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(*model));
+  glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(*view));
+  glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(*projection));
 
   glBindTexture(GL_TEXTURE_2D, texture);
   glBindVertexArray(VAO);
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    glDrawArrays(GL_TRIANGLES, 0, 36);
+    //glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
   glBindVertexArray(0);
 }
 

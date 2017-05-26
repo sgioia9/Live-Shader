@@ -3,6 +3,7 @@
 
 #include <QOpenGLWindow>
 #include <QOpenGLExtraFunctions>
+#include <QTimer>
 
 class OglWindow : public QOpenGLWindow,
                   protected QOpenGLExtraFunctions {
@@ -14,6 +15,9 @@ public:
   virtual void paintGL();
 protected slots:
   virtual void teardownGL();
+
+private:
+  QTimer* loopTimer;
 };
                 
 

@@ -8,6 +8,10 @@ void OglWindow::initializeGL() {
       this, 
       SLOT(teardownGL()), 
       Qt::DirectConnection);
+
+  loopTimer = new QTimer(this);
+  connect(loopTimer, SIGNAL(timeout()), this, SLOT(update()));
+  loopTimer->start(10);
 }
 
 void OglWindow::resizeGL(int width, int height) {
@@ -21,5 +25,5 @@ void OglWindow::paintGL() {
 }
 
 void OglWindow::teardownGL() {
-  // TODO:
+  delete loopTimer;
 }
