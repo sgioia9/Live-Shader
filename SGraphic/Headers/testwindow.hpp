@@ -2,8 +2,8 @@
 #define TESTWINDOW_HPP
 
 #include "oglwindow.hpp"
-
 #include "shader.hpp"
+
 #include <memory>
 
 class TestWindow : public OglWindow {
@@ -13,6 +13,8 @@ public:
   virtual void teardownGL() override;
 
   std::unique_ptr<Core::Shader> shader;
+
+  unsigned char* image;
 
   GLfloat vertices[12] = 
   {

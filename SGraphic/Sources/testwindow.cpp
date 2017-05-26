@@ -8,6 +8,15 @@ void TestWindow::initializeGL() {
                                 ->addSource("simple.vert")
                                 ->addSource("simple.frag")
                                 ->build()));
+  int iwidth, iheight, bpp;
+#ifdef DEVELOP
+  const std::string IMG_DIR = "/home/stefano/Repositories/SGraphic/SGraphic/Textures/";
+#else
+  const std::string IMG_DIR = "";
+#endif
+  const std::string full_path = IMG_DIR + "container.jpg";
+  const char* image_path = full_path.c_str();
+
   glGenVertexArrays(1, &VAO);
   glGenBuffers(1, &VBO);
   glGenBuffers(1, &EBO);
