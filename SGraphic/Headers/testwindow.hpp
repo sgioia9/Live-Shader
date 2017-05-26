@@ -2,7 +2,6 @@
 #define TESTWINDOW_HPP
 
 #include "oglwindow.hpp"
-#include <QOpenGLFunctions>
 
 #include "shader.hpp"
 #include <memory>
@@ -11,6 +10,7 @@ class TestWindow : public OglWindow {
 public:
   virtual void initializeGL() override;
   virtual void paintGL() override;
+  virtual void teardownGL() override;
 
   std::unique_ptr<Core::Shader> shader;
 

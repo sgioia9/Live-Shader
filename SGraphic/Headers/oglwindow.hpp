@@ -2,10 +2,10 @@
 #define OGLWINDOW_HPP
 
 #include <QOpenGLWindow>
-#include <QOpenGLFunctions>
+#include <QOpenGLExtraFunctions>
 
 class OglWindow : public QOpenGLWindow,
-                  protected QOpenGLFunctions {
+                  protected QOpenGLExtraFunctions {
 Q_OBJECT
 
 public:
