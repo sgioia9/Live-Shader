@@ -2,6 +2,7 @@
 
 void OglWindow::initializeGL() {
   initializeOpenGLFunctions();
+  glEnable(GL_DEPTH_TEST);
   connect(
       context(), 
       SIGNAL(aboutToBeDestroyed()), 
@@ -21,7 +22,7 @@ void OglWindow::resizeGL(int width, int height) {
 
 void OglWindow::paintGL() {
   glClearColor(0.2f, 0.3f, 0.4f, 1.0f);
-  glClear(GL_COLOR_BUFFER_BIT);
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void OglWindow::teardownGL() {

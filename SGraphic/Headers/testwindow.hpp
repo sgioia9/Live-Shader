@@ -3,6 +3,7 @@
 
 #include "oglwindow.hpp"
 #include "shader.hpp"
+#include "fpcamera.hpp"
 
 #include <glm/glm.hpp>
 
@@ -18,6 +19,7 @@ public:
   std::unique_ptr<glm::mat4> model;
   std::unique_ptr<glm::mat4> view;
   std::unique_ptr<glm::mat4> projection;
+  std::unique_ptr<Core::FPCamera> camera;
 
   unsigned char* image;
 

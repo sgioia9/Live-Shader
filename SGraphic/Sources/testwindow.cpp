@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 #include "SOIL.h"
 
 #include <glm/glm.hpp>
@@ -11,8 +12,7 @@
 void TestWindow::initializeGL() {
   OglWindow::initializeGL();
 
-  glEnable(GL_DEPTH_TEST);
-
+  camera.reset(new Core::FPCamera());
   shader.reset(new Core::Shader(Core::ShaderBuilder::createBuilder() 
                                 ->addSource("simple.vert")
                                 ->addSource("simple.frag")
@@ -78,11 +78,12 @@ void TestWindow::teardownGL() {
   glDeleteBuffers(1, &EBO);
 }
 
-
 void TestWindow::paintGL() {
-  glClearColor(0.7f, 0.2f, 0.5f, 1.0f);
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  OglWindow::paintGL();
 
+  camera->setPosition(0.0, 0.0, 3.0f);
+
+  *view = camera->view();
   GLint modelLoc = glGetUniformLocation(shader->_program, "model");
   GLint viewLoc = glGetUniformLocation(shader->_program, "view");
   GLint projectionLoc = glGetUniformLocation(shader->_program, "projection");
