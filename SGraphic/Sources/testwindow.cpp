@@ -7,6 +7,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "testwindow.hpp"
+#include "resourceloader.hpp"
 
 
 void TestWindow::initializeGL() {
@@ -26,16 +27,7 @@ void TestWindow::initializeGL() {
   *view = glm::translate(*view, glm::vec3(0.0f, 0.0f, -3.0f));
   *projection = glm::perspective(glm::radians(45.0f), 1.0f * width() / height(), 0.1f, 100.0f);
 
-  int iwidth, iheight;
-#ifdef DEVELOP
-  const std::string IMG_DIR = "/home/stefano/Repositories/SGraphic/SGraphic/Textures/";
-#else
-  const std::string IMG_DIR = "";
-#endif
-  const std::string full_path = IMG_DIR + "container.jpg";
-  const char* image_path = full_path.c_str();
-  image = SOIL_load_image(image_path, &iwidth, &iheight, 0, SOIL_LOAD_RGB); 
-  std::cerr << "Loaded image = (" << iwidth << " x " << iheight << ")" << std::endl;
+  Core::ImageResource image = Core::ResourceLoader::loadImage("container.jpg");
 
   glGenTextures(1, &texture);
   glBindTexture(GL_TEXTURE_2D, texture);
@@ -43,10 +35,19 @@ void TestWindow::initializeGL() {
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, iwidth, iheight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+  glTexImage2D(
+      GL_TEXTURE_2D, 
+      0, 
+      GL_RGB, 
+      image.width, 
+      image.height, 
+      0, 
+      GL_RGB, 
+      GL_UNSIGNED_BYTE, 
+      image.data);
   glGenerateMipmap(GL_TEXTURE_2D);
 
-  SOIL_free_image_data(image);
+  Core::ResourceLoader::freeImageResource(image);
   glBindTexture(GL_TEXTURE_2D, 0);
 
   glGenVertexArrays(1, &VAO);
