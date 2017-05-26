@@ -78,13 +78,10 @@ void TestWindow::teardownGL() {
   glDeleteBuffers(1, &EBO);
 }
 
-static float step = 0.05f;
 
 void TestWindow::paintGL() {
   glClearColor(0.7f, 0.2f, 0.5f, 1.0f);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-  *model = glm::rotate(*model, (GLfloat)step, glm::vec3(0.5f, 1.0f, 0.0f));
 
   GLint modelLoc = glGetUniformLocation(shader->_program, "model");
   GLint viewLoc = glGetUniformLocation(shader->_program, "view");
@@ -96,8 +93,7 @@ void TestWindow::paintGL() {
 
   glBindTexture(GL_TEXTURE_2D, texture);
   glBindVertexArray(VAO);
-    glDrawArrays(GL_TRIANGLES, 0, 36);
-    //glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
   glBindVertexArray(0);
 }
 
