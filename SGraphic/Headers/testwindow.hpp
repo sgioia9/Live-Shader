@@ -16,12 +16,13 @@ public:
 
   unsigned char* image;
 
-  GLfloat vertices[12] = 
+  GLfloat vertices[20] = 
   {
-    0.5f, 0.5f, 0.0f,
-    0.5f, -0.5f, 0.0f,
-    -0.5f, -0.5f, 0.0f,
-    -0.5f, 0.5f, 0.0f
+    // positions        // tex coord
+    0.5f, 0.5f, 0.0f,   1.0f, 1.0f, // top right
+    0.5f, -0.5f, 0.0f,  1.0f, 0.0f, // bottom right
+    -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, // bottom left
+    -0.5f, 0.5f, 0.0f,  0.0f, 1.0f  // top left
   };
 
   GLuint indices[6] =
@@ -30,7 +31,7 @@ public:
    1, 2, 3 
   };
 
-  GLuint VBO, VAO, EBO;
+  GLuint VBO, VAO, EBO, texture;
 };
 
 #endif
