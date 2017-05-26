@@ -1,7 +1,7 @@
 #ifndef TESTWINDOW_HPP
 #define TESTWINDOW_HPP
 
-#include "oglwindow.hpp"
+#include "camerawindow.hpp"
 #include "shader.hpp"
 #include "fpcamera.hpp"
 
@@ -10,18 +10,16 @@
 #include <iostream>
 #include <QKeyEvent>
 
-class TestWindow : public OglWindow {
+class TestWindow : public CameraWindow {
 public:
   virtual void initializeGL() override;
   virtual void paintGL() override;
   virtual void teardownGL() override;
-  void keyPressEvent(QKeyEvent* event) override;
 
   std::unique_ptr<Core::Shader> shader;
   std::unique_ptr<glm::mat4> model;
   std::unique_ptr<glm::mat4> view;
   std::unique_ptr<glm::mat4> projection;
-  std::unique_ptr<Core::FPCamera> camera;
 
   unsigned char* image;
 
