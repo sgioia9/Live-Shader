@@ -1,6 +1,7 @@
 #ifndef SHADER_HPP
 #define SHADER_HPP
 
+#include <glm/glm.hpp>
 #include <string>
 #include <vector>
 #include <memory>
@@ -15,6 +16,10 @@ class Shader : public QOpenGLFunctions {
 public:
   /* Enables the shader in the OpenGL context*/
   void use();
+  void uniformMatrix(GLint location, const glm::mat4& matrix);
+  void uniformMatrix(const std::string& name, const glm::mat4& matrix);
+  GLint getLocation(const std::string& name);
+  
   GLuint _program;
 
 private:

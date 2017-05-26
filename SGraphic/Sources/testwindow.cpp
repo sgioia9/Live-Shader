@@ -82,15 +82,11 @@ void TestWindow::teardownGL() {
 void TestWindow::paintGL() {
   OglWindow::paintGL();
 
-
   *view = camera->view();
-  GLint modelLoc = glGetUniformLocation(shader->_program, "model");
-  GLint viewLoc = glGetUniformLocation(shader->_program, "view");
-  GLint projectionLoc = glGetUniformLocation(shader->_program, "projection");
 
-  glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(*model));
-  glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(*view));
-  glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(*projection));
+  shader->uniformMatrix("model", *model);
+  shader->uniformMatrix("view", *view);
+  shader->uniformMatrix("projection", *projection);
 
   glBindTexture(GL_TEXTURE_2D, texture);
   glBindVertexArray(VAO);

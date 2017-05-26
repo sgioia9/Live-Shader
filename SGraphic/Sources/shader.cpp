@@ -4,6 +4,7 @@
 #include <memory>
 #include <fstream>
 #include <sstream>
+#include <glm/gtc/type_ptr.hpp>
 
 /** Shader **/
 
@@ -17,9 +18,23 @@ const std::string ShaderBuilder::SHADER_DIR = "/home/stefano/Repositories/SGraph
 #endif
 #endif
 
+/** Shader **/
+
 void Shader::use() {
   std::cerr << "Using program " << _program << std::endl;
   glUseProgram(_program);
+}
+
+void Shader::uniformMatrix(GLint location, const glm::mat4& matrix) { 
+  glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
+}
+
+void Shader::uniformMatrix(const std::string& name, const glm::mat4& matrix) {
+  glUniformMatrix4fv(getLocation(name), 1, GL_FALSE, glm::value_ptr(matrix));
+}
+
+GLint Shader::getLocation(const std::string& name) {
+  glGetUniformLocation(_program, name.c_str());
 }
 
 /** ShaderBuilder **/
