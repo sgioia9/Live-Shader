@@ -15,6 +15,7 @@ namespace Core {
   ImageResource ResourceLoader::loadImage(const std::string& path) {
     ImageResource result;
     const std::string full_path = IMAGES_PATH + path;
+    std::cerr << "Trying to load image: " << full_path << std::endl;
     int iwidth;
     int iheight;
     unsigned char* image = SOIL_load_image(full_path.c_str(), &iwidth, &iheight, 0, SOIL_LOAD_RGB);

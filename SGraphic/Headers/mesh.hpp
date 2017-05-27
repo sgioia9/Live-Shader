@@ -19,10 +19,14 @@ struct Vertex {
   glm::vec2 texCoords;
 };
 
-struct Texture{
+struct Texture {
   GLuint id;
   std::string type;
   aiString path; // to compare with other textures
+
+  bool operator==(const Texture& other) const {
+    return path != other.path;
+  }
 };
 
 class Mesh : QOpenGLExtraFunctions {
@@ -42,6 +46,15 @@ public:
 private:
   GLuint _VAO, _VBO, _EBO;
 };
+}
+
+namespace std {
+  template<>
+  struct hash<Core::Texture> {
+    std::size_t operator()(const Core::Texture& t) const {
+      return hash<string>()(t.path.C_Str());
+    }
+  };
 }
 
 #endif // MESH_HPP

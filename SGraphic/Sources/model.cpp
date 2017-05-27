@@ -2,6 +2,7 @@
 #include <assimp/postprocess.h>
 #include <assimp/scene.h>
 #include <iostream>
+#include "resourceloader.hpp"
 #include "model.hpp"
 
 namespace Core {
@@ -101,10 +102,18 @@ namespace Core {
     for (GLuint i = 0; i < material->GetTextureCount(type); ++i) {
       aiString textureStr;
       material->GetTexture(type, i, &textureStr);
+      if (loaded_textures.count(textureStr.C_Str()) == 0) {
+        // Texture was already loaded for this model.
+        textures.push_back(loaded_textures[textureStr.C_Str()]);
+        continue;
+      }
+      // Texture hasn't been loaded. Do it.
       Texture texture;
+      texture.id = ResourceLoader().generateTextureFromFile(textureStr.C_Str());
       texture.type = name;
       texture.path = textureStr;
       textures.push_back(texture);
+      loaded_textures[textureStr.C_Str()] = texture; // mark it as loaded
     }
     return textures;
   }

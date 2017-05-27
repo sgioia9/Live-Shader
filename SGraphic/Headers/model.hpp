@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <unordered_map>
 
 #include "mesh.hpp"
 #include <assimp/scene.h>
@@ -16,6 +17,7 @@ public:
 private:
   static const std::string MODEL_DIR;
 
+  std::unordered_map<std::string, Texture> loaded_textures; // path -> Texture 
   std::vector<Mesh> _meshes;
 
   void loadModel(const std::string& path);
