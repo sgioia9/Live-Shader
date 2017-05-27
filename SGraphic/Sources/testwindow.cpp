@@ -26,29 +26,7 @@ void TestWindow::initializeGL() {
   *projection = glm::perspective(glm::radians(45.0f), 1.0f * width() / height(), 0.1f, 100.0f);
 
   Core::ResourceLoader loader;
-
-  Core::ImageResource image = loader.loadImage("container.jpg");
-
-  glGenTextures(1, &texture);
-  glBindTexture(GL_TEXTURE_2D, texture);
-
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-  glTexImage2D(
-      GL_TEXTURE_2D, 
-      0, 
-      GL_RGB, 
-      image.width, 
-      image.height, 
-      0, 
-      GL_RGB, 
-      GL_UNSIGNED_BYTE, 
-      image.data);
-  glGenerateMipmap(GL_TEXTURE_2D);
-
-  loader.freeImageResource(image);
-  glBindTexture(GL_TEXTURE_2D, 0);
+  texture = loader.generateTextureFromFile("container.jpg");
 
   glGenVertexArrays(1, &VAO);
   glGenBuffers(1, &VBO);

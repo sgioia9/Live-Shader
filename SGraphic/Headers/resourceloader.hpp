@@ -20,6 +20,9 @@ public:
   ImageResource loadImage(const std::string& path);
   void freeImageResource(ImageResource& resource);
 
+  /* returns the tex id */
+  GLuint generateTextureFromFile(const std::string& path);
+
   static const std::string IMAGES_PATH;
 };
 }

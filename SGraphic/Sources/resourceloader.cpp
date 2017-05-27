@@ -25,7 +25,33 @@ namespace Core {
     return result;
   }
 
+  GLuint ResourceLoader::generateTextureFromFile(const std::string& path) {
+    GLuint id;
+    glGenTextures(1, &id);
+    ImageResource soilImage = loadImage(path);
 
+    glBindTexture(GL_TEXTURE_2D, id);
+    glTexImage2D(
+        GL_TEXTURE_2D, 
+        0, 
+        GL_RGB, 
+        soilImage.width, 
+        soilImage.height, 
+        0, 
+        GL_RGB, 
+        GL_UNSIGNED_BYTE, 
+        soilImage.data);
+    glGenerateMipmap(GL_TEXTURE_2D);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    
+    freeImageResource(soilImage);
+    return id;
+  }
 
   void ResourceLoader::freeImageResource(ImageResource& resource) {
     SOIL_free_image_data(resource.data);
