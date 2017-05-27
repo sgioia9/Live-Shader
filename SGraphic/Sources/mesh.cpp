@@ -48,7 +48,7 @@ namespace Core {
     glBindVertexArray(0);
   }
 
-  void Mesh::draw(const Shader& shader) {
+  void Mesh::draw(Shader& shader) {
     GLuint diffuseNr = 1;
     GLuint specularNr = 1;
     for (GLuint i = 0; i < _textures.size(); ++i) {
@@ -61,7 +61,16 @@ namespace Core {
       else if (name == "texture_specular")
         ss << specularNr++;
       number = ss.str();
+
+      shader.uniformFloat(name + number, i);  
+      glBindTexture(GL_TEXTURE_2D, _textures[i].id);
     }
+
+    glActiveTexture(GL_TEXTURE0);
+    
+    glBindVertexArray(_VAO);
+    glDrawElements(GL_TRIANGLES, _indices.size(), GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
   }
 
 }

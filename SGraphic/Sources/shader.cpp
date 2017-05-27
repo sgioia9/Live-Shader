@@ -33,6 +33,14 @@ void Shader::uniformMatrix(const std::string& name, const glm::mat4& matrix) {
   glUniformMatrix4fv(getLocation(name), 1, GL_FALSE, glm::value_ptr(matrix));
 }
 
+void Shader::uniformInt(const std::string& name, GLint value) { 
+  glUniform1i(getLocation(name), value);
+}
+
+void Shader::uniformInt(GLint location, GLint value) { 
+  glUniform1i(location, value);
+}
+
 void Shader::uniformFloat(GLint location, GLfloat value) {
   glUniform1f(location, value);
 }
