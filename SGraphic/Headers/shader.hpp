@@ -18,6 +18,7 @@ public:
   void use();
   void uniformMatrix(GLint location, const glm::mat4& matrix);
   void uniformMatrix(const std::string& name, const glm::mat4& matrix);
+  void uniformFloat(GLint location, GLfloat value);
   void uniformFloat(const std::string& name, GLfloat value);
   GLint getLocation(const std::string& name);
   

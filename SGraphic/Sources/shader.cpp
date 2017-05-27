@@ -33,12 +33,16 @@ void Shader::uniformMatrix(const std::string& name, const glm::mat4& matrix) {
   glUniformMatrix4fv(getLocation(name), 1, GL_FALSE, glm::value_ptr(matrix));
 }
 
+void Shader::uniformFloat(GLint location, GLfloat value) {
+  glUniform1f(location, value);
+}
+
 void Shader::uniformFloat(const std::string& name, GLfloat value) {
   glUniform1f(getLocation(name), value);
 }
 
 GLint Shader::getLocation(const std::string& name) {
-  glGetUniformLocation(_program, name.c_str());
+  return glGetUniformLocation(_program, name.c_str());
 }
 
 /** ShaderBuilder **/
@@ -114,7 +118,7 @@ GLuint ShaderBuilder::buildSpecificShader(const std::string& path) {
     std::cerr << "Shader compilation failed" << std::endl;
     std::cerr << infoLog << std::endl;
     throw "Could not compile shader " + path +
-          "\nLog: " + std::string(infoLog) + "\n";
+      "\nLog: " + std::string(infoLog) + "\n";
   }
   return shaderHandle;
 }

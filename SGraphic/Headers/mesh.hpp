@@ -33,9 +33,9 @@ public:
        const Indices& indices);
 
   void draw(const Shader& shader);
-  const Vertices& _vertices;
-  const Textures& _textures;
-  const Indices& _indices;
+  const Vertices _vertices;
+  const Textures _textures;
+  const Indices _indices;
 private:
   GLuint _VAO, _VBO, _EBO;
 };
