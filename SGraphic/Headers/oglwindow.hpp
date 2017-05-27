@@ -15,7 +15,6 @@ public:
   virtual void paintGL();
 protected slots:
   virtual void teardownGL();
-
 private:
   QTimer* loopTimer;
 };

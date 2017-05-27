@@ -17,6 +17,14 @@ void CameraWindow::keyPressEvent(QKeyEvent* event) {
     camera->moveRight();
   } else if (event->key() == Qt::Key_W) {
     camera->moveForward();
+  } else if (event->key() == Qt::Key_Up) {
+    camera->moveUp();
+  } else if (event->key() == Qt::Key_Down) {
+    camera->moveDown();
+  } else if (event->key() == Qt::Key_Left) {
+    camera->lookLeft();
+  } else if (event->key() == Qt::Key_Right) {
+    camera->lookRight();
   }
   std::cerr << *camera << std::endl;
 }

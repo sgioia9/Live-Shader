@@ -22,8 +22,13 @@ public:
   void moveLeft();
   void moveForward();
   void moveBackward();
+  void moveUp();
+  void moveDown();
+  void lookLeft();
+  void lookRight();
 
   GLfloat speed;
+  GLfloat angular_speed;
   std::unique_ptr<glm::vec3> up;
   std::unique_ptr<glm::vec3> front;
   std::unique_ptr<glm::vec3> position;

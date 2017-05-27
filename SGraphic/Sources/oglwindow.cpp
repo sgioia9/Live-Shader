@@ -12,7 +12,7 @@ void OglWindow::initializeGL() {
 
   loopTimer = new QTimer(this);
   connect(loopTimer, SIGNAL(timeout()), this, SLOT(update()));
-  loopTimer->start(10);
+  loopTimer->start(0);
 }
 
 void OglWindow::resizeGL(int width, int height) {
