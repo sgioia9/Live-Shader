@@ -39,7 +39,7 @@ namespace Core {
       // vertex normals
       glEnableVertexAttribArray(1);
       glVertexAttribPointer(
-          1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, normals));
+          1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, normal));
 
       // vertex tex coords
       glEnableVertexAttribArray(2);

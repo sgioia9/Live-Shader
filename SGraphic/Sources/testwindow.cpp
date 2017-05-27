@@ -25,7 +25,9 @@ void TestWindow::initializeGL() {
   *view = glm::translate(*view, glm::vec3(0.0f, 0.0f, -3.0f));
   *projection = glm::perspective(glm::radians(45.0f), 1.0f * width() / height(), 0.1f, 100.0f);
 
-  Core::ImageResource image = Core::ResourceLoader::loadImage("container.jpg");
+  Core::ResourceLoader loader;
+
+  Core::ImageResource image = loader.loadImage("container.jpg");
 
   glGenTextures(1, &texture);
   glBindTexture(GL_TEXTURE_2D, texture);
@@ -45,7 +47,7 @@ void TestWindow::initializeGL() {
       image.data);
   glGenerateMipmap(GL_TEXTURE_2D);
 
-  Core::ResourceLoader::freeImageResource(image);
+  loader.freeImageResource(image);
   glBindTexture(GL_TEXTURE_2D, 0);
 
   glGenVertexArrays(1, &VAO);

@@ -2,6 +2,7 @@
 #define RESOURCELOADER_HPP
 
 #include <memory>
+#include <QOpenGLExtraFunctions>
 
 namespace Core {
 
@@ -11,11 +12,14 @@ struct ImageResource {
   int height;
 };
 
-class ResourceLoader {
+class ResourceLoader : public QOpenGLExtraFunctions {
 public:
+  ResourceLoader() { initializeOpenGLFunctions(); }
+
   /* must call freeImageResource(..) after use */
-  static ImageResource loadImage(const std::string& path);
-  static void freeImageResource(ImageResource& resource);
+  ImageResource loadImage(const std::string& path);
+  void freeImageResource(ImageResource& resource);
+
   static const std::string IMAGES_PATH;
 };
 }

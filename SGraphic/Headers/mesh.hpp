@@ -3,6 +3,8 @@
 
 #include <glm/glm.hpp>
 
+#include <assimp/scene.h>
+
 #include <string>
 #include <vector>
 
@@ -13,13 +15,14 @@
 namespace Core {
 struct Vertex {
   glm::vec3 position;
-  glm::vec3 normals;
+  glm::vec3 normal;
   glm::vec2 texCoords;
 };
 
 struct Texture{
   GLuint id;
   std::string type;
+  aiString path; // to compare with other textures
 };
 
 class Mesh : QOpenGLExtraFunctions {

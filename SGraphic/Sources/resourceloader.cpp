@@ -25,6 +25,8 @@ namespace Core {
     return result;
   }
 
+
+
   void ResourceLoader::freeImageResource(ImageResource& resource) {
     SOIL_free_image_data(resource.data);
   }
