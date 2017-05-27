@@ -62,15 +62,20 @@ namespace Core {
         ss << specularNr++;
       number = ss.str();
 
-      shader.uniformFloat(name + number, i);  
+      shader.uniformInt(name + number, i); // set sampler to texture unit
       glBindTexture(GL_TEXTURE_2D, _textures[i].id);
     }
-
-    glActiveTexture(GL_TEXTURE0);
+    shader.uniformFloat("material.shininess", 16.0f);
     
     glBindVertexArray(_VAO);
     glDrawElements(GL_TRIANGLES, _indices.size(), GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
+
+    for (GLuint i = 0; i < _textures.size(); ++i) {
+      glActiveTexture(GL_TEXTURE0 + i);
+      // unbind textures from texture units
+      glBindTexture(GL_TEXTURE_2D, 0);
+    }
   }
 
 }
