@@ -14,9 +14,12 @@ public:
   Model(const std::string& path) {
     loadModel(path);
   }
+
+  void draw(Shader& shader);
 private:
   static const std::string MODEL_DIR;
 
+  std::string _directory; // where the model is located, including its textures
   std::unordered_map<std::string, Texture> loaded_textures; // path -> Texture 
   std::vector<Mesh> _meshes;
 

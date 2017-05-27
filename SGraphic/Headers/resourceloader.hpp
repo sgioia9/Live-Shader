@@ -17,11 +17,13 @@ public:
   ResourceLoader() { initializeOpenGLFunctions(); }
 
   /* must call freeImageResource(..) after use */
-  ImageResource loadImage(const std::string& path);
+  ImageResource loadImage(const std::string& full_path);
+  ImageResource loadImage(const std::string& directory, const std::string& name);
   void freeImageResource(ImageResource& resource);
 
   /* returns the tex id */
   GLuint generateTextureFromFile(const std::string& path);
+  GLuint generateTextureFromFile(const std::string& directory, const std::string& name);
 
   static const std::string IMAGES_PATH;
 };

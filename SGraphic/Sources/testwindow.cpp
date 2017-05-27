@@ -20,55 +20,25 @@ void TestWindow::initializeGL() {
   model.reset(new glm::mat4());
   view.reset(new glm::mat4());
   projection.reset(new glm::mat4());
+  geomodel.reset(new Core::Model("nanosuit/nanosuit.obj"));
 
-  *model = glm::rotate(*model, glm::radians(-55.0f), glm::vec3(0.5f, 1.0f, 0.0f));
+  *model = glm::scale(*model, glm::vec3(0.2f, 0.2f, 0.2f));
   *view = glm::translate(*view, glm::vec3(0.0f, 0.0f, -3.0f));
   *projection = glm::perspective(glm::radians(45.0f), 1.0f * width() / height(), 0.1f, 100.0f);
-
-  Core::ResourceLoader loader;
-  texture = loader.generateTextureFromFile("container.jpg");
-
-  glGenVertexArrays(1, &VAO);
-  glGenBuffers(1, &VBO);
-  glGenBuffers(1, &EBO);
-
-  glBindVertexArray(VAO);
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)0);
-    glEnableVertexAttribArray(0);
-
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
-    glEnableVertexAttribArray(1);
-    
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-  glBindVertexArray(0);
 
   shader->use();
 }
 
-void TestWindow::teardownGL() {
-  glDeleteVertexArrays(1, &VAO);
-  glDeleteBuffers(1, &VBO);
-  glDeleteBuffers(1, &EBO);
-}
+void TestWindow::teardownGL() { }
 
 void TestWindow::paintGL() {
   OglWindow::paintGL();
 
   *view = camera->view();
+  geomodel->draw(*shader);
 
   shader->uniformMatrix("model", *model);
   shader->uniformMatrix("view", *view);
   shader->uniformMatrix("projection", *projection);
 
-  glBindTexture(GL_TEXTURE_2D, texture);
-  glBindVertexArray(VAO);
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-  glBindVertexArray(0);
 }

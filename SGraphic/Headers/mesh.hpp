@@ -27,6 +27,13 @@ struct Texture {
   bool operator==(const Texture& other) const {
     return path != other.path;
   }
+
+  friend std::ostream& operator<<(std::ostream& out, const Texture& tex) {
+    return out << "Texture: ID = " << tex.id 
+      << ", type = " << tex.type 
+      << ", path = " << tex.path.C_Str() 
+      << std::endl;
+  }
 };
 
 class Mesh : QOpenGLExtraFunctions {
@@ -35,6 +42,7 @@ class Mesh : QOpenGLExtraFunctions {
   using Indices = std::vector<GLuint>;
 
 public:
+  // TODO: add dtor
   Mesh(const Vertices& vertices,
        const Textures& textures,
        const Indices& indices);

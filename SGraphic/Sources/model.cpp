@@ -15,12 +15,17 @@ namespace Core {
 
   void Model::loadModel(const std::string& path) {
     Assimp::Importer importer;
+    std::string full_path = MODEL_DIR + path;
+    std::cerr << "Trying to load model " << full_path << std::endl;
     const aiScene* scene = 
       importer.ReadFile(MODEL_DIR + path, aiProcess_Triangulate | aiProcess_FlipUVs);
 
     if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
       std::cerr << "Assimp error: " << importer.GetErrorString() << std::endl;
     }
+
+    // TODO: make it portable 
+    _directory = full_path.substr(0, full_path.find_last_of('/'));
     processNode(scene->mRootNode, scene);;
   }
 
@@ -92,6 +97,13 @@ namespace Core {
         = loadMaterialTextures(material, aiTextureType_SPECULAR, "texture_specular");
       textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
     }
+    return Mesh(vertices, textures, indices);
+  }
+
+  void Model::draw(Shader& shader) {
+    for (GLuint i = 0; i < _meshes.size(); ++i) {
+      _meshes[i].draw(shader);
+    }
   }
 
   std::vector<Texture> Model::loadMaterialTextures(
@@ -102,14 +114,14 @@ namespace Core {
     for (GLuint i = 0; i < material->GetTextureCount(type); ++i) {
       aiString textureStr;
       material->GetTexture(type, i, &textureStr);
-      if (loaded_textures.count(textureStr.C_Str()) == 0) {
+      if (loaded_textures.count(textureStr.C_Str()) > 0) {
         // Texture was already loaded for this model.
         textures.push_back(loaded_textures[textureStr.C_Str()]);
         continue;
       }
       // Texture hasn't been loaded. Do it.
       Texture texture;
-      texture.id = ResourceLoader().generateTextureFromFile(textureStr.C_Str());
+      texture.id = ResourceLoader().generateTextureFromFile(_directory, textureStr.C_Str());
       texture.type = name;
       texture.path = textureStr;
       textures.push_back(texture);

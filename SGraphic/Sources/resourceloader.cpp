@@ -12,13 +12,16 @@ namespace Core {
   const std::string ResourceLoader::IMAGES_PATH = "";
 #endif
 
-  ImageResource ResourceLoader::loadImage(const std::string& path) {
+  ImageResource ResourceLoader::loadImage(const std::string& full_path) {
     ImageResource result;
-    const std::string full_path = IMAGES_PATH + path;
     std::cerr << "Trying to load image: " << full_path << std::endl;
     int iwidth;
     int iheight;
     unsigned char* image = SOIL_load_image(full_path.c_str(), &iwidth, &iheight, 0, SOIL_LOAD_RGB);
+    if (!image) {
+      std::cerr << "Could not load image: " << full_path << std::endl;
+      exit(1);
+    }
     std::cerr << "Loaded image = (" << iwidth << " x " << iheight << ")" << std::endl;
     result.data = image;
     result.width = iwidth;
@@ -26,10 +29,14 @@ namespace Core {
     return result;
   }
 
-  GLuint ResourceLoader::generateTextureFromFile(const std::string& path) {
+  ImageResource ResourceLoader::loadImage(const std::string& directory, const std::string& name) {
+    return loadImage(directory + "/" + name);
+  }
+
+  GLuint ResourceLoader::generateTextureFromFile(const std::string& full_path) {
     GLuint id;
     glGenTextures(1, &id);
-    ImageResource soilImage = loadImage(path);
+    ImageResource soilImage = loadImage(full_path);
 
     glBindTexture(GL_TEXTURE_2D, id);
     glTexImage2D(
@@ -52,6 +59,11 @@ namespace Core {
     
     freeImageResource(soilImage);
     return id;
+  }
+
+  GLuint ResourceLoader::generateTextureFromFile(
+      const std::string& directory, const std::string& name) {
+    return generateTextureFromFile(directory + "/" +  name);
   }
 
   void ResourceLoader::freeImageResource(ImageResource& resource) {

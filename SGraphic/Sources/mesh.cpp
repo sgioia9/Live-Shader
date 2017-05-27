@@ -3,6 +3,7 @@
 #include <cstddef>
 #include <sstream>
 #include <string>
+#include <iostream>
 
 namespace Core {
   Mesh::Mesh(const Vertices& vertices,
@@ -62,10 +63,10 @@ namespace Core {
         ss << specularNr++;
       number = ss.str();
 
-      shader.uniformInt("material." + name + number, i); // set sampler to texture unit
+      shader.uniformInt(name + number, i); // set sampler to texture unit
       glBindTexture(GL_TEXTURE_2D, _textures[i].id);
     }
-    shader.uniformFloat("material.shininess", 16.0f);
+    shader.uniformFloat("shininess", 16.0f);
     
     glBindVertexArray(_VAO);
     glDrawElements(GL_TRIANGLES, _indices.size(), GL_UNSIGNED_INT, 0);

@@ -1,12 +1,13 @@
 #version 330 core
 
-in vec2 texCoords;
+in vec2 fragTexCoords;
 
 out vec4 color;
 
-uniform sampler2D the_texture;
+uniform sampler2D texture_diffuse1;
+uniform float shininess;
 
 void main()
 {
-  color = texture(the_texture, texCoords);
+  color = texture(texture_diffuse1, fragTexCoords);
 }
