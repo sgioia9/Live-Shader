@@ -2,6 +2,7 @@
 #define BIGWINDOW_HPP
 
 #include <QWidget>
+#include <QKeyEvent>
 
 class OglWidget;
 class MainFrame;
@@ -11,6 +12,9 @@ class BigWindow : public QWidget {
 
 public:
   BigWindow(MainFrame*);
+
+protected:
+  void keyPressEvent(QKeyEvent*) override;
 
 private:
   MainFrame* _mainFrame;

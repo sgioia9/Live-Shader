@@ -2,6 +2,7 @@
 #include <QMenuBar>
 #include <QMenu>
 #include <QMessageBox>
+#include <iostream>
 
 #include "mainframe.hpp"
 #include "bigwindow.hpp"
@@ -16,6 +17,10 @@ MainFrame::MainFrame() {
   setMenuBar(menuBar);
 
   onAddNew();
+}
+
+void MainFrame::keyPressEvent(QKeyEvent*) {
+  std::cerr << "MainFrame event" << std::endl;
 }
 
 void MainFrame::onAddNew() {

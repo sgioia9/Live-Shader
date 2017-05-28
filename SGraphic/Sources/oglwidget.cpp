@@ -1,4 +1,7 @@
 #include "oglwidget.hpp"
+#include <iostream>
+
+OglWidget::OglWidget(QWidget* parent) : QOpenGLWidget(parent) { }
 
 void OglWidget::initializeGL() {
   initializeOpenGLFunctions();

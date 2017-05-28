@@ -10,6 +10,7 @@ class OglWidget : public QOpenGLWidget,
 Q_OBJECT
 
 public:
+  OglWidget(QWidget* parent = 0);
   virtual void initializeGL();
   virtual void resizeGL(int width, int height);
   virtual void paintGL();
