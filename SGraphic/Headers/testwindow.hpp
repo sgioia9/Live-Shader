@@ -18,8 +18,6 @@ public:
 
   std::unique_ptr<Core::Shader> shader;
   std::unique_ptr<Core::WorldObject> object;
-
-  unsigned char* image;
 };
 
 #endif
