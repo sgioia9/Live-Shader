@@ -9,7 +9,7 @@
 
 GLConsole::GLConsole() {
   subscribeTo(Logger::get());
-  addNewTab("Console");
+  addNewTab(tr("Console"));
 }
 
 void GLConsole::textUpdated(const std::string& newText) {
