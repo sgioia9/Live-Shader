@@ -1,12 +1,12 @@
-#ifndef CAMERAWINDOW_HPP
-#define CAMERAWINDOW_HPP
+#ifndef CAMERAWIDGET_HPP
+#define CAMERAWIDGET_HPP
 
 #include <memory>
 
 #include "fpcamera.hpp"
-#include "oglwindow.hpp"
+#include "oglwidget.hpp"
 
-class CameraWindow : public OglWindow {
+class CameraWidget : public OglWidget {
 public:
   virtual void initializeGL() override;
   void keyPressEvent(QKeyEvent* event) override;

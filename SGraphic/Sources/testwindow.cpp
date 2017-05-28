@@ -11,7 +11,7 @@
 
 
 void TestWindow::initializeGL() {
-  CameraWindow::initializeGL();
+  CameraWidget::initializeGL();
 
   shader.reset(new Core::Shader(Core::ShaderBuilder::createBuilder() 
                                 ->addSource("simple.vert")
@@ -29,7 +29,7 @@ void TestWindow::initializeGL() {
 void TestWindow::teardownGL() { }
 
 void TestWindow::paintGL() {
-  OglWindow::paintGL();
+  CameraWidget::paintGL();
 
   shader->uniformMatrix("model", object->_transform);
   shader->uniformMatrix("vpMatrix", camera->vp_matrix());

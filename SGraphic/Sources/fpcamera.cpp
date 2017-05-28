@@ -1,8 +1,8 @@
-#include "oglwindow.hpp"
 #include "fpcamera.hpp"
+#include "oglwidget.hpp"
 
 namespace Core {
-  FPCamera::FPCamera(const OglWindow& window) 
+  FPCamera::FPCamera(const OglWidget& window) 
     : _window(window),
       speed(0.07f), 
       angular_speed(0.07f) { 

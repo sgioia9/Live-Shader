@@ -1,14 +1,14 @@
 #include <iostream>
 #include <QKeyEvent>
-#include "camerawindow.hpp"
+#include "camerawidget.hpp"
 
-void CameraWindow::initializeGL() {
-  OglWindow::initializeGL();
+void CameraWidget::initializeGL() {
+  OglWidget::initializeGL();
   camera.reset(new Core::FPCamera(*this));
   camera->setPosition(0.0f, 0.0f, 3.0f);
 }
 
-void CameraWindow::keyPressEvent(QKeyEvent* event) {
+void CameraWidget::keyPressEvent(QKeyEvent* event) {
   if (event->key() == Qt::Key_A) {
     camera->moveLeft();
   } else if (event->key() == Qt::Key_S) {

@@ -1,7 +1,7 @@
 #ifndef TESTWINDOW_HPP
 #define TESTWINDOW_HPP
 
-#include "camerawindow.hpp"
+#include "camerawidget.hpp"
 #include "shader.hpp"
 #include "model.hpp"
 #include "worldobject.hpp"
@@ -10,7 +10,7 @@
 #include <memory>
 #include <iostream>
 
-class TestWindow : public CameraWindow {
+class TestWindow : public CameraWidget {
 public:
   virtual void initializeGL() override;
   virtual void paintGL() override;

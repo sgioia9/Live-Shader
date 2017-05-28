@@ -6,12 +6,13 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <memory>
 #include <ostream>
-#include "oglwindow.hpp"
+
+class OglWidget;
 
 namespace Core {
 class FPCamera : QOpenGLExtraFunctions {
 public:
-  FPCamera(const OglWindow&);
+  FPCamera(const OglWidget&);
 
   glm::mat4 view() const;
   glm::mat4 vp_matrix() const;
@@ -31,7 +32,7 @@ public:
   void lookUp();
   void lookDown();
 
-  const OglWindow& _window;
+  const OglWidget& _window;
   GLfloat speed;
   GLfloat angular_speed;
   std::unique_ptr<glm::vec3> up;
