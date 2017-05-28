@@ -2,6 +2,6 @@
 #include <memory>
 #include "loggerlistener.hpp"
 
-void LoggerListener::subscribeTo(std::shared_ptr<Logger> logger) {
-  logger->newSubscriber(this);
+void LoggerListener::subscribeTo(Logger& logger) {
+  logger.newSubscriber(this);
 }

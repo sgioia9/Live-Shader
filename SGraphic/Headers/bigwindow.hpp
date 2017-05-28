@@ -18,8 +18,6 @@ public:
   BigWindow(MainFrame*);
 
 private:
-  std::shared_ptr<Logger> logger;
-
   MainFrame* _mainFrame;
   OglWidget* _oglWidget;
   EditorsArea* _editorsArea;

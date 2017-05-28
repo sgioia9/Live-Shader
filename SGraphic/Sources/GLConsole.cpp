@@ -5,11 +5,10 @@
 #include <QVBoxLayout>
 
 #include "glconsole.hpp"
+#include "logger.hpp"
 
-GLConsole::GLConsole(const std::shared_ptr<Logger>& logger) 
-  : _logger(logger) { 
-  subscribeTo(_logger);  
-  addNewTab(tr("Console"));
+GLConsole::GLConsole() {
+  subscribeTo(Logger::get());
 }
 
 void GLConsole::textUpdated(const std::string& newText) {

@@ -3,6 +3,11 @@
 #include "logger.hpp"
 #include "loggerlistener.hpp"
 
+Logger& Logger::get() {
+  static Logger instance;
+  return instance;
+}
+
 void Logger::newSubscriber(LoggerListener* subscriber) {
   _subscribers.push_back(subscriber);
 }

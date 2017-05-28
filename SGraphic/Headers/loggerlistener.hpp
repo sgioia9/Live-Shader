@@ -7,10 +7,9 @@
 
 class Logger;
 
-
 class LoggerListener {
 public:
-  void subscribeTo(std::shared_ptr<Logger> logger);
+  void subscribeTo(Logger& logger);
   virtual void textUpdated(const std::string&) = 0;
 };
 
