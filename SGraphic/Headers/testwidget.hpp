@@ -10,7 +10,7 @@
 #include <memory>
 #include <iostream>
 
-class TestWindow : public CameraWidget {
+class TestWidget : public CameraWidget {
 public:
   virtual void initializeGL() override;
   virtual void paintGL() override;

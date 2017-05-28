@@ -1,5 +1,5 @@
 #include <QApplication>
-#include "testwindow.hpp"
+#include <QSurfaceFormat>
 #include "mainframe.hpp"
 
 int main(int argc, char** argv) {

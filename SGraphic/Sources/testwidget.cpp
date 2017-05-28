@@ -6,11 +6,11 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "testwindow.hpp"
+#include "testwidget.hpp"
 #include "resourceloader.hpp"
 
 
-void TestWindow::initializeGL() {
+void TestWidget::initializeGL() {
   CameraWidget::initializeGL();
 
   shader.reset(new Core::Shader(Core::ShaderBuilder::createBuilder() 
@@ -26,9 +26,9 @@ void TestWindow::initializeGL() {
   shader->use();
 }
 
-void TestWindow::teardownGL() { }
+void TestWidget::teardownGL() { }
 
-void TestWindow::paintGL() {
+void TestWidget::paintGL() {
   CameraWidget::paintGL();
 
   shader->uniformMatrix("model", object->_transform);

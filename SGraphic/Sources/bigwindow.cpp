@@ -1,12 +1,12 @@
 #include "mainframe.hpp"
-#include "testwindow.hpp"
+#include "testwidget.hpp"
 #include <QVBoxLayout>
 
 #include "bigwindow.hpp"
 
 
 BigWindow::BigWindow(MainFrame* mainFrame) : _mainFrame(mainFrame) {
-  oglWidget = new TestWindow();
+  oglWidget = new TestWidget();
   oglWidget->setFixedSize(QSize(800, 600));
 
   QVBoxLayout* mainLayout = new QVBoxLayout;
