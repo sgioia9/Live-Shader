@@ -4,6 +4,7 @@
 #include "camerawindow.hpp"
 #include "shader.hpp"
 #include "model.hpp"
+#include "worldobject.hpp"
 
 #include <glm/glm.hpp>
 #include <memory>
@@ -16,8 +17,7 @@ public:
   virtual void teardownGL() override;
 
   std::unique_ptr<Core::Shader> shader;
-  std::unique_ptr<Core::Model> geomodel;
-  std::unique_ptr<glm::mat4> model;
+  std::unique_ptr<Core::WorldObject> object;
 
   unsigned char* image;
 };

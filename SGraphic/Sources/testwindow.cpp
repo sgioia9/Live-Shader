@@ -17,10 +17,11 @@ void TestWindow::initializeGL() {
                                 ->addSource("simple.vert")
                                 ->addSource("simple.frag")
                                 ->build()));
-  model.reset(new glm::mat4());
-  geomodel.reset(new Core::Model("nanosuit/nanosuit.obj"));
+  object.reset(
+      new Core::WorldObject(
+        std::make_shared<Core::Model>("nanosuit/nanosuit.obj")));
 
-  *model = glm::scale(*model, glm::vec3(0.2f, 0.2f, 0.2f));
+  object->_transform = glm::scale(object->_transform, glm::vec3(0.2f, 0.2f, 0.2f));
 
   shader->use();
 }
@@ -30,9 +31,8 @@ void TestWindow::teardownGL() { }
 void TestWindow::paintGL() {
   OglWindow::paintGL();
 
-  geomodel->draw(*shader);
-
-  shader->uniformMatrix("model", *model);
+  shader->uniformMatrix("model", object->_transform);
   shader->uniformMatrix("vpMatrix", camera->vp_matrix());
 
+  object->_model->draw(*shader);
 }
