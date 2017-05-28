@@ -5,7 +5,9 @@
 #include <QKeyEvent>
 
 class OglWidget;
+class QPushButton;
 class MainFrame;
+class EditorsArea;
 
 class BigWindow : public QWidget {
   Q_OBJECT
@@ -13,12 +15,10 @@ class BigWindow : public QWidget {
 public:
   BigWindow(MainFrame*);
 
-protected:
-  void keyPressEvent(QKeyEvent*) override;
-
 private:
   MainFrame* _mainFrame;
-  OglWidget* oglWidget;
+  OglWidget* _oglWidget;
+  EditorsArea* _editorsArea;
 
 };
 #endif

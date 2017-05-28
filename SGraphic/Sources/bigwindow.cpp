@@ -1,19 +1,17 @@
 #include "mainframe.hpp"
 #include "testwidget.hpp"
-#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include "editorsarea.hpp"
 
 #include "bigwindow.hpp"
 
 BigWindow::BigWindow(MainFrame* mainFrame) : _mainFrame(mainFrame) {
-  oglWidget = new TestWidget();
+  _oglWidget = new TestWidget();
+  _editorsArea = new EditorsArea();
 
-  QVBoxLayout* mainLayout = new QVBoxLayout;
-  mainLayout->setMargin(0);
-  mainLayout->addWidget(oglWidget);
+  QHBoxLayout* mainLayout = new QHBoxLayout;
+  mainLayout->addWidget(_oglWidget);
+  mainLayout->addWidget(_editorsArea);
 
   setLayout(mainLayout);
-}
-
-void BigWindow::keyPressEvent(QKeyEvent* event) {
-  std::cerr << "BigWindow event" << std::endl;
 }
