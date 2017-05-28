@@ -1,5 +1,6 @@
 #include <QSize>
 #include <QVBoxLayout>
+#include <QPushButton>
 #include "editorstabs.hpp"
 
 #include "editorsarea.hpp"
@@ -7,6 +8,8 @@
 EditorsArea::EditorsArea(QWidget* parent): QWidget(parent) {
   QVBoxLayout* mainLayout = new QVBoxLayout();
   mainLayout->addWidget(new EditorsTabs());
+  mainLayout->addWidget(new QPushButton(tr("Load")));
+  mainLayout->addWidget(new QPushButton(tr("Save as ...")));
   mainLayout->setMargin(0);
   setLayout(mainLayout);
 }
