@@ -8,6 +8,7 @@ class EditorsArea : public QWidget {
 public:
   EditorsArea();
 
+  QSize minimumSizeHint() const override;
   QSize sizeHint() const override;
 };
 
