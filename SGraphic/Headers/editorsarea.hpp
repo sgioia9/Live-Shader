@@ -6,7 +6,7 @@
 class EditorsArea : public QWidget {
   Q_OBJECT
 public:
-  EditorsArea();
+  EditorsArea(QWidget* parent = 0);
 
   QSize minimumSizeHint() const override;
   QSize sizeHint() const override;

@@ -7,7 +7,7 @@
 
 BigWindow::BigWindow(MainFrame* mainFrame) : _mainFrame(mainFrame) {
   _oglWidget = new TestWidget();
-  _editorsArea = new EditorsArea();
+  _editorsArea = new EditorsArea(this);
 
   QHBoxLayout* mainLayout = new QHBoxLayout;
   mainLayout->addWidget(_oglWidget);
