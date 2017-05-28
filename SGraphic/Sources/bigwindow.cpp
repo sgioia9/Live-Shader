@@ -16,6 +16,7 @@ BigWindow::BigWindow(MainFrame* mainFrame) : _mainFrame(mainFrame) {
   QVBoxLayout* openglAndRenderbtnLayout = new QVBoxLayout();
   openglAndRenderbtnLayout->addWidget(_oglWidget);
   openglAndRenderbtnLayout->addWidget(new QPushButton(tr("Render")));
+  openglAndRenderbtnLayout->setMargin(0);
 
   QWidget* openglAndRenderbtnWidget = new QWidget();
   openglAndRenderbtnWidget->setMinimumSize(QSize(1000, 700));

@@ -12,6 +12,7 @@ ShaderEditor::ShaderEditor() {
   QHBoxLayout* buttonsLayout = new QHBoxLayout();
   buttonsLayout->addWidget(new QPushButton(tr("Load ...")));
   buttonsLayout->addWidget(new QPushButton(tr("Save as ...")));
+  buttonsLayout->setMargin(0);
 
   QWidget* buttonsWidget = new QWidget();
   buttonsWidget->setLayout(buttonsLayout);
