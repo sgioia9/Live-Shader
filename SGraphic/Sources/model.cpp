@@ -27,6 +27,7 @@ namespace Core {
     // TODO: make it portable 
     _directory = full_path.substr(0, full_path.find_last_of('/'));
     processNode(scene->mRootNode, scene);;
+    std::cerr << "Loaded model with " << _meshes.size() << " meshes.\n";
   }
 
   void Model::processNode(aiNode* node, const aiScene* scene) {
