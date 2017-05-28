@@ -4,7 +4,7 @@
 
 void CameraWindow::initializeGL() {
   OglWindow::initializeGL();
-  camera.reset(new Core::FPCamera());
+  camera.reset(new Core::FPCamera(*this));
   camera->setPosition(0.0f, 0.0f, 3.0f);
 }
 
@@ -25,6 +25,10 @@ void CameraWindow::keyPressEvent(QKeyEvent* event) {
     camera->lookLeft();
   } else if (event->key() == Qt::Key_Right) {
     camera->lookRight();
+  } else if (event->key() == Qt::Key_Plus) {
+    camera->lookUp();
+  } else if (event->key() == Qt::Key_Minus) {
+    camera->lookDown();
   }
   std::cerr << *camera << std::endl;
 }

@@ -6,13 +6,15 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <memory>
 #include <ostream>
+#include "oglwindow.hpp"
 
 namespace Core {
 class FPCamera : QOpenGLExtraFunctions {
 public:
-  FPCamera();
+  FPCamera(const OglWindow&);
 
   glm::mat4 view() const;
+  glm::mat4 vp_matrix() const;
 
   void move(GLfloat dx, GLfloat dy, GLfloat dz);
   void move2d(GLfloat dx, GLfloat dz);
@@ -26,12 +28,16 @@ public:
   void moveDown();
   void lookLeft();
   void lookRight();
+  void lookUp();
+  void lookDown();
 
+  const OglWindow& _window;
   GLfloat speed;
   GLfloat angular_speed;
   std::unique_ptr<glm::vec3> up;
   std::unique_ptr<glm::vec3> front;
   std::unique_ptr<glm::vec3> position;
+  std::unique_ptr<glm::mat4> projection;
 
   friend std::ostream& operator<<(std::ostream& out, const FPCamera& cam);
 };
