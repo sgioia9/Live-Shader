@@ -18,8 +18,6 @@ public:
   std::unique_ptr<Core::Shader> shader;
   std::unique_ptr<Core::Model> geomodel;
   std::unique_ptr<glm::mat4> model;
-  std::unique_ptr<glm::mat4> view;
-  std::unique_ptr<glm::mat4> projection;
 
   unsigned char* image;
 };
