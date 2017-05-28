@@ -17,9 +17,6 @@ public:
   virtual void paintGL() override;
   virtual void teardownGL() override;
 
-  QSize minimumSizeHint() const override;
-  QSize sizeHint() const override;
-
   std::unique_ptr<Core::Shader> shader;
   std::unique_ptr<Core::WorldObject> object;
 };

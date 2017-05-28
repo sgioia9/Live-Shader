@@ -1,12 +1,23 @@
 #include <QTextEdit>
 #include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QPushButton>
 
 #include "shadereditor.hpp"
 
 ShaderEditor::ShaderEditor() { 
-  textEdit = new QTextEdit();  
-  QVBoxLayout* layout = new QVBoxLayout();
-  layout->addWidget(textEdit);
-  setLayout(layout);
+  _textEdit = new QTextEdit();  
+  QVBoxLayout* mainLayout = new QVBoxLayout();
+
+  QHBoxLayout* buttonsLayout = new QHBoxLayout();
+  buttonsLayout->addWidget(new QPushButton(tr("Load ...")));
+  buttonsLayout->addWidget(new QPushButton(tr("Save as ...")));
+
+  QWidget* buttonsWidget = new QWidget();
+  buttonsWidget->setLayout(buttonsLayout);
+
+  mainLayout->addWidget(_textEdit);
+  mainLayout->addWidget(buttonsWidget);
+  setLayout(mainLayout);
 }
 

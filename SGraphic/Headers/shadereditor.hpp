@@ -10,7 +10,7 @@ public:
   ShaderEditor();
 
 private:
-  QTextEdit* textEdit;
+  QTextEdit* _textEdit;
 };
 
 #endif
