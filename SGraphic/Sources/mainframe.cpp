@@ -19,9 +19,11 @@ MainFrame::MainFrame() {
   onAddNew();
 }
 
+/*
 void MainFrame::keyPressEvent(QKeyEvent*) {
   std::cerr << "MainFrame event" << std::endl;
 }
+*/
 
 void MainFrame::onAddNew() {
   if (!centralWidget()) {

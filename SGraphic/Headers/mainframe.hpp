@@ -10,8 +10,10 @@ class MainFrame : public QMainWindow {
 public:
   MainFrame();
 
+ /* 
 protected:
   void keyPressEvent(QKeyEvent*) override;
+  */
 
 private slots:
   void onAddNew();

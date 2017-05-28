@@ -3,6 +3,7 @@
 
 #include <memory>
 
+#include "camcontroller.hpp"
 #include "fpcamera.hpp"
 #include "oglwidget.hpp"
 
@@ -11,10 +12,12 @@ public:
   virtual void initializeGL() override;
 
 protected:
-  void keyPressEvent(QKeyEvent* event) override;
+  void keyPressEvent(QKeyEvent*) override;
+  void mousePressEvent(QMouseEvent*) override;
 
 protected:
-  std::unique_ptr<Core::FPCamera> camera;
+  std::shared_ptr<Core::FPCamera> camera;
+  CamController controller;
 };
 
 #endif

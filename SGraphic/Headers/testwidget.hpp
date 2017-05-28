@@ -9,6 +9,7 @@
 #include <glm/glm.hpp>
 #include <memory>
 #include <iostream>
+#include <QKeyEvent>
 
 class TestWidget : public CameraWidget {
 public:

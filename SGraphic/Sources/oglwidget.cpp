@@ -5,6 +5,7 @@ OglWidget::OglWidget(QWidget* parent) : QOpenGLWidget(parent) { }
 
 void OglWidget::initializeGL() {
   initializeOpenGLFunctions();
+  setFocusPolicy(Qt::ClickFocus);
   glEnable(GL_DEPTH_TEST);
   connect(
       context(), 
