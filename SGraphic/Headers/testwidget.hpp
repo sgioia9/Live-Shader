@@ -17,6 +17,8 @@ public:
   virtual void paintGL() override;
   virtual void teardownGL() override;
 
+  QSize sizeHint() const override;
+
   std::unique_ptr<Core::Shader> shader;
   std::unique_ptr<Core::WorldObject> object;
 };

@@ -36,3 +36,7 @@ void TestWidget::paintGL() {
 
   object->_model->draw(*shader);
 }
+
+QSize TestWidget::sizeHint() const {
+  return QSize(800, 600);
+}

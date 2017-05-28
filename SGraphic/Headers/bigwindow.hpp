@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include <QKeyEvent>
+#include <memory>
+#include <logger.hpp>
 
 class OglWidget;
 class QPushButton;
@@ -16,6 +18,8 @@ public:
   BigWindow(MainFrame*);
 
 private:
+  std::shared_ptr<Logger> logger;
+
   MainFrame* _mainFrame;
   OglWidget* _oglWidget;
   EditorsArea* _editorsArea;
