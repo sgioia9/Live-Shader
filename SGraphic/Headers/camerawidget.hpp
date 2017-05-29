@@ -16,7 +16,6 @@ protected:
   void mousePressEvent(QMouseEvent*) override;
 
 protected:
-  std::shared_ptr<Core::FPCamera> camera;
   CamController controller;
 };
 

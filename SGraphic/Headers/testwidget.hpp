@@ -5,6 +5,7 @@
 #include "shader.hpp"
 #include "model.hpp"
 #include "worldobject.hpp"
+#include "scene.hpp"
 
 #include <glm/glm.hpp>
 #include <memory>
@@ -27,6 +28,7 @@ public:
 
   std::unique_ptr<Core::Shader> shader;
   std::unique_ptr<Core::WorldObject> object;
+  std::unique_ptr<Scene> _scene;
 private:
   HandlerRegistration* guiReadyRegistration;
 };

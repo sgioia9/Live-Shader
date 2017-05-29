@@ -1,10 +1,8 @@
 #include "fpcamera.hpp"
-#include "oglwidget.hpp"
 
 namespace Core {
-  FPCamera::FPCamera(const OglWidget& window) 
-    : _window(window),
-      speed(0.07f), 
+  FPCamera::FPCamera(int viewWidth, int viewHeight) 
+    : speed(0.07f), 
       angular_speed(0.07f) { 
     initializeOpenGLFunctions();
     up.reset(new glm::vec3(0.0f, 1.0f, 0.0f)); 
@@ -14,7 +12,7 @@ namespace Core {
         new glm::mat4(
           glm::perspective(
             glm::radians(45.0f), 
-            1.0f * _window.width() / _window.height(), 
+            1.0f * viewWidth / viewHeight, 
             0.1f, 
             100.0f)));
   }

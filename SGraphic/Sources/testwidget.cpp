@@ -10,11 +10,16 @@
 #include "resourceloader.hpp"
 #include "mainframe.hpp"
 #include "EventBus.hpp"
+#include "scene.hpp"
+#include "nanosuitscene.hpp"
 
 void TestWidget::initializeGL() {
   CameraWidget::initializeGL();
   guiReadyRegistration = EventBus::AddHandler<GuiReadyEvent>(*this);
+  _scene.reset(new NanosuitScene());
+  _scene->attachController(controller);
 
+  /*
   shader.reset(new Core::Shader(Core::ShaderBuilder::createBuilder() 
                                 ->addSource("simple.vert")
                                 ->addSource("simple.frag")
@@ -26,17 +31,21 @@ void TestWidget::initializeGL() {
   object->_transform = glm::scale(object->_transform, glm::vec3(0.2f, 0.2f, 0.2f));
 
   shader->use();
+  */
 }
 
 void TestWidget::teardownGL() { }
 
 void TestWidget::paintGL() {
   CameraWidget::paintGL();
+  _scene->draw();
 
+  /*
   shader->uniformMatrix("model", object->_transform);
   shader->uniformMatrix("vpMatrix", camera->vp_matrix());
 
   object->_model->draw(*shader);
+  */
 }
 
 QSize TestWidget::sizeHint() const {

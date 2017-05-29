@@ -12,7 +12,7 @@ class OglWidget;
 namespace Core {
 class FPCamera : QOpenGLExtraFunctions {
 public:
-  FPCamera(const OglWidget&);
+  FPCamera(int viewWidth, int viewHeight);
 
   glm::mat4 view() const;
   glm::mat4 vp_matrix() const;
@@ -32,7 +32,6 @@ public:
   void lookUp();
   void lookDown();
 
-  const OglWidget& _window;
   GLfloat speed;
   GLfloat angular_speed;
   std::unique_ptr<glm::vec3> up;
