@@ -29,6 +29,10 @@ void OglWidget::paintGL() {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
+QSize OglWidget::sizeHint() const {
+  return  QSize(800, 600);
+}
+
 void OglWidget::teardownGL() {
   delete loopTimer;
 }

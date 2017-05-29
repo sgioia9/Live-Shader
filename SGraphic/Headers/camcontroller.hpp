@@ -13,17 +13,17 @@ class CamController {
 public:
   CamController();
   CamController(
-      const std::shared_ptr<Core::FPCamera>& camera,
-      const std::shared_ptr<CameraWidget>& widget);
+      const std::shared_ptr<Core::FPCamera>&,
+      CameraWidget*);
 
   void setCamera(const std::shared_ptr<Core::FPCamera>& camera);
-  void setWidget(const std::shared_ptr<CameraWidget>& widget);
+  void setWidget(CameraWidget* widget);
   void keyPressEvent(QKeyEvent*);
   void mousePressEvent(QMouseEvent*);
  
 private:
   std::shared_ptr<Core::FPCamera> _camera;
-  std::shared_ptr<CameraWidget> _widget;
+  CameraWidget* _widget;
 };
 
 #endif

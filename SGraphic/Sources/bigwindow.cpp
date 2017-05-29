@@ -5,6 +5,8 @@
 #include <QPushButton>
 #include "editorsarea.hpp"
 #include "glconsole.hpp"
+#include "oglwidget.hpp"
+#include "camerawidget.hpp"
 
 #include "bigwindow.hpp"
 

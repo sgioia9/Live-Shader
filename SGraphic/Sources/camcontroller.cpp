@@ -10,17 +10,14 @@
 CamController::CamController() { }
 
 CamController::CamController(
-    const std::shared_ptr<Core::FPCamera>& cam, 
-    const std::shared_ptr<CameraWidget>& widget)
+    const std::shared_ptr<Core::FPCamera>& cam, CameraWidget* widget)
   : _camera(cam), _widget(widget) { }
 
-void CamController::setCamera(
-    const std::shared_ptr<Core::FPCamera>& cam) {
+void CamController::setCamera(const std::shared_ptr<Core::FPCamera>& cam) {
   _camera = cam;
 }
 
-void CamController::setWidget(
-    const std::shared_ptr<CameraWidget>& widget) {
+void CamController::setWidget(CameraWidget* widget) {
   _widget = widget;
 }
 
