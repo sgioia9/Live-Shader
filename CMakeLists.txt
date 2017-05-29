@@ -26,6 +26,7 @@ option(BUILD_UNIT_TESTS OFF)
 add_subdirectory(SGraphic/Vendor/bullet)
 
 add_subdirectory(SGraphic/Vendor/SOIL)
+add_subdirectory(SGraphic/Vendor/eventbus)
 
 if(MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
@@ -40,12 +41,11 @@ include_directories(
   SGraphic/Headers/
   SGraphic/Vendor/assimp/include/
   SGraphic/Vendor/bullet/src/
-  SGraphic/Vendor/glad/include/
   SGraphic/Vendor/glfw/include/
   SGraphic/Vendor/glm/
+  SGraphic/Vendor/eventbus/include
   SGraphic/Vendor/SOIL/src)
 
-file(GLOB VENDORS_SOURCES SGraphic/Vendor/glad/src/glad.c)
 file(GLOB PROJECT_HEADERS SGraphic/Headers/*.hpp)
 file(GLOB PROJECT_SOURCES SGraphic/Sources/*.cpp)
 file(GLOB PROJECT_SHADERS 
@@ -71,9 +71,8 @@ add_definitions(-DGLFW_INCLUDE_NONE
                 -DPROJECT_SHADERS_DIR=\"${PROJECT_SHADERS_DIR}\"
                 -DPROJECT_SOURCE_DIR=\"${PROJECT_SOURCE_DIR}\")
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES} ${PROJECT_HEADERS}
-                               ${PROJECT_SHADERS} ${PROJECT_CONFIGS}
-                               ${VENDORS_SOURCES})
-target_link_libraries(${PROJECT_NAME} assimp glfw Qt5::Widgets SOIL
+                               ${PROJECT_SHADERS} ${PROJECT_CONFIGS})
+target_link_libraries(${PROJECT_NAME} assimp glfw Qt5::Widgets SOIL eventbus
                       ${GLFW_LIBRARIES} ${GLAD_LIBRARIES}
                       BulletDynamics BulletCollision LinearMath)
 set_target_properties(${PROJECT_NAME} PROPERTIES
