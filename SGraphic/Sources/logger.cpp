@@ -1,4 +1,5 @@
 #include <vector>
+#include <iostream>
 
 #include "logger.hpp"
 #include "loggerlistener.hpp"
@@ -28,9 +29,11 @@ void Logger::notify() {
 
 void Logger::log(const std::string& message) {
   _storedText << message; 
+  notify();
 }
 
 void Logger::logLine(const std::string& message) {
   _storedText << message + "\n";
+  notify();
 }
 

@@ -3,6 +3,7 @@
 #include <assimp/scene.h>
 #include <iostream>
 #include "resourceloader.hpp"
+#include "logger.hpp"
 #include "model.hpp"
 
 namespace Core {
@@ -16,7 +17,7 @@ namespace Core {
   void Model::loadModel(const std::string& path) {
     Assimp::Importer importer;
     std::string full_path = MODEL_DIR + path;
-    std::cerr << "Trying to load model " << full_path << std::endl;
+    Logger::get().logLine("Trying to load model" + full_path);
     const aiScene* scene = 
       importer.ReadFile(MODEL_DIR + path, aiProcess_Triangulate | aiProcess_FlipUVs);
 
@@ -27,7 +28,7 @@ namespace Core {
     // TODO: make it portable 
     _directory = full_path.substr(0, full_path.find_last_of('/'));
     processNode(scene->mRootNode, scene);;
-    std::cerr << "Loaded model with " << _meshes.size() << " meshes.\n";
+    Logger::get().logLine("Loaded model with " + std::to_string(_meshes.size()) + " meshes");
   }
 
   void Model::processNode(aiNode* node, const aiScene* scene) {
@@ -70,7 +71,7 @@ namespace Core {
         texCoords.y = mesh->mTextureCoords[0][i].y;
         vertex.texCoords = texCoords;
       } else {
-        std::cerr << "WARNING: No tex coords found\n";
+        Logger::get().logLine("WARNING: No tex coords found");
         vertex.texCoords = glm::vec2(0.0f, 0.0f);
       }
 
@@ -88,7 +89,7 @@ namespace Core {
     // retrieve material
     aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
     if (!material) {
-      std::cerr << "WARNING: No material found\n";
+      Logger::get().logLine("WARNING: No material found");
     } else {
       std::vector<Texture> diffuseMaps 
         = loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");

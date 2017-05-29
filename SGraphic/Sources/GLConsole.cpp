@@ -9,15 +9,16 @@
 
 GLConsole::GLConsole() {
   subscribeTo(Logger::get());
-  addNewTab(tr("Console"));
+  std::cerr << "console subscribing" << std::endl;
+  addConsoleTab();
 }
 
 void GLConsole::textUpdated(const std::string& newText) {
-  std::cerr << newText;
+  consoleTextEdit->insertPlainText(QString::fromStdString(newText));
 }
 
-void GLConsole::addNewTab(const QString& tabName) {
-  QTextEdit* tabContent = new QTextEdit();
-  tabContent->setReadOnly(true);
-  addTab(tabContent, tabName);
+void GLConsole::addConsoleTab() {
+  consoleTextEdit = new QTextEdit();
+  consoleTextEdit->setReadOnly(true);
+  addTab(consoleTextEdit, tr("Console"));
 }

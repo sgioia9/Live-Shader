@@ -12,26 +12,12 @@
 #include "EventBus.hpp"
 #include "scene.hpp"
 #include "nanosuitscene.hpp"
+#include "logger.hpp"
 
 void TestWidget::initializeGL() {
   CameraWidget::initializeGL();
   guiReadyRegistration = EventBus::AddHandler<GuiReadyEvent>(*this);
-  _scene.reset(new NanosuitScene());
-  _scene->attachController(controller);
-
-  /*
-  shader.reset(new Core::Shader(Core::ShaderBuilder::createBuilder() 
-                                ->addSource("simple.vert")
-                                ->addSource("simple.frag")
-                                ->build()));
-  object.reset(
-      new Core::WorldObject(
-        std::make_shared<Core::Model>("nanosuit/nanosuit.obj")));
-
-  object->_transform = glm::scale(object->_transform, glm::vec3(0.2f, 0.2f, 0.2f));
-
-  shader->use();
-  */
+  _scene.reset(new NullScene());
 }
 
 void TestWidget::teardownGL() { }
@@ -53,7 +39,9 @@ QSize TestWidget::sizeHint() const {
 }
 
 void TestWidget::onEvent(GuiReadyEvent& event) {
-  std::cerr << "received gui ready event" << std::endl;
+  std::cerr << "GUI Ready" << std::endl;
+  _scene.reset(new NanosuitScene());
+  _scene->attachController(controller);
 }
 
 TestWidget::~TestWidget() {

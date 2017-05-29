@@ -3,6 +3,7 @@
 #include "SOIL.h"
 
 #include "resourceloader.hpp"
+#include "logger.hpp"
 
 namespace Core {
 #ifdef DEVELOP
@@ -14,15 +15,15 @@ namespace Core {
 
   ImageResource ResourceLoader::loadImage(const std::string& full_path) {
     ImageResource result;
-    std::cerr << "Trying to load image: " << full_path << std::endl;
+    Logger::get().logLine("Trying to load image: " + full_path);
     int iwidth;
     int iheight;
     unsigned char* image = SOIL_load_image(full_path.c_str(), &iwidth, &iheight, 0, SOIL_LOAD_RGB);
     if (!image) {
-      std::cerr << "Could not load image: " << full_path << std::endl;
+      Logger::get().logLine("Could not load image: " + full_path);
       exit(1);
     }
-    std::cerr << "Loaded image = (" << iwidth << " x " << iheight << ")" << std::endl;
+    Logger::get().logLine("Loaded image = (" + std::to_string(iwidth) + " x " + std::to_string(iheight) + ")");
     result.data = image;
     result.width = iwidth;
     result.height = iheight;

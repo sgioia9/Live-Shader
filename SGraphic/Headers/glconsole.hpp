@@ -2,6 +2,7 @@
 #define GLCONSOLE_HPP
 
 #include <QTabWidget>
+#include <QTextEdit>
 #include <memory>
 #include "loggerlistener.hpp"
 
@@ -13,7 +14,10 @@ public:
   GLConsole();
 
   void textUpdated(const std::string& newText);
-  void addNewTab(const QString& name);
+  void addConsoleTab();
+
+private:
+  QTextEdit* consoleTextEdit;
 };
 
 #endif
