@@ -27,8 +27,13 @@ void MainFrame::keyPressEvent(QKeyEvent*) {
 */
 
 void MainFrame::showEvent(QShowEvent* event) {
+  (void)event;
   static bool alreadyShown = false;
-  if (!alreadyShown) std::cerr << "window shown" << std::endl;
+  if (!alreadyShown) { 
+    std::cerr << "emitting" << std::endl;
+    GuiReadyEvent readyEvent(*this);
+    EventBus::FireEvent(readyEvent);
+  }
   alreadyShown = true;
 }
 

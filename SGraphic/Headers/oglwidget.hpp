@@ -5,8 +5,10 @@
 #include <QOpenGLExtraFunctions>
 #include <QTimer>
 
+class GuiReadyEvent;
+
 class OglWidget : public QOpenGLWidget,
-                  protected QOpenGLExtraFunctions {
+                  protected QOpenGLExtraFunctions { 
 Q_OBJECT
 
 public:

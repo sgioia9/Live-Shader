@@ -11,7 +11,6 @@
 #include "EventBus.hpp"
 
 int main(int argc, char** argv) {
-  /*
   QApplication app(argc, argv);
 
   QSurfaceFormat format;
@@ -21,7 +20,6 @@ int main(int argc, char** argv) {
 
   MainFrame mainFrame;
   mainFrame.show();
-  */
 
   /*
   GLConsole console;
@@ -32,6 +30,5 @@ int main(int argc, char** argv) {
   logger.notify();
   */
 
-  //return app.exec();
-  return 0;
+  return app.exec();
 }

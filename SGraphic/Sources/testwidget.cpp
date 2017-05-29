@@ -8,10 +8,12 @@
 
 #include "testwidget.hpp"
 #include "resourceloader.hpp"
-
+#include "mainframe.hpp"
+#include "EventBus.hpp"
 
 void TestWidget::initializeGL() {
   CameraWidget::initializeGL();
+  guiReadyRegistration = EventBus::AddHandler<GuiReadyEvent>(*this);
 
   shader.reset(new Core::Shader(Core::ShaderBuilder::createBuilder() 
                                 ->addSource("simple.vert")
@@ -40,3 +42,13 @@ void TestWidget::paintGL() {
 QSize TestWidget::sizeHint() const {
   return QSize(800, 600);
 }
+
+void TestWidget::onEvent(GuiReadyEvent& event) {
+  std::cerr << "received gui ready event" << std::endl;
+}
+
+TestWidget::~TestWidget() {
+  guiReadyRegistration->removeHandler();
+  delete guiReadyRegistration;
+}
+
