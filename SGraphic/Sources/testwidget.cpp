@@ -25,13 +25,6 @@ void TestWidget::teardownGL() { }
 void TestWidget::paintGL() {
   CameraWidget::paintGL();
   _scene->draw();
-
-  /*
-  shader->uniformMatrix("model", object->_transform);
-  shader->uniformMatrix("vpMatrix", camera->vp_matrix());
-
-  object->_model->draw(*shader);
-  */
 }
 
 QSize TestWidget::sizeHint() const {
@@ -39,6 +32,7 @@ QSize TestWidget::sizeHint() const {
 }
 
 void TestWidget::onEvent(GuiReadyEvent& event) {
+  (void)event;
   std::cerr << "GUI Ready" << std::endl;
   _scene.reset(new NanosuitScene());
   _scene->attachController(controller);
