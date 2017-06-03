@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include <QKeyEvent>
+#include <QLabel>
+#include "displayedmodellabel.hpp"
 #include <memory>
 #include <logger.hpp>
 
@@ -20,6 +22,7 @@ public:
 private:
   MainFrame* _mainFrame;
   OglWidget* _oglWidget;
+  DisplayedModelLabel* _displayedModelLabel;
   EditorsArea* _editorsArea;
 
 };
