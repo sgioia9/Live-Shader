@@ -116,7 +116,7 @@ namespace Core {
       }
       // Texture hasn't been loaded. Do it.
       Texture texture;
-      texture.id = ResourceLoader().generateTextureFromFile(_directory, textureStr.C_Str());
+      texture.id = ResourceLoader::get().generateTextureFromFile(_directory, textureStr.C_Str());
       texture.type = name;
       texture.path = textureStr;
       textures.push_back(texture);

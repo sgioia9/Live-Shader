@@ -14,7 +14,10 @@ struct ImageResource {
 
 class ResourceLoader : public QOpenGLExtraFunctions {
 public:
-  ResourceLoader() { initializeOpenGLFunctions(); }
+  static ResourceLoader& get();
+
+  ResourceLoader(ResourceLoader const&) = delete;
+  void operator=(ResourceLoader const&) = delete;
 
   /* must call freeImageResource(..) after use */
   ImageResource loadImage(const std::string& full_path);
@@ -28,6 +31,8 @@ public:
   std::string getShaderSource(const std::string& filename);
 
   static const std::string SHADERS_PATH;
+private:
+  ResourceLoader() { initializeOpenGLFunctions(); }
 };
 }
 

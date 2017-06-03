@@ -8,6 +8,11 @@
 namespace Core {
   const std::string ResourceLoader::SHADERS_PATH = "SGraphic/Resources/Shaders/";
 
+  ResourceLoader& ResourceLoader::get() {
+    static ResourceLoader instance;
+    return instance;
+  }
+
   ImageResource ResourceLoader::loadImage(const std::string& full_path) {
     ImageResource result;
     Logger::get().logLine("Trying to load image: " + full_path);
