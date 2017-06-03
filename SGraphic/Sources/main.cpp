@@ -5,6 +5,7 @@
 
 #include "glconsole.hpp"
 #include "logger.hpp"
+#include "resourceloader.hpp"
 #include <memory>
 
 #include <iostream>

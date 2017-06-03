@@ -1,7 +1,8 @@
-#include "shadereditor.hpp"
+#include "fragmentshadereditor.hpp"
+#include "vertexshadereditor.hpp"
 #include "editorstabs.hpp"
 
 EditorsTabs::EditorsTabs() {
-  addTab(new ShaderEditor(), tr("Vertex shader"));  
-  addTab(new ShaderEditor(), tr("Fragment shader"));
+  addTab(new VertexShaderEditor(), tr("Vertex shader"));  
+  addTab(new FragmentShaderEditor(), tr("Fragment shader"));
 }

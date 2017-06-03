@@ -25,7 +25,9 @@ public:
   GLuint generateTextureFromFile(const std::string& path);
   GLuint generateTextureFromFile(const std::string& directory, const std::string& name);
 
-  static const std::string IMAGES_PATH;
+  std::string getShaderSource(const std::string& filename);
+
+  static const std::string SHADERS_PATH;
 };
 }
 

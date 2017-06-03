@@ -39,6 +39,7 @@ void TestWidget::attachScene(Scene* scene) {
 void TestWidget::onEvent(GuiReadyEvent& event) {
   (void)event;
   std::cerr << "GUI Ready" << std::endl;
+  // TODO: ac'a en realidad no se deber'ia cargar nada. Se deber'ia hacer desde la gui.
   ConfigScene* scene = new ConfigScene();
   scene->setVertexShader("/home/stefano/Repositories/SGraphic/SGraphic/Shaders/simple.vert");
   scene->setFragmentShader("/home/stefano/Repositories/SGraphic/SGraphic/Shaders/simple.frag");
