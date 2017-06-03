@@ -1,5 +1,5 @@
-#ifndef TESTWINDOW_HPP
-#define TESTWINDOW_HPP
+#ifndef SCENEWIDGET_HPP
+#define SCENEWIDGET_HPP 
 
 #include "camerawidget.hpp"
 #include "shader.hpp"
@@ -15,14 +15,14 @@
 
 class GuiReadyEvent;
 
-class TestWidget : public CameraWidget, 
+class SceneWidget: public CameraWidget, 
                    public EventHandler<GuiReadyEvent> {
 public:
   virtual void initializeGL() override;
   virtual void paintGL() override;
   virtual void teardownGL() override;
   virtual void onEvent(GuiReadyEvent&) override;
-  virtual ~TestWidget();
+  virtual ~SceneWidget();
 
   void attachScene(Scene* scene);
 

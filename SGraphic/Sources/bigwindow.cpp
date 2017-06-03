@@ -1,5 +1,5 @@
 #include "mainframe.hpp"
-#include "testwidget.hpp"
+#include "scenewidget.hpp"
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QPushButton>
@@ -12,7 +12,7 @@
 #include "bigwindow.hpp"
 
 BigWindow::BigWindow(MainFrame* mainFrame) : _mainFrame(mainFrame) {
-  _oglWidget = new TestWidget();
+  _oglWidget = new SceneWidget();
   _editorsArea = new EditorsArea(this);
   _displayedModelLabel = new DisplayedModelLabel();
 

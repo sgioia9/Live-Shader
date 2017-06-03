@@ -6,7 +6,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "testwidget.hpp"
+#include "scenewidget.hpp"
 #include "resourceloader.hpp"
 #include "mainframe.hpp"
 #include "EventBus.hpp"
@@ -14,29 +14,29 @@
 #include "configscene.hpp"
 #include "logger.hpp"
 
-void TestWidget::initializeGL() {
+void SceneWidget::initializeGL() {
   CameraWidget::initializeGL();
   guiReadyRegistration = EventBus::AddHandler<GuiReadyEvent>(*this);
   _scene.reset(new NullScene());
 }
 
-void TestWidget::teardownGL() { }
+void SceneWidget::teardownGL() { }
 
-void TestWidget::paintGL() {
+void SceneWidget::paintGL() {
   CameraWidget::paintGL();
   _scene->draw();
 }
 
-QSize TestWidget::sizeHint() const {
+QSize SceneWidget::sizeHint() const {
   return QSize(800, 600);
 }
 
-void TestWidget::attachScene(Scene* scene) {
+void SceneWidget::attachScene(Scene* scene) {
   _scene.reset(scene);
   _scene->attachController(controller);
 }
 
-void TestWidget::onEvent(GuiReadyEvent& event) {
+void SceneWidget::onEvent(GuiReadyEvent& event) {
   (void)event;
   std::cerr << "GUI Ready" << std::endl;
   // TODO: ac'a en realidad no se deber'ia cargar nada. Se deber'ia hacer desde la gui.
@@ -48,7 +48,7 @@ void TestWidget::onEvent(GuiReadyEvent& event) {
   attachScene(scene);
 }
 
-TestWidget::~TestWidget() {
+SceneWidget::~SceneWidget() {
   guiReadyRegistration->removeHandler();
   delete guiReadyRegistration;
 }
