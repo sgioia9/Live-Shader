@@ -24,10 +24,10 @@ public:
   virtual void onEvent(GuiReadyEvent&) override;
   virtual ~TestWidget();
 
+  void attachScene(Scene* scene);
+
   QSize sizeHint() const override;
 
-  std::unique_ptr<Core::Shader> shader;
-  std::unique_ptr<Core::WorldObject> object;
   std::unique_ptr<Scene> _scene;
 private:
   HandlerRegistration* guiReadyRegistration;

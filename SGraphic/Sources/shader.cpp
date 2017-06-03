@@ -10,14 +10,6 @@
 
 namespace Core {
 
-#ifdef DEVELOP
-#ifdef __MACH__
-const std::string ShaderBuilder::SHADER_DIR = "/Users/sgioia/Repositories/SGraphic/SGraphic/Shaders/";
-#else
-const std::string ShaderBuilder::SHADER_DIR = "/home/stefano/Repositories/SGraphic/SGraphic/Shaders/";
-#endif
-#endif
-
 /** Shader **/
 
 void Shader::use() {
@@ -90,13 +82,7 @@ Shader ShaderBuilder::build() {
 GLuint ShaderBuilder::buildSpecificShader(const std::string& path) {
   std::ifstream fstream;
   std::stringstream sstream;
-#ifdef DEVELOP
-  std::cerr << SHADER_DIR + path << std::endl;
-  fstream.open(SHADER_DIR + path);
-#else
-  std::cerr << path << std::endl;
   fstream.open(path);
-#endif
 
   if (!fstream.is_open()) {
     throw "Could not open file: " + path + "\n";

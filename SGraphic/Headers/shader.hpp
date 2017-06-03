@@ -44,10 +44,6 @@ public:
 
   Shader build();
 
-#ifdef DEVELOP
-  static const std::string SHADER_DIR;
-#endif
-
 private:
   GLuint buildSpecificShader(const std::string& path);
   

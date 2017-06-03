@@ -7,26 +7,19 @@
 #include "model.hpp"
 
 namespace Core {
-#ifdef DEVELOP
-  const std::string Model::MODEL_DIR 
-    = "/home/stefano/Repositories/SGraphic/SGraphic/Models/";
-#else
-  const std::string Model::MODEL_DIR = "";
-#endif
 
   void Model::loadModel(const std::string& path) {
     Assimp::Importer importer;
-    std::string full_path = MODEL_DIR + path;
-    Logger::get().logLine("Trying to load model" + full_path);
+    Logger::get().logLine("Trying to load model" + path);
     const aiScene* scene = 
-      importer.ReadFile(MODEL_DIR + path, aiProcess_Triangulate | aiProcess_FlipUVs);
+      importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
 
     if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
       std::cerr << "Assimp error: " << importer.GetErrorString() << std::endl;
     }
 
     // TODO: make it portable 
-    _directory = full_path.substr(0, full_path.find_last_of('/'));
+    _directory = path.substr(0, path.find_last_of('/'));
     processNode(scene->mRootNode, scene);;
     Logger::get().logLine("Loaded model with " + std::to_string(_meshes.size()) + " meshes");
   }
