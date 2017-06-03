@@ -11,7 +11,6 @@
 #include "mainframe.hpp"
 #include "EventBus.hpp"
 #include "scene.hpp"
-#include "nanosuitscene.hpp"
 #include "configscene.hpp"
 #include "logger.hpp"
 
