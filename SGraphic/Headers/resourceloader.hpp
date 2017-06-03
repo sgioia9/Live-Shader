@@ -28,9 +28,6 @@ public:
   GLuint generateTextureFromFile(const std::string& path);
   GLuint generateTextureFromFile(const std::string& directory, const std::string& name);
 
-  std::string getShaderSource(const std::string& filename);
-
-  static const std::string SHADERS_PATH;
 private:
   ResourceLoader() { initializeOpenGLFunctions(); }
 };

@@ -6,8 +6,6 @@
 #include "logger.hpp"
 
 namespace Core {
-  const std::string ResourceLoader::SHADERS_PATH = "SGraphic/Resources/Shaders/";
-
   ResourceLoader& ResourceLoader::get() {
     static ResourceLoader instance;
     return instance;
@@ -69,17 +67,5 @@ namespace Core {
 
   void ResourceLoader::freeImageResource(ImageResource& resource) {
     SOIL_free_image_data(resource.data);
-  }
-
-  std::string ResourceLoader::getShaderSource(const std::string& filename) {
-    std::ifstream file;
-    file.open(SHADERS_PATH + filename);
-    if (!file.is_open()) {
-      std::cerr << "could not find " << SHADERS_PATH + filename << std::endl;
-      exit(1);
-    }
-    std::stringstream sstream;
-    sstream << file.rdbuf();
-    return sstream.str();
   }
 }
