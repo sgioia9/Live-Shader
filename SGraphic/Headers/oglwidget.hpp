@@ -19,8 +19,10 @@ public:
   virtual QSize sizeHint() const override;
 protected slots:
   virtual void teardownGL();
+/*
 private:
   QTimer* loopTimer;
+  */
 };
                 
 

@@ -8,7 +8,7 @@
 #include <memory>
 #include <logger.hpp>
 
-class OglWidget;
+class SceneWidget;
 class QPushButton;
 class MainFrame;
 class EditorsArea;
@@ -19,11 +19,14 @@ class BigWindow : public QWidget {
 public:
   BigWindow(MainFrame*);
 
+private slots:
+  void onLoadModel();
+  void onRender();
+
 private:
   MainFrame* _mainFrame;
-  OglWidget* _oglWidget;
+  SceneWidget* _sceneWidget;
   DisplayedModelLabel* _displayedModelLabel;
   EditorsArea* _editorsArea;
-
 };
 #endif

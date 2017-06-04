@@ -3,6 +3,8 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QPushButton>
+#include <QFileDialog>
+#include <QMessageBox>
 #include "editorsarea.hpp"
 #include "glconsole.hpp"
 #include "oglwidget.hpp"
@@ -12,22 +14,33 @@
 #include "bigwindow.hpp"
 
 BigWindow::BigWindow(MainFrame* mainFrame) : _mainFrame(mainFrame) {
-  _oglWidget = new SceneWidget();
+  _sceneWidget = new SceneWidget();
   _editorsArea = new EditorsArea(this);
   _displayedModelLabel = new DisplayedModelLabel();
 
   QHBoxLayout* mainLayout = new QHBoxLayout();
 
+  
+  /* Displayed model widget */
   QHBoxLayout* displayedModelLayout = new QHBoxLayout();
   displayedModelLayout->addWidget(_displayedModelLabel);
-  displayedModelLayout->addWidget(new QPushButton(tr("Load model")));
+
+  QPushButton* loadModelButton = new QPushButton(tr("Load model"));
+  connect(loadModelButton, &QAbstractButton::clicked, this, &BigWindow::onLoadModel);
+  displayedModelLayout->addWidget(loadModelButton);
+
   QWidget* displayedModelWidget = new QWidget();
   displayedModelWidget->setLayout(displayedModelLayout);
+  /* --------------------- */
 
   QVBoxLayout* openglAndRenderbtnLayout = new QVBoxLayout();
-  openglAndRenderbtnLayout->addWidget(_oglWidget);
+  openglAndRenderbtnLayout->addWidget(_sceneWidget);
   openglAndRenderbtnLayout->addWidget(displayedModelWidget);
-  openglAndRenderbtnLayout->addWidget(new QPushButton(tr("Render")));
+  
+  QPushButton* renderButton = new QPushButton(tr("Render"));
+  connect(renderButton, &QAbstractButton::clicked, this, &BigWindow::onRender);
+  openglAndRenderbtnLayout->addWidget(renderButton);
+
   openglAndRenderbtnLayout->addWidget(new GLConsole);
   openglAndRenderbtnLayout->setMargin(0);
 
@@ -39,4 +52,14 @@ BigWindow::BigWindow(MainFrame* mainFrame) : _mainFrame(mainFrame) {
   mainLayout->addWidget(_editorsArea);
 
   setLayout(mainLayout);
+}
+
+void BigWindow::onLoadModel() {
+QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"),
+                                                "/home",
+                                                tr("Images (*.png *.xpm *.jpg)"));
+}
+
+void BigWindow::onRender() {
+  std::cerr << "onRender clicked" << std::endl;
 }
