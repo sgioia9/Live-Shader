@@ -9,7 +9,6 @@
 #include <vector>
 
 #include "shader.hpp"
-#include <QOpenGLFunctions>
 #include <QOpenGLExtraFunctions>
 
 namespace Core {
@@ -37,7 +36,7 @@ struct Texture {
 };
 
 // TODO: agregar public ac'a
-class Mesh : public QOpenGLExtraFunctions {
+class Mesh {
   using Vertices = std::vector<Vertex>;
   using Textures = std::vector<Texture>;
   using Indices = std::vector<GLuint>;
@@ -54,6 +53,7 @@ public:
   const Indices _indices;
 private:
   GLuint _VAO, _VBO, _EBO;
+  QOpenGLExtraFunctions* gl;
 };
 }
 
