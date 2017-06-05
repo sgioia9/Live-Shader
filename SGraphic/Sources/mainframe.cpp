@@ -20,23 +20,6 @@ MainFrame::MainFrame() {
   onAddNew();
 }
 
-/*
-void MainFrame::keyPressEvent(QKeyEvent*) {
-  std::cerr << "MainFrame event" << std::endl;
-}
-*/
-
-void MainFrame::showEvent(QShowEvent* event) {
-  (void)event;
-  static bool alreadyShown = false;
-  if (!alreadyShown) { 
-    std::cerr << "emitting" << std::endl;
-    GuiReadyEvent readyEvent(*this);
-    EventBus::FireEvent(readyEvent);
-  }
-  alreadyShown = true;
-}
-
 void MainFrame::onAddNew() {
   if (!centralWidget()) {
     setCentralWidget(new BigWindow(this));

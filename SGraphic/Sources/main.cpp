@@ -9,7 +9,6 @@
 #include <memory>
 
 #include <iostream>
-#include "EventBus.hpp"
 
 int main(int argc, char** argv) {
   QApplication app(argc, argv);
