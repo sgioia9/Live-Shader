@@ -7,6 +7,8 @@
 class ShaderEditor : public QWidget {
 public:
   ShaderEditor();
+  
+  std::string getText();
 
 protected:
   QTextEdit* _textEdit;

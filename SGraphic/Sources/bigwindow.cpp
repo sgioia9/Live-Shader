@@ -8,6 +8,7 @@
 #include "editorsarea.hpp"
 #include "glconsole.hpp"
 #include "oglwidget.hpp"
+#include "configuration.hpp"
 #include "displayedmodellabel.hpp"
 #include "camerawidget.hpp"
 
@@ -60,9 +61,12 @@ void BigWindow::onLoadModel() {
                                                   "",
                                                   tr("Models (*.obj)"));
   Logger::get().logLine("Selected: " + fileName.toStdString());
+  _displayedModelLabel->setText(fileName);
+  Configuration::get().setPathToModel(fileName.toStdString());
   _sceneWidget->resumeAutoUpdate();
 }
 
 void BigWindow::onRender() {
-  std::cerr << "onRender clicked" << std::endl;
+  ModelInfo modelInfo = Configuration::get().getModelInfo();
+  
 }

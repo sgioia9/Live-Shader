@@ -22,3 +22,7 @@ ShaderEditor::ShaderEditor() {
   setLayout(mainLayout);
 }
 
+std::string ShaderEditor::getText() {
+  return _textEdit->toPlainText().toStdString();
+}
+

@@ -3,6 +3,6 @@
 #include "editorstabs.hpp"
 
 EditorsTabs::EditorsTabs() {
-  addTab(new VertexShaderEditor(), tr("Vertex shader"));  
-  addTab(new FragmentShaderEditor(), tr("Fragment shader"));
+  addTab(VertexShaderEditor::get(), tr("Vertex shader"));  
+  addTab(FragmentShaderEditor::get(), tr("Fragment shader"));
 }
