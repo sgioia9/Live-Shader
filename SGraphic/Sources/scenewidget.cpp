@@ -15,6 +15,15 @@
 #include "fragmentshadereditor.hpp"
 #include "logger.hpp"
 
+SceneWidget* SceneWidget::instance = nullptr;
+
+SceneWidget* SceneWidget::get() {
+  if (!instance) instance = new SceneWidget();
+  return instance;
+}
+
+SceneWidget::SceneWidget() { }
+
 void SceneWidget::initializeGL() {
   CameraWidget::initializeGL();
 

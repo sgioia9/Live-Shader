@@ -18,7 +18,7 @@
 #include "bigwindow.hpp"
 
 BigWindow::BigWindow(MainFrame* mainFrame) : _mainFrame(mainFrame) {
-  _sceneWidget = new SceneWidget();
+  _sceneWidget = SceneWidget::get();
   _editorsArea = new EditorsArea(this);
   _displayedModelLabel = new DisplayedModelLabel();
 

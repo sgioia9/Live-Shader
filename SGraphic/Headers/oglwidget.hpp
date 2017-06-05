@@ -8,7 +8,7 @@
 class GuiReadyEvent;
 
 class OglWidget : public QOpenGLWidget,
-                  protected QOpenGLExtraFunctions { 
+                  public QOpenGLExtraFunctions { 
 Q_OBJECT
 
 public:
