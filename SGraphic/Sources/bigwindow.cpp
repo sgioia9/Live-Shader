@@ -12,6 +12,8 @@
 #include "configuration.hpp"
 #include "displayedmodellabel.hpp"
 #include "camerawidget.hpp"
+#include "vertexshadereditor.hpp"
+#include "fragmentshadereditor.hpp"
 
 #include "bigwindow.hpp"
 
@@ -69,11 +71,13 @@ void BigWindow::onLoadModel() {
 
 void BigWindow::onRender() {
   ModelInfo modelInfo = Configuration::get().getModelInfo();
+
   ConfigScene* scene = new ConfigScene();
   scene->setVertexShaderSource(modelInfo.vertexShaderSource);
   scene->setFragmentShaderSource(modelInfo.fragmentShaderSource);
   scene->setModel(modelInfo.pathToModel);
   scene->build();
+
   _sceneWidget->attachScene(scene);
   
 }

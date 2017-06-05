@@ -73,15 +73,9 @@ namespace Core {
       glBindTexture(GL_TEXTURE_2D, _textures[i].id);
     }
     shader.uniformFloat("shininess", 16.0f);
-    
-    std::cerr << " vao = " << _VAO << std::endl;
-    std::cerr << " ebo = " << _EBO << std::endl;
-    std::cerr << " vbo = " << _VBO << std::endl;
-    std::cerr << " indices size = " << _indices.size() << std::endl;
 
     glBindVertexArray(_VAO);
     glDrawElements(GL_TRIANGLES, _indices.size(), GL_UNSIGNED_INT, 0);
-   // glDrawArrays(GL_TRIANGLES, 0, _vertices.size());
     glBindVertexArray(0);
 
     for (GLuint i = 0; i < _textures.size(); ++i) {

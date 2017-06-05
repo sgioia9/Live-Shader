@@ -30,18 +30,12 @@ void ConfigScene::build() {
 }
 
 void ConfigScene::draw() {
-  std::cerr << "draw" << std::endl;
   _shader->use();
-  std::cerr << "shader used" << std::endl;
 
   _shader->uniformMatrix("model", _object->_transform);
   _shader->uniformMatrix("vpMatrix", _camera->vp_matrix());
-  
-  std::cerr << "uniforms sent" << std::endl;
 
   _object->_model->draw(*_shader);
-
-  std::cerr << "model drawn" << std::endl;
 }
 
 void ConfigScene::setVertexShaderSource(const std::string& source) {

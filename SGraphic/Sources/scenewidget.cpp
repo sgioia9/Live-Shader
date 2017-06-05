@@ -17,18 +17,17 @@
 
 void SceneWidget::initializeGL() {
   CameraWidget::initializeGL();
-   
-  /*
-  std::cerr << FragmentShaderEditor::get()->getText() << std::endl;
-  std::cerr << VertexShaderEditor::get()->getText() << std::endl;
-  */
+
+  _scene.reset(new NullScene());
 
   ConfigScene* scene = new ConfigScene();
   scene->setVertexShaderSource(VertexShaderEditor::get()->getText());
   scene->setFragmentShaderSource(FragmentShaderEditor::get()->getText());
-  scene->setModel("/home/stefano/Repositories/SGraphic/build/SGraphic/Resources/Models/nanosuit/nanosuit.obj");
+  scene->setModel(
+      "/home/stefano/Repositories/SGraphic/build/SGraphic/Resources/Models/nanosuit/nanosuit.obj");
   scene->build();
-  _scene.reset(scene);
+
+  attachScene(scene);
 }
 
 void SceneWidget::teardownGL() { }

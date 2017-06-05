@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QKeyEvent>
 #include <QLabel>
+#include <QOpenGLExtraFunctions>
 #include "displayedmodellabel.hpp"
 #include <memory>
 #include <logger.hpp>

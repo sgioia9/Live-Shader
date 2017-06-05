@@ -36,7 +36,8 @@ struct Texture {
   }
 };
 
-class Mesh : QOpenGLExtraFunctions {
+// TODO: agregar public ac'a
+class Mesh : public QOpenGLExtraFunctions {
   using Vertices = std::vector<Vertex>;
   using Textures = std::vector<Texture>;
   using Indices = std::vector<GLuint>;
