@@ -10,7 +10,7 @@
 class OglWidget;
 
 namespace Core {
-class FPCamera : QOpenGLExtraFunctions {
+class FPCamera {
 public:
   FPCamera(int viewWidth, int viewHeight);
 

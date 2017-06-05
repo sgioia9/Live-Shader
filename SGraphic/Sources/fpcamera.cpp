@@ -4,7 +4,6 @@ namespace Core {
   FPCamera::FPCamera(int viewWidth, int viewHeight) 
     : speed(0.07f), 
       angular_speed(0.07f) { 
-    initializeOpenGLFunctions();
     up.reset(new glm::vec3(0.0f, 1.0f, 0.0f)); 
     front.reset(new glm::vec3(0.0f, 0.0f, -1.0f)); 
     position.reset(new glm::vec3()); 
