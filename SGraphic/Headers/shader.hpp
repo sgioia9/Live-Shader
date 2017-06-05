@@ -11,7 +11,7 @@ namespace Core {
 
 class ShaderBuilder;
 
-class Shader : public QOpenGLFunctions {
+class Shader {
 
 public:
   /* Enables the shader in the OpenGL context*/
@@ -27,16 +27,18 @@ public:
   GLuint _program;
 
 private:
-  Shader() { initializeOpenGLFunctions(); }
+  Shader();
+
+  QOpenGLExtraFunctions* gl;
 
   friend ShaderBuilder;
 };
 
-class ShaderBuilder : public QOpenGLFunctions {
+class ShaderBuilder {
 using BuilderPtr = std::shared_ptr<ShaderBuilder>;
 
 public:
-  ShaderBuilder() { initializeOpenGLFunctions(); }
+  ShaderBuilder();
 
   static BuilderPtr createBuilder();
 
@@ -48,6 +50,7 @@ public:
 private:
   GLuint buildSpecificShader(const std::string& path);
   GLuint buildShaderWithSource(const std::string& source, GLenum shaderType);
+  QOpenGLExtraFunctions* gl;
 
   std::string vertexShaderSource;
   std::string fragmentShaderSource;

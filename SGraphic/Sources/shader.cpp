@@ -4,6 +4,7 @@
 #include <memory>
 #include <fstream>
 #include <sstream>
+#include "scenewidget.hpp"
 #include <glm/gtc/type_ptr.hpp>
 
 /** Shader **/
@@ -12,41 +13,49 @@ namespace Core {
 
 /** Shader **/
 
+Shader::Shader() {
+  gl = SceneWidget::get();
+}
+
 void Shader::use() {
-  glUseProgram(_program);
+  gl->glUseProgram(_program);
 }
 
 void Shader::uniformMatrix(GLint location, const glm::mat4& matrix) { 
-  glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
+  gl->glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
 }
 
 void Shader::uniformMatrix(const std::string& name, const glm::mat4& matrix) {
-  glUniformMatrix4fv(getLocation(name), 1, GL_FALSE, glm::value_ptr(matrix));
+  gl->glUniformMatrix4fv(getLocation(name), 1, GL_FALSE, glm::value_ptr(matrix));
 }
 
 void Shader::uniformInt(const std::string& name, GLint value) { 
-  glUniform1i(getLocation(name), value);
+  gl->glUniform1i(getLocation(name), value);
 }
 
 void Shader::uniformInt(GLint location, GLint value) { 
-  glUniform1i(location, value);
+  gl->glUniform1i(location, value);
 }
 
 void Shader::uniformFloat(GLint location, GLfloat value) {
-  glUniform1f(location, value);
+  gl->glUniform1f(location, value);
 }
 
 void Shader::uniformFloat(const std::string& name, GLfloat value) {
-  glUniform1f(getLocation(name), value);
+  gl->glUniform1f(getLocation(name), value);
 }
 
 GLint Shader::getLocation(const std::string& name) {
-  return glGetUniformLocation(_program, name.c_str());
+  return gl->glGetUniformLocation(_program, name.c_str());
 }
 
 /** ShaderBuilder **/
 
 using BuilderPtr = std::shared_ptr<ShaderBuilder>;
+
+ShaderBuilder::ShaderBuilder() {
+  gl = SceneWidget::get();
+}
 
 BuilderPtr ShaderBuilder::createBuilder() {
   BuilderPtr ptr = std::make_shared<ShaderBuilder>();
@@ -65,7 +74,7 @@ BuilderPtr ShaderBuilder::addFragmentShaderSource(const std::string& source) {
 }
 
 Shader ShaderBuilder::build() {
-  GLuint program = glCreateProgram();
+  GLuint program = gl->glCreateProgram();
   std::vector<int> shaderIds;
   std::cerr << "building vert shader with source:\n";
   std::cerr << vertexShaderSource << std::endl;
@@ -73,14 +82,14 @@ Shader ShaderBuilder::build() {
   std::cerr << "building fragment shader with source:\n";
   std::cerr << fragmentShaderSource << std::endl;
   GLuint fragmentShader = ShaderBuilder::buildShaderWithSource(fragmentShaderSource, GL_FRAGMENT_SHADER);
-  glAttachShader(program, vertShader);
-  glAttachShader(program, fragmentShader);
+  gl->glAttachShader(program, vertShader);
+  gl->glAttachShader(program, fragmentShader);
   shaderIds.push_back(vertShader);
   shaderIds.push_back(fragmentShader);;
-  glLinkProgram(program);
+  gl->glLinkProgram(program);
   for (const GLuint id : shaderIds) {
     // since shader is already linked, delete them
-    glDeleteShader(id);
+    gl->glDeleteShader(id);
   }
 
   Shader shaderObject;
@@ -114,18 +123,18 @@ GLuint ShaderBuilder::buildSpecificShader(const std::string& path) {
 }
 
 GLuint ShaderBuilder::buildShaderWithSource(const std::string& source, GLenum shaderType) {
-  GLuint shaderHandle = glCreateShader(shaderType);
+  GLuint shaderHandle = gl->glCreateShader(shaderType);
 
   std::string sourceCpy = source;
   const GLchar* code = sourceCpy.c_str();
 
-  glShaderSource(shaderHandle, 1, &code, NULL);
-  glCompileShader(shaderHandle);
+  gl->glShaderSource(shaderHandle, 1, &code, NULL);
+  gl->glCompileShader(shaderHandle);
   GLint success;
-  glGetShaderiv(shaderHandle, GL_COMPILE_STATUS, &success);
+  gl->glGetShaderiv(shaderHandle, GL_COMPILE_STATUS, &success);
   if (!success) {
     GLchar infoLog[512];
-    glGetShaderInfoLog(shaderHandle, 512, NULL, infoLog);
+    gl->glGetShaderInfoLog(shaderHandle, 512, NULL, infoLog);
     std::cerr << "Shader compilation failed" << std::endl;
     std::cerr << infoLog << std::endl;
     throw "Could not compile shader " + source +

@@ -2,7 +2,6 @@
 #define SCENEWIDGET_HPP 
 
 #include "camerawidget.hpp"
-#include "shader.hpp"
 #include "model.hpp"
 #include "worldobject.hpp"
 #include "scene.hpp"
