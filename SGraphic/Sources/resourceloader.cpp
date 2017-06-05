@@ -13,7 +13,7 @@ namespace Core {
 
   ImageResource ResourceLoader::loadImage(const std::string& full_path) {
     ImageResource result;
-    Logger::get().logLine("Trying to load image: " + full_path);
+    std::cerr << "Trying to load image: " << full_path << std::endl;
     int iwidth;
     int iheight;
     unsigned char* image = SOIL_load_image(full_path.c_str(), &iwidth, &iheight, 0, SOIL_LOAD_RGB);
@@ -21,7 +21,8 @@ namespace Core {
       Logger::get().logLine("Could not load image: " + full_path);
       exit(1);
     }
-    Logger::get().logLine("Loaded image = (" + std::to_string(iwidth) + " x " + std::to_string(iheight) + ")");
+    //Logger::get().logLine("Loaded image = (" + std::to_string(iwidth) + " x " + std::to_string(iheight) + ")");
+    std::cerr << "Loaded image = (" << std::to_string(iwidth) << " x " << std::to_string(iheight) << ")\n";
     result.data = image;
     result.width = iwidth;
     result.height = iheight;

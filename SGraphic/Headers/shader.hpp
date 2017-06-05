@@ -40,15 +40,17 @@ public:
 
   static BuilderPtr createBuilder();
 
-  BuilderPtr addSource(const std::string& path);
+  BuilderPtr addVertexShaderSource(const std::string& source);
+  BuilderPtr addFragmentShaderSource(const std::string& source);
 
   Shader build();
 
 private:
   GLuint buildSpecificShader(const std::string& path);
-  
+  GLuint buildShaderWithSource(const std::string& source, GLenum shaderType);
 
-  std::vector<std::string> sources;
+  std::string vertexShaderSource;
+  std::string fragmentShaderSource;
   BuilderPtr thisPtr;
 };
 }

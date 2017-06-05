@@ -11,11 +11,24 @@
 #include "mainframe.hpp"
 #include "scene.hpp"
 #include "configscene.hpp"
+#include "vertexshadereditor.hpp"
+#include "fragmentshadereditor.hpp"
 #include "logger.hpp"
 
 void SceneWidget::initializeGL() {
   CameraWidget::initializeGL();
-  _scene.reset(new NullScene());
+   
+  /*
+  std::cerr << FragmentShaderEditor::get()->getText() << std::endl;
+  std::cerr << VertexShaderEditor::get()->getText() << std::endl;
+  */
+
+  ConfigScene* scene = new ConfigScene();
+  scene->setVertexShaderSource(VertexShaderEditor::get()->getText());
+  scene->setFragmentShaderSource(FragmentShaderEditor::get()->getText());
+  scene->setModel("/home/stefano/Repositories/SGraphic/build/SGraphic/Resources/Models/nanosuit/nanosuit.obj");
+  scene->build();
+  _scene.reset(scene);
 }
 
 void SceneWidget::teardownGL() { }

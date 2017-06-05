@@ -20,9 +20,5 @@ ModelInfo Configuration::getModelInfo() {
   info.vertexShaderSource = VertexShaderEditor::get()->getText(); 
   info.fragmentShaderSource = FragmentShaderEditor::get()->getText();
   info.pathToModel = pathToModel;
-
-  std::cerr << "vert source: " << info.vertexShaderSource << std::endl;
-  std::cerr << "fragment source: " << info.fragmentShaderSource << std::endl;
-  std::cerr << "path to model: " << info.pathToModel << std::endl;
   return info;
 }

@@ -14,8 +14,12 @@ namespace Core {
       _indices(indices) { 
     initializeOpenGLFunctions();
     glGenVertexArrays(1, &_VAO); 
-    glGenBuffers(1, &_VBO);
     glGenBuffers(1, &_EBO);
+    glGenBuffers(1, &_VBO);
+    std::cerr << "creating vao " << _VAO << std::endl;
+    std::cerr << "creating ebo " << _EBO << std::endl;
+    std::cerr << "creating vbo " << _VBO << std::endl;
+    std::cerr << "indices size " << _indices.size() << std::endl;
 
     glBindVertexArray(_VAO);
       glBindBuffer(GL_ARRAY_BUFFER, _VBO);
@@ -46,6 +50,8 @@ namespace Core {
       glEnableVertexAttribArray(2);
       glVertexAttribPointer(
           2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, texCoords)); 
+
+      glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
   }
 
@@ -68,8 +74,14 @@ namespace Core {
     }
     shader.uniformFloat("shininess", 16.0f);
     
+    std::cerr << " vao = " << _VAO << std::endl;
+    std::cerr << " ebo = " << _EBO << std::endl;
+    std::cerr << " vbo = " << _VBO << std::endl;
+    std::cerr << " indices size = " << _indices.size() << std::endl;
+
     glBindVertexArray(_VAO);
     glDrawElements(GL_TRIANGLES, _indices.size(), GL_UNSIGNED_INT, 0);
+   // glDrawArrays(GL_TRIANGLES, 0, _vertices.size());
     glBindVertexArray(0);
 
     for (GLuint i = 0; i < _textures.size(); ++i) {

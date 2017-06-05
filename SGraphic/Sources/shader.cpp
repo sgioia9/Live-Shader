@@ -54,20 +54,29 @@ BuilderPtr ShaderBuilder::createBuilder() {
   return ptr;
 }
 
-BuilderPtr ShaderBuilder::addSource(const std::string& path) {
-  thisPtr->sources.push_back(path);
+BuilderPtr ShaderBuilder::addVertexShaderSource(const std::string& source) {
+  vertexShaderSource = source;
+  return thisPtr;
+}
+
+BuilderPtr ShaderBuilder::addFragmentShaderSource(const std::string& source) {
+  fragmentShaderSource = source;
   return thisPtr;
 }
 
 Shader ShaderBuilder::build() {
   GLuint program = glCreateProgram();
   std::vector<int> shaderIds;
-  shaderIds.reserve(sources.size());
-  for (const auto& shaderFile : sources) {
-    GLuint shader = ShaderBuilder::buildSpecificShader(shaderFile);
-    glAttachShader(program, shader);
-    shaderIds.push_back(shader);
-  }
+  std::cerr << "building vert shader with source:\n";
+  std::cerr << vertexShaderSource << std::endl;
+  GLuint vertShader = ShaderBuilder::buildShaderWithSource(vertexShaderSource, GL_VERTEX_SHADER);
+  std::cerr << "building fragment shader with source:\n";
+  std::cerr << fragmentShaderSource << std::endl;
+  GLuint fragmentShader = ShaderBuilder::buildShaderWithSource(fragmentShaderSource, GL_FRAGMENT_SHADER);
+  glAttachShader(program, vertShader);
+  glAttachShader(program, fragmentShader);
+  shaderIds.push_back(vertShader);
+  shaderIds.push_back(fragmentShader);;
   glLinkProgram(program);
   for (const GLuint id : shaderIds) {
     // since shader is already linked, delete them
@@ -89,18 +98,27 @@ GLuint ShaderBuilder::buildSpecificShader(const std::string& path) {
   }
   sstream << fstream.rdbuf();
   auto shaderSource = sstream.str();
-  const GLchar* code = shaderSource.c_str();
 
-  GLuint shaderHandle;
   auto dotIndex = path.rfind(".");
   auto extension = path.substr(dotIndex + 1);
+
+  GLuint shaderHandle;
   if (extension == "vert") {
-    shaderHandle = glCreateShader(GL_VERTEX_SHADER); 
+    shaderHandle = buildShaderWithSource(shaderSource, GL_VERTEX_SHADER);
   } else if (extension == "frag") {
-    shaderHandle = glCreateShader(GL_FRAGMENT_SHADER);
+    shaderHandle = buildShaderWithSource(shaderSource, GL_FRAGMENT_SHADER);
   } else {
     throw "Uknown shader extension for " + path + "\n";
   }
+  return shaderHandle;
+}
+
+GLuint ShaderBuilder::buildShaderWithSource(const std::string& source, GLenum shaderType) {
+  GLuint shaderHandle = glCreateShader(shaderType);
+
+  std::string sourceCpy = source;
+  const GLchar* code = sourceCpy.c_str();
+
   glShaderSource(shaderHandle, 1, &code, NULL);
   glCompileShader(shaderHandle);
   GLint success;
@@ -110,9 +128,9 @@ GLuint ShaderBuilder::buildSpecificShader(const std::string& path) {
     glGetShaderInfoLog(shaderHandle, 512, NULL, infoLog);
     std::cerr << "Shader compilation failed" << std::endl;
     std::cerr << infoLog << std::endl;
-    throw "Could not compile shader " + path +
+    throw "Could not compile shader " + source +
       "\nLog: " + std::string(infoLog) + "\n";
-  }
+  } 
   return shaderHandle;
 }
 
