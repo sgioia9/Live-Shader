@@ -10,7 +10,7 @@
 class Scene {
 public:
   Scene();
-  void attachController(CamController& conntroller);
+  void attachController(std::shared_ptr<CamController> conntroller);
 
   virtual void draw() = 0;
   

@@ -65,4 +65,3 @@ void CamController::mousePressEvent(QMouseEvent* event) {
     std::cerr << "mouse clicked" << std::endl;
   }
 }
-

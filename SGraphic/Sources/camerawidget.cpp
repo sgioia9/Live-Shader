@@ -4,12 +4,13 @@
 
 void CameraWidget::initializeGL() {
   OglWidget::initializeGL();
+  controller.reset(new NullCamController());
 }
 
 void CameraWidget::keyPressEvent(QKeyEvent* event) {
-  controller.keyPressEvent(event);
+  controller->keyPressEvent(event);
 }
 
 void CameraWidget::mousePressEvent(QMouseEvent* event) {
-  controller.mousePressEvent(event);
+  controller->mousePressEvent(event);
 }

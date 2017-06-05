@@ -31,6 +31,7 @@ QSize SceneWidget::sizeHint() const {
 
 void SceneWidget::attachScene(Scene* scene) {
   _scene.reset(scene);
+  controller.reset(new CamController());
   _scene->attachController(controller);
 }
 

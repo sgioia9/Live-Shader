@@ -18,12 +18,17 @@ public:
 
   void setCamera(const std::shared_ptr<Core::FPCamera>& camera);
   void setWidget(CameraWidget* widget);
-  void keyPressEvent(QKeyEvent*);
-  void mousePressEvent(QMouseEvent*);
+  virtual void keyPressEvent(QKeyEvent*);
+  virtual void mousePressEvent(QMouseEvent*);
  
 private:
   std::shared_ptr<Core::FPCamera> _camera;
   CameraWidget* _widget;
+};
+
+class NullCamController : public CamController {
+  void keyPressEvent(QKeyEvent*) { }
+  void mousePressEvent(QMouseEvent*) { }
 };
 
 #endif

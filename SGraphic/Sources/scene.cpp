@@ -3,7 +3,7 @@
 
 Scene::Scene() { }
 
-void Scene::attachController(CamController& controller) {
-  controller.setCamera(_camera); 
+void Scene::attachController(std::shared_ptr<CamController> controller) {
+  controller->setCamera(_camera); 
 }
 
