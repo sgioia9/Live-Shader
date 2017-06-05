@@ -55,9 +55,11 @@ BigWindow::BigWindow(MainFrame* mainFrame) : _mainFrame(mainFrame) {
 }
 
 void BigWindow::onLoadModel() {
-QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"),
-                                                "/home",
-                                                tr("Images (*.png *.xpm *.jpg)"));
+  _sceneWidget->pauseAutoUpdate();
+  QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"),
+                                                  "/home",
+                                                  tr("Images (*.png *.xpm *.jpg)"));
+  _sceneWidget->resumeAutoUpdate();
 }
 
 void BigWindow::onRender() {

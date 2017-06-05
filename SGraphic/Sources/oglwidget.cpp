@@ -1,4 +1,5 @@
 #include "oglwidget.hpp"
+#include "logger.hpp"
 #include <iostream>
 
 OglWidget::OglWidget(QWidget* parent) : QOpenGLWidget(parent) { }
@@ -14,11 +15,10 @@ void OglWidget::initializeGL() {
       SLOT(teardownGL()), 
       Qt::DirectConnection);
 
-  /*
   loopTimer = new QTimer(this);
   connect(loopTimer, SIGNAL(timeout()), this, SLOT(update()));
-  loopTimer->start(0);
-  */
+
+  resumeAutoUpdate(); // start updating for max fps
 }
 
 void OglWidget::resizeGL(int width, int height) {
@@ -35,6 +35,16 @@ QSize OglWidget::sizeHint() const {
   return  QSize(800, 600);
 }
 
+void OglWidget::pauseAutoUpdate() {
+  Logger::get().logLine("Pausing OpenGL rendering");
+  loopTimer->stop();
+}
+
+void OglWidget::resumeAutoUpdate() {
+  Logger::get().logLine("Resuming OpenGL rendering");
+  loopTimer->start(0);
+}
+
 void OglWidget::teardownGL() {
- // delete loopTimer;
+  delete loopTimer;
 }

@@ -17,12 +17,13 @@ public:
   virtual void resizeGL(int width, int height) override;
   virtual void paintGL() override;
   virtual QSize sizeHint() const override;
+  void pauseAutoUpdate();
+  void resumeAutoUpdate();
+
 protected slots:
   virtual void teardownGL();
-/*
 private:
   QTimer* loopTimer;
-  */
 };
                 
 
