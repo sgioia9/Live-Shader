@@ -56,9 +56,10 @@ BigWindow::BigWindow(MainFrame* mainFrame) : _mainFrame(mainFrame) {
 
 void BigWindow::onLoadModel() {
   _sceneWidget->pauseAutoUpdate();
-  QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"),
-                                                  "/home",
-                                                  tr("Images (*.png *.xpm *.jpg)"));
+  QString fileName = QFileDialog::getOpenFileName(this, tr("Load model"),
+                                                  "",
+                                                  tr("Models (*.obj)"));
+  Logger::get().logLine("Selected: " + fileName.toStdString());
   _sceneWidget->resumeAutoUpdate();
 }
 
