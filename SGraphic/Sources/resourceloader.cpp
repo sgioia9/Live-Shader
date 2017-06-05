@@ -2,10 +2,13 @@
 #include <iostream>
 #include "SOIL.h"
 
+#include "scenewidget.hpp"
 #include "resourceloader.hpp"
 #include "logger.hpp"
 
 namespace Core {
+  ResourceLoader::ResourceLoader() { gl = SceneWidget::get(); }
+
   ResourceLoader& ResourceLoader::get() {
     static ResourceLoader instance;
     return instance;
@@ -35,11 +38,11 @@ namespace Core {
 
   GLuint ResourceLoader::generateTextureFromFile(const std::string& full_path) {
     GLuint id;
-    glGenTextures(1, &id);
+    gl->glGenTextures(1, &id);
     ImageResource soilImage = loadImage(full_path);
 
-    glBindTexture(GL_TEXTURE_2D, id);
-    glTexImage2D(
+    gl->glBindTexture(GL_TEXTURE_2D, id);
+    gl->glTexImage2D(
         GL_TEXTURE_2D, 
         0, 
         GL_RGB, 
@@ -49,13 +52,13 @@ namespace Core {
         GL_RGB, 
         GL_UNSIGNED_BYTE, 
         soilImage.data);
-    glGenerateMipmap(GL_TEXTURE_2D);
+    gl->glGenerateMipmap(GL_TEXTURE_2D);
 
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glBindTexture(GL_TEXTURE_2D, 0);
+    gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    gl->glBindTexture(GL_TEXTURE_2D, 0);
     
     freeImageResource(soilImage);
     return id;

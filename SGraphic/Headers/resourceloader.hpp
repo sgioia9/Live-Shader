@@ -12,7 +12,7 @@ struct ImageResource {
   int height;
 };
 
-class ResourceLoader : public QOpenGLExtraFunctions {
+class ResourceLoader {
 public:
   static ResourceLoader& get();
 
@@ -29,7 +29,8 @@ public:
   GLuint generateTextureFromFile(const std::string& directory, const std::string& name);
 
 private:
-  ResourceLoader() { initializeOpenGLFunctions(); }
+  ResourceLoader();
+  QOpenGLExtraFunctions* gl;
 };
 }
 
