@@ -76,11 +76,15 @@ BuilderPtr ShaderBuilder::addFragmentShaderSource(const std::string& source) {
 Shader ShaderBuilder::build() {
   GLuint program = gl->glCreateProgram();
   std::vector<int> shaderIds;
+  /*
   std::cerr << "building vert shader with source:\n";
   std::cerr << vertexShaderSource << std::endl;
+  */
   GLuint vertShader = ShaderBuilder::buildShaderWithSource(vertexShaderSource, GL_VERTEX_SHADER);
+  /*
   std::cerr << "building fragment shader with source:\n";
   std::cerr << fragmentShaderSource << std::endl;
+  */
   GLuint fragmentShader = ShaderBuilder::buildShaderWithSource(fragmentShaderSource, GL_FRAGMENT_SHADER);
   gl->glAttachShader(program, vertShader);
   gl->glAttachShader(program, fragmentShader);

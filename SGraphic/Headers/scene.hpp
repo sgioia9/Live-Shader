@@ -14,6 +14,8 @@ public:
   void attachController(std::shared_ptr<CamController> conntroller);
 
   virtual void draw() = 0;
+
+  virtual ~Scene() { }
   
 protected:
   std::unique_ptr<Core::Shader> _shader;
@@ -24,10 +26,12 @@ protected:
 class NullScene : public Scene { 
 public:
   void draw() override { }
+  ~NullScene() { }
 };
 
 class DebugScene : public Scene, public QOpenGLExtraFunctions {
 public: 
+  virtual ~DebugScene() { }
   DebugScene() {
     initializeOpenGLFunctions();
 	  

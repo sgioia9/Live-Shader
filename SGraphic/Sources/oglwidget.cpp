@@ -3,6 +3,7 @@
 #include <iostream>
 
 OglWidget::OglWidget(QWidget* parent) : QOpenGLWidget(parent) { }
+OglWidget::~OglWidget() { delete loopTimer; }
 
 void OglWidget::initializeGL() {
   initializeOpenGLFunctions();
@@ -46,5 +47,5 @@ void OglWidget::resumeAutoUpdate() {
 }
 
 void OglWidget::teardownGL() {
-  delete loopTimer;
+  std::cerr << "oglwidget tear down" << std::endl;
 }

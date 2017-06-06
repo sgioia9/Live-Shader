@@ -14,6 +14,7 @@
 #include "vertexshadereditor.hpp"
 #include "fragmentshadereditor.hpp"
 #include "logger.hpp"
+#include "configuration.hpp"
 
 SceneWidget* SceneWidget::instance = nullptr;
 
@@ -23,23 +24,15 @@ SceneWidget* SceneWidget::get() {
 }
 
 SceneWidget::SceneWidget() { }
+SceneWidget::~SceneWidget() { std::cerr << "scene widget destroyed" << std::endl; }
 
 void SceneWidget::initializeGL() {
   CameraWidget::initializeGL();
-
-  _scene.reset(new NullScene());
-
-  ConfigScene* scene = new ConfigScene();
-  scene->setVertexShaderSource(VertexShaderEditor::get()->getText());
-  scene->setFragmentShaderSource(FragmentShaderEditor::get()->getText());
-  scene->setModel(
-      "/home/stefano/Repositories/SGraphic/build/SGraphic/Resources/Models/nanosuit/nanosuit.obj");
-  scene->build();
-
-  attachScene(scene);
+  ModelInfo auxInfo = Configuration::get().getModelInfo();
+  auxInfo.pathToModel =
+    "/home/stefano/Repositories/SGraphic/build/SGraphic/Resources/Models/nanosuit/nanosuit.obj";
+  _scene.reset(new ConfigScene(auxInfo));
 }
-
-void SceneWidget::teardownGL() { }
 
 void SceneWidget::paintGL() {
   CameraWidget::paintGL();
@@ -50,9 +43,9 @@ QSize SceneWidget::sizeHint() const {
   return QSize(800, 600);
 }
 
-void SceneWidget::attachScene(Scene* scene) {
-  _scene.reset(scene);
+void SceneWidget::onNewConfig(const ModelInfo& info) {
+  std::cerr << "reinitialize" << std::endl;
+  initializeGL();
   controller.reset(new CamController());
   _scene->attachController(controller);
 }
-

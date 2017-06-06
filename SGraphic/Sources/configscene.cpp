@@ -3,6 +3,17 @@
 #include "fpcamera.hpp"
 #include "configscene.hpp"
 
+ConfigScene::ConfigScene(const ModelInfo& info) {
+  _vertexSource = info.vertexShaderSource;
+  _fragmentSource = info.fragmentShaderSource;
+  _modelPath = info.pathToModel;
+  build();
+}
+
+ConfigScene::~ConfigScene() {
+  std::cerr << "config scene destroyed" << std::endl;
+}
+
 void ConfigScene::build() {
   std::cerr << "building scene" << std::endl;
   try {
@@ -37,16 +48,3 @@ void ConfigScene::draw() {
 
   _object->_model->draw(*_shader);
 }
-
-void ConfigScene::setVertexShaderSource(const std::string& source) {
-  _vertexSource = source;
-}
-
-void ConfigScene::setFragmentShaderSource(const std::string& source) {
-  _fragmentSource = source;
-}
-
-void ConfigScene::setModel(const std::string& path) {
-  _modelPath = path;
-}
-

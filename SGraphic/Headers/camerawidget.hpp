@@ -10,6 +10,7 @@
 class CameraWidget : public OglWidget {
 public:
   virtual void initializeGL() override;
+  virtual ~CameraWidget();
 
 protected:
   void keyPressEvent(QKeyEvent*) override;

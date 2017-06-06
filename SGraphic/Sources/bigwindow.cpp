@@ -71,13 +71,5 @@ void BigWindow::onLoadModel() {
 
 void BigWindow::onRender() {
   ModelInfo modelInfo = Configuration::get().getModelInfo();
-
-  ConfigScene* scene = new ConfigScene();
-  scene->setVertexShaderSource(modelInfo.vertexShaderSource);
-  scene->setFragmentShaderSource(modelInfo.fragmentShaderSource);
-  scene->setModel(modelInfo.pathToModel);
-  scene->build();
-
-  _sceneWidget->attachScene(scene);
-  
+  _sceneWidget->onNewConfig(modelInfo);
 }

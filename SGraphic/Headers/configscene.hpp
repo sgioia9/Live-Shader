@@ -2,20 +2,18 @@
 #define CONFIGSCENE_HPP
 
 #include "scene.hpp"
+#include "configuration.hpp"
 
 #include <string>
 
 class ConfigScene : public Scene {
 public:
-  ConfigScene() {}
+  ConfigScene(const ModelInfo&);
+  virtual ~ConfigScene();
 
-  void setVertexShaderSource(const std::string& source);
-  void setFragmentShaderSource(const std::string& source);
-  void setModel(const std::string& path);
-
-  void build();
   virtual void draw() override;
 private:
+  void build();
   std::string _vertexSource;
   std::string _fragmentSource;
   std::string _modelPath;

@@ -17,10 +17,12 @@ namespace Core {
     gl->glGenVertexArrays(1, &_VAO); 
     gl->glGenBuffers(1, &_EBO);
     gl->glGenBuffers(1, &_VBO);
+    /*
     std::cerr << "creating vao " << _VAO << std::endl;
     std::cerr << "creating ebo " << _EBO << std::endl;
     std::cerr << "creating vbo " << _VBO << std::endl;
     std::cerr << "indices size " << _indices.size() << std::endl;
+    */
 
     gl->glBindVertexArray(_VAO);
       gl->glBindBuffer(GL_ARRAY_BUFFER, _VBO);

@@ -13,6 +13,7 @@ Q_OBJECT
 
 public:
   OglWidget(QWidget* parent = 0);
+  ~OglWidget();
   virtual void initializeGL() override;
   virtual void resizeGL(int width, int height) override;
   virtual void paintGL() override;

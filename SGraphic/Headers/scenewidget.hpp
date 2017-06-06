@@ -5,6 +5,7 @@
 #include "model.hpp"
 #include "worldobject.hpp"
 #include "scene.hpp"
+#include "configuration.hpp"
 
 #include <glm/glm.hpp>
 #include <memory>
@@ -15,15 +16,15 @@
 class SceneWidget: public CameraWidget {
 public:
   static SceneWidget* get();
+  ~SceneWidget();
 
   SceneWidget(const SceneWidget&) = delete;
   void operator=(const SceneWidget&) = delete;
 
   virtual void initializeGL() override;
   virtual void paintGL() override;
-  virtual void teardownGL() override;
 
-  void attachScene(Scene* scene);
+  void onNewConfig(const ModelInfo& info);
 
   QSize sizeHint() const override;
 
