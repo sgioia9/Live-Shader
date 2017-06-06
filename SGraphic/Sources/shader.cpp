@@ -76,15 +76,7 @@ BuilderPtr ShaderBuilder::addFragmentShaderSource(const std::string& source) {
 Shader ShaderBuilder::build() {
   GLuint program = gl->glCreateProgram();
   std::vector<int> shaderIds;
-  /*
-  std::cerr << "building vert shader with source:\n";
-  std::cerr << vertexShaderSource << std::endl;
-  */
   GLuint vertShader = ShaderBuilder::buildShaderWithSource(vertexShaderSource, GL_VERTEX_SHADER);
-  /*
-  std::cerr << "building fragment shader with source:\n";
-  std::cerr << fragmentShaderSource << std::endl;
-  */
   GLuint fragmentShader = ShaderBuilder::buildShaderWithSource(fragmentShaderSource, GL_FRAGMENT_SHADER);
   gl->glAttachShader(program, vertShader);
   gl->glAttachShader(program, fragmentShader);
@@ -129,8 +121,7 @@ GLuint ShaderBuilder::buildSpecificShader(const std::string& path) {
 GLuint ShaderBuilder::buildShaderWithSource(const std::string& source, GLenum shaderType) {
   GLuint shaderHandle = gl->glCreateShader(shaderType);
 
-  std::string sourceCpy = source;
-  const GLchar* code = sourceCpy.c_str();
+  const GLchar* code = source.c_str();
 
   gl->glShaderSource(shaderHandle, 1, &code, NULL);
   gl->glCompileShader(shaderHandle);
@@ -139,8 +130,6 @@ GLuint ShaderBuilder::buildShaderWithSource(const std::string& source, GLenum sh
   if (!success) {
     GLchar infoLog[512];
     gl->glGetShaderInfoLog(shaderHandle, 512, NULL, infoLog);
-    std::cerr << "Shader compilation failed" << std::endl;
-    std::cerr << infoLog << std::endl;
     throw "Could not compile shader " + source +
       "\nLog: " + std::string(infoLog) + "\n";
   } 

@@ -4,6 +4,7 @@
 #include "configscene.hpp"
 
 ConfigScene::ConfigScene(const ModelInfo& info) {
+  std::cerr << "config scene receives\n" << info.vertexShaderSource << std::endl;
   _vertexSource = info.vertexShaderSource;
   _fragmentSource = info.fragmentShaderSource;
   _modelPath = info.pathToModel;

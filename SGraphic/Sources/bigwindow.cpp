@@ -70,6 +70,5 @@ void BigWindow::onLoadModel() {
 }
 
 void BigWindow::onRender() {
-  ModelInfo modelInfo = Configuration::get().getModelInfo();
-  _sceneWidget->onNewConfig(modelInfo);
+  _sceneWidget->onNewConfig(Configuration::get().getModelInfo());
 }

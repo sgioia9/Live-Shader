@@ -28,15 +28,17 @@ SceneWidget::~SceneWidget() { std::cerr << "scene widget destroyed" << std::endl
 
 void SceneWidget::initializeGL() {
   CameraWidget::initializeGL();
-  ModelInfo auxInfo = Configuration::get().getModelInfo();
-  auxInfo.pathToModel =
-    "/home/stefano/Repositories/SGraphic/build/SGraphic/Resources/Models/nanosuit/nanosuit.obj";
-  _scene.reset(new ConfigScene(auxInfo));
+  _scene.reset(new NullScene());
 }
 
 void SceneWidget::paintGL() {
   CameraWidget::paintGL();
   _scene->draw();
+  if (!newModelEvents.empty()) {
+    const ModelInfo event = newModelEvents.front();
+    newModelEvents.pop();
+    _scene.reset(new ConfigScene(event));
+  }
 }
 
 QSize SceneWidget::sizeHint() const {
@@ -45,7 +47,6 @@ QSize SceneWidget::sizeHint() const {
 
 void SceneWidget::onNewConfig(const ModelInfo& info) {
   std::cerr << "reinitialize" << std::endl;
-  initializeGL();
-  controller.reset(new CamController());
-  _scene->attachController(controller);
+  std::cerr << "queue sending\n" << info.vertexShaderSource << std::endl;
+  newModelEvents.push(info);
 }

@@ -10,8 +10,8 @@
 #include <glm/glm.hpp>
 #include <memory>
 #include <iostream>
+#include <queue>
 #include <QKeyEvent>
-
 
 class SceneWidget: public CameraWidget {
 public:
@@ -29,6 +29,7 @@ public:
   QSize sizeHint() const override;
 
   std::unique_ptr<Scene> _scene;
+  std::queue<ModelInfo> newModelEvents;
 private:
   SceneWidget();
   static SceneWidget* instance;
