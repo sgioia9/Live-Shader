@@ -28,11 +28,13 @@ public:
 
   QSize sizeHint() const override;
 
-  std::unique_ptr<Scene> _scene;
-  std::queue<ModelInfo> newModelEvents;
 private:
   SceneWidget();
   void processEvent();
+
+  std::unique_ptr<Scene> _scene;
+  std::queue<ModelInfo> newModelEvents;
+
   static SceneWidget* instance;
 };
 #endif

@@ -45,7 +45,8 @@ QSize SceneWidget::sizeHint() const {
 
 void SceneWidget::processEvent() {
   const ModelInfo& event = newModelEvents.front();
-  _scene.reset(new ConfigScene(event));
+  ConfigScene* newScene = new ConfigScene(event);
+  _scene.reset(newScene);
   controller.reset(new CamController());
   _scene->attachController(controller);
   newModelEvents.pop();

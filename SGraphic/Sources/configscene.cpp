@@ -35,7 +35,7 @@ void ConfigScene::build() {
         new Core::WorldObject(
           std::make_shared<Core::Model>(_modelPath)));
   } catch (const std::string& error) {
-    std::cerr << "model error" << error << std::endl;
+    std::cerr << "model error: " << error << std::endl;
   }
   _object->_transform = glm::scale(_object->_transform, glm::vec3(0.2f, 0.2f, 0.2f));
   std::cerr << "model loaded & transformed " << std::endl;

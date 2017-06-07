@@ -10,25 +10,26 @@ namespace Core {
 
   void Model::loadModel(const std::string& path) {
     Assimp::Importer importer;
-    //Logger::get().logLine("Trying to load model" + path);
+    Logger::get().logLine("Trying to load model" + path);
     std::cerr << "Trying to load model " << path << std::endl;
     const aiScene* scene = 
       importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
 
     if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
-      std::cerr << "Assimp error: " << importer.GetErrorString() << std::endl;
+      std::string error = "Assimp error: ";
+      error += importer.GetErrorString();
+      error += "\n";
+      throw error;
     }
 
     // TODO: make it portable 
     _directory = path.substr(0, path.find_last_of('/'));
     processNode(scene->mRootNode, scene);;
     std::cerr << "Loaded model with " << std::to_string(_meshes.size()) << " meshes " << std::endl;
-    //Logger::get().logLine("Loaded model with " + std::to_string(_meshes.size()) + " meshes");
+    Logger::get().logLine("Loaded model with " + std::to_string(_meshes.size()) + " meshes");
   }
 
   void Model::processNode(aiNode* node, const aiScene* scene) {
-    // TODO: acá se pueden distinguri las relaciones de padre-hijo
-    // de los meshes. Hacerlo!
     for (GLuint i = 0; i < node->mNumMeshes; ++i) {
       aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
       _meshes.push_back(processMesh(mesh, scene));

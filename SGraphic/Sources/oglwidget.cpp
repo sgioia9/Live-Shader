@@ -1,5 +1,4 @@
 #include "oglwidget.hpp"
-#include "logger.hpp"
 #include <iostream>
 
 OglWidget::OglWidget(QWidget* parent) : QOpenGLWidget(parent) { }
@@ -37,15 +36,11 @@ QSize OglWidget::sizeHint() const {
 }
 
 void OglWidget::pauseAutoUpdate() {
-  Logger::get().logLine("Pausing OpenGL rendering");
   loopTimer->stop();
 }
 
 void OglWidget::resumeAutoUpdate() {
-  Logger::get().logLine("Resuming OpenGL rendering");
   loopTimer->start(0);
 }
 
-void OglWidget::teardownGL() {
-  std::cerr << "oglwidget tear down" << std::endl;
-}
+void OglWidget::teardownGL() { }

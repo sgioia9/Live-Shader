@@ -72,7 +72,6 @@ void BigWindow::onLoadModel() {
   QString fileName = QFileDialog::getOpenFileName(this, tr("Load model"),
                                                   "",
                                                   tr("Models (*.obj)"));
-  Logger::get().logLine("Selected: " + fileName.toStdString());
   _displayedModelLabel->displayModelName(fileName.toStdString());
   Configuration::get().setPathToModel(fileName.toStdString());
   _sceneWidget->resumeAutoUpdate();
