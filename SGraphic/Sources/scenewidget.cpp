@@ -35,9 +35,7 @@ void SceneWidget::paintGL() {
   CameraWidget::paintGL();
   _scene->draw();
   if (!newModelEvents.empty()) {
-    const ModelInfo event = newModelEvents.front();
-    newModelEvents.pop();
-    _scene.reset(new ConfigScene(event));
+    processEvent();
   }
 }
 
@@ -45,8 +43,14 @@ QSize SceneWidget::sizeHint() const {
   return QSize(800, 600);
 }
 
+void SceneWidget::processEvent() {
+  const ModelInfo& event = newModelEvents.front();
+  _scene.reset(new ConfigScene(event));
+  controller.reset(new CamController());
+  _scene->attachController(controller);
+  newModelEvents.pop();
+}
+
 void SceneWidget::onNewConfig(const ModelInfo& info) {
-  std::cerr << "reinitialize" << std::endl;
-  std::cerr << "queue sending\n" << info.vertexShaderSource << std::endl;
   newModelEvents.push(info);
 }

@@ -32,6 +32,7 @@ public:
   std::queue<ModelInfo> newModelEvents;
 private:
   SceneWidget();
+  void processEvent();
   static SceneWidget* instance;
 };
 #endif

@@ -1,6 +1,6 @@
 #include "displayedmodellabel.hpp"
 
-const std::string DisplayedModelLabel::prefix = "Currently displayed model: ";
+const std::string DisplayedModelLabel::prefix = "Model: ";
 
 DisplayedModelLabel::DisplayedModelLabel() {
   displayModelName("none");
