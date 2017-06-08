@@ -59,7 +59,7 @@ void MainFrame::setUpActionMenu(QMenuBar* menuBar) {
   QAction* renderModel = new QAction(menuAction);
   renderModel->setText(tr("Render model"));
   menuAction->addAction(renderModel);
-  // TODO: connect(..)
+  connect(renderModel, &QAction::triggered, this, &MainFrame::onRenderModel);
 }
 
 
@@ -74,6 +74,10 @@ void MainFrame::onAddNew() {
 
 void MainFrame::onLoadModel() {
   _bigWindow->onLoadModel();
+}
+
+void MainFrame::onRenderModel() {
+  _bigWindow->onRender();
 }
 
 void MainFrame::onLoadVertexShader() {
