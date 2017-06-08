@@ -1,6 +1,7 @@
 #include "util.hpp"
 #include "logger.hpp"
 #include "vertexshadereditor.hpp"
+#include <iostream>
 
 VertexShaderEditor* VertexShaderEditor::_instance = nullptr;
 
@@ -17,4 +18,8 @@ VertexShaderEditor::VertexShaderEditor() {
   } catch (const std::string& err) {
     Logger::get().logErrorLine(err);
   }
+}
+
+void VertexShaderEditor::load() {
+  std::cerr << "vertex load" << std::endl;
 }

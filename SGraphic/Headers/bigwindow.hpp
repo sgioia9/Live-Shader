@@ -29,5 +29,7 @@ private:
   SceneWidget* _sceneWidget;
   DisplayedModelLabel* _displayedModelLabel;
   EditorsArea* _editorsArea;
+
+  friend MainFrame;
 };
 #endif

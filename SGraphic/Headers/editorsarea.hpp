@@ -3,6 +3,9 @@
 
 #include <QWidget>
 
+class EditorsTabs;
+class MainFrame;
+
 class EditorsArea : public QWidget {
   Q_OBJECT
 public:
@@ -10,6 +13,10 @@ public:
 
   QSize minimumSizeHint() const override;
   QSize sizeHint() const override;
+private:
+  EditorsTabs* _tabs;
+
+  friend MainFrame;
 };
 
 #endif

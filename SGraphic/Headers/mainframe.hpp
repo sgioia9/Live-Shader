@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QKeyEvent>
+class BigWindow;
 
 class MainFrame : public QMainWindow {
   Q_OBJECT
@@ -12,6 +13,11 @@ public:
 
 private slots:
   void onAddNew();
+  void onLoadModel();
+  void onLoadVertexShader();
+
+private:
+  BigWindow* _bigWindow;
 };
 
 #endif

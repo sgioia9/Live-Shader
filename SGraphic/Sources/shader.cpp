@@ -113,7 +113,7 @@ GLuint ShaderBuilder::buildSpecificShader(const std::string& path) {
   } else if (extension == "frag") {
     shaderHandle = buildShaderWithSource(shaderSource, GL_FRAGMENT_SHADER);
   } else {
-    throw "Uknown shader extension for " + path + "\n";
+    throw "Unknown shader extension for " + path + "\n";
   }
   return shaderHandle;
 }

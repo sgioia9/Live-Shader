@@ -7,7 +7,8 @@
 
 EditorsArea::EditorsArea(QWidget* parent): QWidget(parent) {
   QVBoxLayout* mainLayout = new QVBoxLayout();
-  mainLayout->addWidget(new EditorsTabs());
+  _tabs = new EditorsTabs();
+  mainLayout->addWidget(_tabs);
   mainLayout->setMargin(0);
   setLayout(mainLayout);
 }

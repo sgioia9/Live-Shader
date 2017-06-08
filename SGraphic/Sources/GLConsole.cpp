@@ -13,7 +13,6 @@ GLConsole::GLConsole() {
 }
 
 void GLConsole::textUpdated(const std::string& newText) {
-  std::cerr << newText << std::endl;
   consoleTextEdit->insertPlainText(QString::fromStdString(newText));
 }
 

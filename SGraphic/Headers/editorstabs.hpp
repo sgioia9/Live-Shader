@@ -4,12 +4,20 @@
 #include <QTabWidget>
 #include <vector>
 
-class ShaderEditor;
+class MainFrame;
+class VertexShaderEditor;
+class FragmentShaderEditor;
 
 class EditorsTabs : public QTabWidget {
   Q_OBJECT
 public:
   EditorsTabs();
+
+private:
+  VertexShaderEditor* _vertexShaderEditor;
+  FragmentShaderEditor* _fragmentShaderEditor;
+
+  friend MainFrame;
 };
 
 #endif

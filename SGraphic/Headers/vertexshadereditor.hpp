@@ -3,6 +3,8 @@
 
 #include "shadereditor.hpp" 
 
+class MainFrame;
+
 class VertexShaderEditor : public ShaderEditor {
 public:
   static VertexShaderEditor* get();
@@ -10,11 +12,15 @@ public:
   VertexShaderEditor(const VertexShaderEditor&) = delete;
   void operator=(const VertexShaderEditor&) = delete;
 
+private slots:
+  void load();
+
 private:
   VertexShaderEditor();
 
   static VertexShaderEditor* _instance;
 
+  friend MainFrame;
 };
 
 #endif
