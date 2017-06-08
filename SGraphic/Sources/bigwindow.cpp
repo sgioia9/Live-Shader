@@ -26,23 +26,7 @@ BigWindow::BigWindow(MainFrame* mainFrame) : _mainFrame(mainFrame) {
 
   /* Displayed model widget */
   QHBoxLayout* displayedModelLayout = new QHBoxLayout();
-
-  QVBoxLayout* buttonsLayout = new QVBoxLayout();
-
-  QPushButton* loadModelButton = new QPushButton(tr("Load model"));
-  connect(loadModelButton, &QAbstractButton::clicked, this, &BigWindow::onLoadModel);
-
-  QPushButton* renderButton = new QPushButton(tr("Render"));
-  connect(renderButton, &QAbstractButton::clicked, this, &BigWindow::onRender);
-
-  buttonsLayout->addWidget(loadModelButton);
-  buttonsLayout->addWidget(renderButton);
-
-  QWidget* buttonsWidget = new QWidget();
-  buttonsWidget->setLayout(buttonsLayout);
-
   displayedModelLayout->addWidget(_displayedModelLabel);
-  displayedModelLayout->addWidget(buttonsWidget);
 
   QWidget* displayedModelWidget = new QWidget();
   displayedModelWidget->setLayout(displayedModelLayout);
