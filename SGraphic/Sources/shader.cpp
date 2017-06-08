@@ -130,7 +130,7 @@ GLuint ShaderBuilder::buildShaderWithSource(const std::string& source, GLenum sh
   if (!success) {
     GLchar infoLog[512];
     gl->glGetShaderInfoLog(shaderHandle, 512, NULL, infoLog);
-    throw "Could not compile shader " + source +
+    throw std::string("Could not compile shader ") + 
       "\nLog: " + std::string(infoLog) + "\n";
   } 
   return shaderHandle;

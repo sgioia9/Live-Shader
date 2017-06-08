@@ -13,11 +13,11 @@ EditorsArea::EditorsArea(QWidget* parent): QWidget(parent) {
 }
 
 QSize EditorsArea::minimumSizeHint() const {
-  return QSize(400, 300);
+  return QSize(566, 600);
 }
 
 QSize EditorsArea::sizeHint() const {
-  return QSize(400, 300);
+  return QSize(566, 600);
 }
 
 

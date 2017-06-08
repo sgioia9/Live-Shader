@@ -14,7 +14,6 @@ namespace Core {
 
   void Model::loadModel(const std::string& path) {
     Assimp::Importer importer;
-    Logger::get().logLine("Trying to load model" + path);
     const aiScene* scene = 
       importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
 
@@ -28,7 +27,6 @@ namespace Core {
     // TODO: make it portable 
     _directory = path.substr(0, path.find_last_of('/'));
     processNode(scene->mRootNode, scene);;
-    Logger::get().logLine("Loaded model with " + std::to_string(_meshes.size()) + " meshes");
   }
 
   void Model::processNode(aiNode* node, const aiScene* scene) {

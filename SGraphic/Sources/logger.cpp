@@ -38,7 +38,7 @@ void Logger::log(const std::string& message) {
 void Logger::logLine(const std::string& message) {
   _storedText << message + "\n";
 #ifdef DEVELOP
-  std::cerr << "message" << "\n";
+  std::cerr << message << "\n";
 #endif
   notify();
 }

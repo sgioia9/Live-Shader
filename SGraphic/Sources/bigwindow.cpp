@@ -24,7 +24,6 @@ BigWindow::BigWindow(MainFrame* mainFrame) : _mainFrame(mainFrame) {
 
   QHBoxLayout* mainLayout = new QHBoxLayout();
 
-  
   /* Displayed model widget */
   QHBoxLayout* displayedModelLayout = new QHBoxLayout();
 

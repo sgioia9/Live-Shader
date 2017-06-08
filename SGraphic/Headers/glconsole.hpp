@@ -13,8 +13,10 @@ class GLConsole : public QTabWidget, public LoggerListener {
 public:
   GLConsole();
 
-  void textUpdated(const std::string& newText);
+  void textUpdated(const std::string& newText) override;
   void addConsoleTab();
+
+  virtual QSize sizeHint() const override;
 
 private:
   QTextEdit* consoleTextEdit;

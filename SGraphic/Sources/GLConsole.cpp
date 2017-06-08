@@ -22,3 +22,7 @@ void GLConsole::addConsoleTab() {
   consoleTextEdit->setReadOnly(true);
   addTab(consoleTextEdit, tr("Console"));
 }
+
+QSize GLConsole::sizeHint() const {
+  return QSize(800, 150); 
+}
