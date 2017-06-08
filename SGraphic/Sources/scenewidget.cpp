@@ -45,10 +45,14 @@ QSize SceneWidget::sizeHint() const {
 
 void SceneWidget::processEvent() {
   const ModelInfo& event = newModelEvents.front();
-  ConfigScene* newScene = new ConfigScene(event);
-  _scene.reset(newScene);
-  controller.reset(new CamController());
-  _scene->attachController(controller);
+  try {
+    ConfigScene* newScene = new ConfigScene(event);
+    _scene.reset(newScene);
+    controller.reset(new CamController());
+    _scene->attachController(controller);
+  } catch (const std::string& err) {
+    Logger::get().logErrorLine(err);
+  }
   newModelEvents.pop();
 }
 
