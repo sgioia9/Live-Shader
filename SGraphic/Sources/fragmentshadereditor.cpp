@@ -1,6 +1,7 @@
 #include "util.hpp"
 #include "logger.hpp"
 #include "fragmentshadereditor.hpp"
+#include <iostream>
 
 FragmentShaderEditor* FragmentShaderEditor::_instance = nullptr;
 
@@ -17,4 +18,8 @@ FragmentShaderEditor::FragmentShaderEditor() {
   } catch (const std::string& err) {
     Logger::get().logErrorLine(err);
   }
+}
+
+void FragmentShaderEditor::load() {
+  std::cerr << "fragment load" << std::endl;
 }

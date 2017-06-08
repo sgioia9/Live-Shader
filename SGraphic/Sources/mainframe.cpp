@@ -10,6 +10,7 @@
 #include "editorsarea.hpp"
 #include "editorstabs.hpp"
 #include "vertexshadereditor.hpp"
+#include "fragmentshadereditor.hpp"
 
 MainFrame::MainFrame() { 
   QMenuBar* menuBar = new QMenuBar;
@@ -24,6 +25,11 @@ MainFrame::MainFrame() {
   loadVertexShader->setText(tr("Load vertex shader"));
   menuWindow->addAction(loadVertexShader);
   connect(loadVertexShader, &QAction::triggered, this, &MainFrame::onLoadVertexShader);
+
+  QAction* loadFragmentShader = new QAction(menuWindow);
+  loadFragmentShader->setText(tr("Load fragment shader"));
+  menuWindow->addAction(loadFragmentShader);
+  connect(loadFragmentShader, &QAction::triggered, this, &MainFrame::onLoadFragmentShader);
 
   setMenuBar(menuBar);
   onAddNew();
@@ -44,6 +50,10 @@ void MainFrame::onLoadModel() {
 
 void MainFrame::onLoadVertexShader() {
   _bigWindow->_editorsArea->_tabs->_vertexShaderEditor->load();
+}
+
+void MainFrame::onLoadFragmentShader() {
+  _bigWindow->_editorsArea->_tabs->_fragmentShaderEditor->load();
 }
 
 

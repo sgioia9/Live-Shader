@@ -15,6 +15,7 @@ private slots:
   void onAddNew();
   void onLoadModel();
   void onLoadVertexShader();
+  void onLoadFragmentShader();
 
 private:
   BigWindow* _bigWindow;
