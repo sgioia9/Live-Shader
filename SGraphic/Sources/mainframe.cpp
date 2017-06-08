@@ -14,26 +14,54 @@
 
 MainFrame::MainFrame() { 
   QMenuBar* menuBar = new QMenuBar;
-  QMenu* menuWindow = menuBar->addMenu(tr("&File"));
 
-  QAction* loadModel = new QAction(menuWindow);
-  loadModel->setText(tr("Load model"));
-  menuWindow->addAction(loadModel);
-  connect(loadModel, &QAction::triggered, this, &MainFrame::onLoadModel);
-
-  QAction* loadVertexShader= new QAction(menuWindow);
-  loadVertexShader->setText(tr("Load vertex shader"));
-  menuWindow->addAction(loadVertexShader);
-  connect(loadVertexShader, &QAction::triggered, this, &MainFrame::onLoadVertexShader);
-
-  QAction* loadFragmentShader = new QAction(menuWindow);
-  loadFragmentShader->setText(tr("Load fragment shader"));
-  menuWindow->addAction(loadFragmentShader);
-  connect(loadFragmentShader, &QAction::triggered, this, &MainFrame::onLoadFragmentShader);
+  setUpFileMenu(menuBar);
+  setUpActionMenu(menuBar);
 
   setMenuBar(menuBar);
   onAddNew();
 }
+
+void MainFrame::setUpFileMenu(QMenuBar* menuBar) {
+  QMenu* menuFile= menuBar->addMenu(tr("&File"));
+
+  QAction* loadModel = new QAction(menuFile);
+  loadModel->setText(tr("Load model"));
+  menuFile->addAction(loadModel);
+  connect(loadModel, &QAction::triggered, this, &MainFrame::onLoadModel);
+
+  QAction* loadVertexShader= new QAction(menuFile);
+  loadVertexShader->setText(tr("Load vertex shader"));
+  menuFile->addAction(loadVertexShader);
+  connect(loadVertexShader, &QAction::triggered, this, &MainFrame::onLoadVertexShader);
+
+  QAction* loadFragmentShader = new QAction(menuFile);
+  loadFragmentShader->setText(tr("Load fragment shader"));
+  menuFile->addAction(loadFragmentShader);
+  connect(loadFragmentShader, &QAction::triggered, this, &MainFrame::onLoadFragmentShader);
+  
+  menuFile->addSeparator();
+
+  QAction* exit = new QAction(menuFile);
+  exit->setText(tr("Exit"));
+  menuFile->addAction(exit);
+  connect(exit, &QAction::triggered, this, &MainFrame::close);
+}
+
+void MainFrame::setUpActionMenu(QMenuBar* menuBar) {
+  QMenu* menuAction = menuBar->addMenu(tr("&Action"));
+  
+  QAction* rebuildShaders = new QAction(menuAction);
+  rebuildShaders->setText(tr("Rebuild shaders"));
+  menuAction->addAction(rebuildShaders);
+  // TODO: connect(...)
+  
+  QAction* renderModel = new QAction(menuAction);
+  renderModel->setText(tr("Render model"));
+  menuAction->addAction(renderModel);
+  // TODO: connect(..)
+}
+
 
 void MainFrame::onAddNew() {
   if (!centralWidget()) {

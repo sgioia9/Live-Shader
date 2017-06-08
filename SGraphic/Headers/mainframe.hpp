@@ -3,7 +3,9 @@
 
 #include <QMainWindow>
 #include <QKeyEvent>
+
 class BigWindow;
+class QMenuBar;
 
 class MainFrame : public QMainWindow {
   Q_OBJECT
@@ -19,6 +21,9 @@ private slots:
 
 private:
   BigWindow* _bigWindow;
+
+  void setUpFileMenu(QMenuBar*);
+  void setUpActionMenu(QMenuBar*);
 };
 
 #endif
