@@ -9,11 +9,11 @@
 
 GLConsole::GLConsole() {
   subscribeTo(Logger::get());
-  std::cerr << "console subscribing" << std::endl;
   addConsoleTab();
 }
 
 void GLConsole::textUpdated(const std::string& newText) {
+  std::cerr << newText << std::endl;
   consoleTextEdit->insertPlainText(QString::fromStdString(newText));
 }
 
@@ -24,5 +24,5 @@ void GLConsole::addConsoleTab() {
 }
 
 QSize GLConsole::sizeHint() const {
-  return QSize(800, 150); 
+  return QSize(800, 300); 
 }
