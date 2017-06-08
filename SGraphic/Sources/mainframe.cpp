@@ -27,16 +27,19 @@ void MainFrame::setUpFileMenu(QMenuBar* menuBar) {
 
   QAction* loadModel = new QAction(menuFile);
   loadModel->setText(tr("Load model"));
+  loadModel->setShortcut(tr("Ctrl+o"));
   menuFile->addAction(loadModel);
   connect(loadModel, &QAction::triggered, this, &MainFrame::onLoadModel);
 
   QAction* loadVertexShader= new QAction(menuFile);
   loadVertexShader->setText(tr("Load vertex shader"));
+  loadVertexShader->setShortcut(tr("CTRL+v"));
   menuFile->addAction(loadVertexShader);
   connect(loadVertexShader, &QAction::triggered, this, &MainFrame::onLoadVertexShader);
 
   QAction* loadFragmentShader = new QAction(menuFile);
   loadFragmentShader->setText(tr("Load fragment shader"));
+  loadFragmentShader->setShortcut(tr("CTRL+f"));
   menuFile->addAction(loadFragmentShader);
   connect(loadFragmentShader, &QAction::triggered, this, &MainFrame::onLoadFragmentShader);
   
@@ -53,11 +56,13 @@ void MainFrame::setUpActionMenu(QMenuBar* menuBar) {
   
   QAction* rebuildShaders = new QAction(menuAction);
   rebuildShaders->setText(tr("Rebuild shaders"));
+  rebuildShaders->setShortcut(tr("F5"));
   menuAction->addAction(rebuildShaders);
   // TODO: connect(...)
   
   QAction* renderModel = new QAction(menuAction);
   renderModel->setText(tr("Render model"));
+  renderModel->setShortcut(tr("F6"));
   menuAction->addAction(renderModel);
   connect(renderModel, &QAction::triggered, this, &MainFrame::onRenderModel);
 }
