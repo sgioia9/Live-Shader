@@ -1,4 +1,5 @@
 #include "util.hpp"
+#include "logger.hpp"
 #include "fragmentshadereditor.hpp"
 
 FragmentShaderEditor* FragmentShaderEditor::_instance = nullptr;
@@ -9,7 +10,11 @@ FragmentShaderEditor* FragmentShaderEditor::get() {
 }
 
 FragmentShaderEditor::FragmentShaderEditor() { 
-  _textEdit->setText(
-     QString::fromStdString( 
-       Util::readShader("simple.frag")));
+  try {
+    _textEdit->setText(
+       QString::fromStdString( 
+         Util::readShader("simple.frag")));
+  } catch (const std::string& err) {
+    Logger::get().logErrorLine(err);
+  }
 }

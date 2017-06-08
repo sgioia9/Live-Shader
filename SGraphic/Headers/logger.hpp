@@ -19,6 +19,7 @@ public:
   void notify();
   void log(const std::string& message);
   void logLine(const std::string& message);
+  void logErrorLine(const std::string& message);
 
 private:
   Logger() { }

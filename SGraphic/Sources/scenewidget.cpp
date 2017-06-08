@@ -24,7 +24,7 @@ SceneWidget* SceneWidget::get() {
 }
 
 SceneWidget::SceneWidget() { }
-SceneWidget::~SceneWidget() { std::cerr << "scene widget destroyed" << std::endl; }
+SceneWidget::~SceneWidget() { }
 
 void SceneWidget::initializeGL() {
   CameraWidget::initializeGL();

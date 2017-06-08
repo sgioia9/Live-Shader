@@ -1,4 +1,5 @@
 #include "util.hpp"
+#include "logger.hpp"
 #include "vertexshadereditor.hpp"
 
 VertexShaderEditor* VertexShaderEditor::_instance = nullptr;
@@ -9,7 +10,11 @@ VertexShaderEditor* VertexShaderEditor::get() {
 }
 
 VertexShaderEditor::VertexShaderEditor() {
-  _textEdit->setText(
-     QString::fromStdString( 
-       Util::readShader("simple.vert")));
+  try {
+    _textEdit->setText(
+       QString::fromStdString( 
+         Util::readShader("simple.vert")));
+  } catch (const std::string& err) {
+    Logger::get().logErrorLine(err);
+  }
 }

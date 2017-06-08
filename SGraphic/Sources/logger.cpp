@@ -29,11 +29,25 @@ void Logger::notify() {
 
 void Logger::log(const std::string& message) {
   _storedText << message; 
+#ifdef DEVELOP
+  std::cerr << message << std::endl;
+#endif
   notify();
 }
 
 void Logger::logLine(const std::string& message) {
   _storedText << message + "\n";
+#ifdef DEVELOP
+  std::cerr << "message" << "\n";
+#endif
+  notify();
+}
+
+void Logger::logErrorLine(const std::string& message) {
+  _storedText << "ERROR: " << message << "\n";
+#ifdef DEVELOP
+  std::cerr << "ERROR: " << message << "\n";
+#endif
   notify();
 }
 

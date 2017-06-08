@@ -11,7 +11,7 @@ namespace Util {
     std::string fullPath = SHADER_PATH + filename;
     file.open(fullPath);
     if (!file.is_open()) {
-      std::cerr << "Could not open file " << fullPath << std::endl;
+      throw "Could not open file" + filename + "\n";
     }
     std::stringstream sstream;
     sstream << file.rdbuf();

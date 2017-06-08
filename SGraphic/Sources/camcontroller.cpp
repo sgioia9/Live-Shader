@@ -57,7 +57,7 @@ void CamController::keyPressEvent(QKeyEvent* event) {
       _widget->clearFocus();
       break;
   }
-  std::cerr << *_camera << std::endl;
+  // std::cerr << *_camera << std::endl;
 }
 
 void CamController::mousePressEvent(QMouseEvent* event) {
