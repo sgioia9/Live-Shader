@@ -2,6 +2,7 @@
 #include "logger.hpp"
 #include "vertexshadereditor.hpp"
 #include <iostream>
+#include <QTextEdit>
 
 VertexShaderEditor* VertexShaderEditor::_instance = nullptr;
 

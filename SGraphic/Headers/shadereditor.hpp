@@ -2,7 +2,9 @@
 #define SHADEREDITOR_HPP
 
 #include <QWidget>
-#include <QTextEdit>
+
+class QTextEdit;
+class ShaderHightlighter;
 
 class ShaderEditor : public QWidget {
 public:
@@ -12,6 +14,7 @@ public:
 
 protected:
   QTextEdit* _textEdit;
+  ShaderHightlighter* _highlighter;
 };
 
 #endif

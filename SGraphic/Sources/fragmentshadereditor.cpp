@@ -2,6 +2,7 @@
 #include "logger.hpp"
 #include "fragmentshadereditor.hpp"
 #include <iostream>
+#include <QTextEdit>
 
 FragmentShaderEditor* FragmentShaderEditor::_instance = nullptr;
 
