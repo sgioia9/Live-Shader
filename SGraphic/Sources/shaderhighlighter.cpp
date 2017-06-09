@@ -16,11 +16,13 @@ ShaderHightlighter::ShaderHightlighter(QTextDocument* parent)
     rules.append(rule);
   }
 
+  /*
   functionFormat.setFontItalic(true);
   functionFormat.setForeground(Qt::blue);
   rule.pattern = QRegularExpression("\\b[A-Za-z0-9_]+(?=\\()");
   rule.format = functionFormat;
   rules.append(rule);
+  */
 }
 
 void ShaderHightlighter::highlightBlock(const QString& text) {
