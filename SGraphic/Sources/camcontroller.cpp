@@ -7,21 +7,13 @@
 #include "camerawidget.hpp"
 
 #include "camcontroller.hpp"
-       
+
 CamController::CamController() { }
 
 CamController::CamController(
     const std::shared_ptr<Core::FPCamera>& cam, CameraWidget* widget)
   : _camera(cam), _widget(widget) { }
-
-void CamController::setCamera(const std::shared_ptr<Core::FPCamera>& cam) {
-  _camera = cam;
-}
-
-void CamController::setWidget(CameraWidget* widget) {
-  _widget = widget;
-}
-
+       
 void CamController::keyPressEvent(QKeyEvent* event) {
   switch (event->key()) {
     case Qt::Key_A:

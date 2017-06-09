@@ -18,7 +18,7 @@ protected:
   virtual void wheelEvent(QWheelEvent*) override;
 
 protected:
-  std::shared_ptr<CamController> controller;
+  std::shared_ptr<CamController> _camController;
 };
 
 #endif

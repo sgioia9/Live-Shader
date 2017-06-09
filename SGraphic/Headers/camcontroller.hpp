@@ -12,16 +12,14 @@ namespace Core { class FPCamera; }
 
 class CamController {
 public:
-  CamController();
-  CamController(
-      const std::shared_ptr<Core::FPCamera>&,
-      CameraWidget*);
+  CamController(const std::shared_ptr<Core::FPCamera>&, CameraWidget*);
 
-  void setCamera(const std::shared_ptr<Core::FPCamera>& camera);
-  void setWidget(CameraWidget* widget);
   virtual void keyPressEvent(QKeyEvent*);
   virtual void mousePressEvent(QMouseEvent*);
   virtual void wheelEvent(QWheelEvent*);
+
+protected:
+  CamController();
  
 private:
   std::shared_ptr<Core::FPCamera> _camera;
@@ -29,6 +27,9 @@ private:
 };
 
 class NullCamController : public CamController {
+public:
+  NullCamController() {} 
+
   void keyPressEvent(QKeyEvent*) override { }
   void mousePressEvent(QMouseEvent*) override { }
   void wheelEvent(QWheelEvent*) override { }

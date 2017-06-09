@@ -6,19 +6,16 @@
 #include "shader.hpp"
 #include "worldobject.hpp"
 #include "fpcamera.hpp"
-#include "camcontroller.hpp"
 
 class Scene {
 public:
   Scene();
-  void attachController(std::shared_ptr<CamController> conntroller);
 
   virtual void draw() = 0;
   virtual void resetShader(Core::Shader* newShader);
 
   virtual ~Scene() { }
-  
-protected:
+
   std::unique_ptr<Core::Shader> _shader;
   std::unique_ptr<Core::WorldObject> _object;
   std::shared_ptr<Core::FPCamera> _camera;

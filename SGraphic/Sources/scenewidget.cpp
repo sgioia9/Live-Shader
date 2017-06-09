@@ -54,8 +54,8 @@ void SceneWidget::processEvent() {
   try {
     ConfigScene* newScene = new ConfigScene(event);
     _scene.reset(newScene);
-    controller.reset(new CamController());
-    _scene->attachController(controller);
+    // TODO: attach controller;
+    _camController.reset(new CamController(_scene->_camera, this));
   } catch (const std::string& err) {
     Logger::get().logErrorLine(err);
   }
