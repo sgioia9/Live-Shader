@@ -60,6 +60,7 @@ void CamController::mousePressEvent(QMouseEvent* event) {
 }
 
 void CamController::wheelEvent(QWheelEvent* event) {
+  if (event->modifiers()) return;
   if (event->delta() > 0) {
     _camera->moveForward();
   } else if (event->delta() < 0) {

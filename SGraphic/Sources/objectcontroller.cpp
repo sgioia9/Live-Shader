@@ -9,5 +9,11 @@ ObjectController::ObjectController(
   : _object(object) { }
 
 void ObjectController::wheelEvent(QWheelEvent* event) {
-  std::cerr << "obj controller event" << std::endl; 
+  if (event->modifiers() & Qt::ControlModifier) {
+    if (event->delta() > 0) {
+      std::cerr << "should scale up" << std::endl;
+    } else {
+      std::cerr << "should scale down" << std::endl;
+    }
+  }
 }

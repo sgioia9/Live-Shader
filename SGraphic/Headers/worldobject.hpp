@@ -14,6 +14,9 @@ public:
   
   WorldObject(const std::shared_ptr<Model>& model);
 
+  void scaleDown();
+  void scaleUp();
+
   std::shared_ptr<Model> _model;
   glm::mat4 _transform;
 };
