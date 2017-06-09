@@ -24,7 +24,7 @@ void ConfigScene::build() {
   _object.reset(
       new Core::WorldObject(
         std::make_shared<Core::Model>(_modelPath)));
-  _object->_transform = glm::scale(_object->_transform, glm::vec3(0.2f, 0.2f, 0.2f));
+  _object->_transform = glm::scale(_object->_transform, glm::vec3(0.1f, 0.1f, 0.1f));
   Logger::get().logLine("Model loaded");
   Logger::get().logLine("Scene loaded");
 }

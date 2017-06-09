@@ -16,3 +16,7 @@ void CameraWidget::keyPressEvent(QKeyEvent* event) {
 void CameraWidget::mousePressEvent(QMouseEvent* event) {
   controller->mousePressEvent(event);
 }
+
+void CameraWidget::wheelEvent(QWheelEvent* event) {
+  controller->wheelEvent(event);
+}

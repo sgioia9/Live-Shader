@@ -84,3 +84,14 @@ void SceneWidget::reloadShaders() {
     Logger::get().logLine(err);
   }
 }
+
+
+void SceneWidget::keyPressEvent(QKeyEvent* event) {
+  CameraWidget::keyPressEvent(event);
+}
+void SceneWidget::mousePressEvent(QMouseEvent* event) {
+  CameraWidget::mousePressEvent(event);
+}
+void SceneWidget::wheelEvent(QWheelEvent* event) {
+  CameraWidget::wheelEvent(event);
+}

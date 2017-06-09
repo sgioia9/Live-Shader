@@ -29,6 +29,11 @@ public:
 
   QSize sizeHint() const override;
 
+protected:
+  void keyPressEvent(QKeyEvent*) override;
+  void mousePressEvent(QMouseEvent*) override;
+  void wheelEvent(QWheelEvent*) override;
+
 private:
   SceneWidget();
   void processEvent();

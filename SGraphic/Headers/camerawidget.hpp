@@ -13,8 +13,9 @@ public:
   virtual ~CameraWidget();
 
 protected:
-  void keyPressEvent(QKeyEvent*) override;
-  void mousePressEvent(QMouseEvent*) override;
+  virtual void keyPressEvent(QKeyEvent*) override;
+  virtual void mousePressEvent(QMouseEvent*) override;
+  virtual void wheelEvent(QWheelEvent*) override;
 
 protected:
   std::shared_ptr<CamController> controller;

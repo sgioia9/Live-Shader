@@ -2,6 +2,7 @@
 #include <memory>
 #include <QKeyEvent>
 #include <QMouseEvent>
+#include <QWheelEvent>
 #include <iostream>
 #include "camerawidget.hpp"
 
@@ -63,5 +64,13 @@ void CamController::keyPressEvent(QKeyEvent* event) {
 void CamController::mousePressEvent(QMouseEvent* event) {
   if (event->button() == Qt::MouseButton::LeftButton) {
     std::cerr << "mouse clicked" << std::endl;
+  }
+}
+
+void CamController::wheelEvent(QWheelEvent* event) {
+  if (event->delta() > 0) {
+    _camera->moveForward();
+  } else if (event->delta() < 0) {
+    _camera->moveBackward();
   }
 }
