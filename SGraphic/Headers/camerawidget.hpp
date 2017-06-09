@@ -14,7 +14,6 @@ public:
 
 protected:
   virtual void keyPressEvent(QKeyEvent*) override;
-  virtual void mousePressEvent(QMouseEvent*) override;
   virtual void wheelEvent(QWheelEvent*) override;
 
 protected:

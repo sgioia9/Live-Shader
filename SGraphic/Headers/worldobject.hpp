@@ -16,6 +16,8 @@ public:
 
   void scaleDown();
   void scaleUp();
+  void rotateYAxis(float speed);
+  void rotateXAxis(float speed);
 
   std::shared_ptr<Model> _model;
   glm::mat4 _transform;

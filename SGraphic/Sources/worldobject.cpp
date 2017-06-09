@@ -23,4 +23,16 @@ namespace Core {
     scaleDownMatrix = glm::scale(scaleDownMatrix, glm::vec3(0.9f, 0.9f, 0.9f));
     _transform = scaleDownMatrix * _transform;
   }
+
+  void WorldObject::rotateYAxis(float speed) {
+    glm::mat4 rotMatrix;
+    rotMatrix = glm::rotate(rotMatrix, speed, glm::vec3(0.0f, 1.0f, 0.0f));
+    _transform = rotMatrix * _transform;
+  }
+
+  void WorldObject::rotateXAxis(float speed) {
+    glm::mat4 rotMatrix;
+    rotMatrix = glm::rotate(rotMatrix, speed, glm::vec3(1.0f, 0.0f, 0.0f));
+    _transform = rotMatrix * _transform;
+  }
 }

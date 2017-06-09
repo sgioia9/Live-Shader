@@ -6,6 +6,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include <QDebug>
+
 #include "scenewidget.hpp"
 #include "resourceloader.hpp"
 #include "mainframe.hpp"
@@ -91,9 +93,15 @@ void SceneWidget::reloadShaders() {
 void SceneWidget::keyPressEvent(QKeyEvent* event) {
   CameraWidget::keyPressEvent(event);
 }
-void SceneWidget::mousePressEvent(QMouseEvent* event) {
-  CameraWidget::mousePressEvent(event);
+
+void SceneWidget::mouseMoveEvent(QMouseEvent* event) {
+  _objectController->mouseMoveEvent(event);
 }
+
+void SceneWidget::mouseReleaseEvent(QMouseEvent* event) {
+  _objectController->mouseReleaseEvent(event);
+}
+
 void SceneWidget::wheelEvent(QWheelEvent* event) {
   CameraWidget::wheelEvent(event);
   _objectController->wheelEvent(event);
