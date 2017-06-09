@@ -11,6 +11,7 @@
 #include "editorstabs.hpp"
 #include "vertexshadereditor.hpp"
 #include "fragmentshadereditor.hpp"
+#include "scenewidget.hpp"
 
 MainFrame::MainFrame() { 
   QMenuBar* menuBar = new QMenuBar;
@@ -58,7 +59,7 @@ void MainFrame::setUpActionMenu(QMenuBar* menuBar) {
   rebuildShaders->setText(tr("Rebuild shaders"));
   rebuildShaders->setShortcut(tr("F5"));
   menuAction->addAction(rebuildShaders);
-  // TODO: connect(...)
+  connect(rebuildShaders, &QAction::triggered, this, &MainFrame::onReloadShaders);
   
   QAction* renderModel = new QAction(menuAction);
   renderModel->setText(tr("Render model"));
@@ -83,6 +84,10 @@ void MainFrame::onLoadModel() {
 
 void MainFrame::onRenderModel() {
   _bigWindow->onRender();
+}
+
+void MainFrame::onReloadShaders() {
+  _bigWindow->_sceneWidget->onReloadShaders();
 }
 
 void MainFrame::onLoadVertexShader() {

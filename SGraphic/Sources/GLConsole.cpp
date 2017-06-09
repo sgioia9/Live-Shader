@@ -3,6 +3,7 @@
 #include <iostream>
 #include <QTextEdit>
 #include <QVBoxLayout>
+#include <QTextCursor>
 
 #include "glconsole.hpp"
 #include "logger.hpp"
@@ -13,7 +14,9 @@ GLConsole::GLConsole() {
 }
 
 void GLConsole::textUpdated(const std::string& newText) {
-  consoleTextEdit->insertPlainText(QString::fromStdString(newText));
+  QTextCursor endCursor(consoleTextEdit->document());
+  endCursor.movePosition(QTextCursor::End);
+  endCursor.insertText(QString::fromStdString(newText));
 }
 
 void GLConsole::addConsoleTab() {

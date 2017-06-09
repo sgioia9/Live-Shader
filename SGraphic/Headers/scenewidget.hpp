@@ -25,15 +25,19 @@ public:
   virtual void paintGL() override;
 
   void onNewConfig(const ModelInfo& info);
+  void onReloadShaders();
 
   QSize sizeHint() const override;
 
 private:
   SceneWidget();
   void processEvent();
+  void reloadShaders();
 
   std::unique_ptr<Scene> _scene;
   std::queue<ModelInfo> newModelEvents;
+
+  bool shouldReloadShaders;
 
   static SceneWidget* instance;
 };

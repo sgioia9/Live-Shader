@@ -14,6 +14,7 @@ public:
   void attachController(std::shared_ptr<CamController> conntroller);
 
   virtual void draw() = 0;
+  virtual void resetShader(Core::Shader* newShader);
 
   virtual ~Scene() { }
   

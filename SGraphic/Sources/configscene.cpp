@@ -15,11 +15,7 @@ ConfigScene::~ConfigScene() { }
 void ConfigScene::build() {
   Logger::get().logLine("Building scene...");
   Logger::get().logLine("Compiling shaders...");
-  _shader.reset(new Core::Shader(
-        Core::ShaderBuilder::createBuilder() 
-        ->addVertexShaderSource(_vertexSource)
-        ->addFragmentShaderSource(_fragmentSource)
-        ->build()));
+  buildShader(_vertexSource, _fragmentSource);
   Logger::get().logLine("Shader program compiled & linked");
   _camera.reset(new Core::FPCamera(800, 600));
   _camera->setPosition(0.0f, 0.0f, 3.0f);
@@ -40,4 +36,16 @@ void ConfigScene::draw() {
   _shader->uniformMatrix("vpMatrix", _camera->vp_matrix());
 
   _object->_model->draw(*_shader);
+}
+
+void ConfigScene::buildShader(
+    const std::string& vertexSource,
+    const std::string& fragmentSource) {
+  _vertexSource = vertexSource;
+  _fragmentSource = fragmentSource;
+  _shader.reset(new Core::Shader(
+        Core::ShaderBuilder::createBuilder() 
+        ->addVertexShaderSource(_vertexSource)
+        ->addFragmentShaderSource(_fragmentSource)
+        ->build()));
 }

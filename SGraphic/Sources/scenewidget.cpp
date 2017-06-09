@@ -23,7 +23,9 @@ SceneWidget* SceneWidget::get() {
   return instance;
 }
 
-SceneWidget::SceneWidget() { }
+SceneWidget::SceneWidget() { 
+  shouldReloadShaders = false;
+}
 SceneWidget::~SceneWidget() { }
 
 void SceneWidget::initializeGL() {
@@ -36,6 +38,10 @@ void SceneWidget::paintGL() {
   _scene->draw();
   if (!newModelEvents.empty()) {
     processEvent();
+  }
+  if (shouldReloadShaders) {
+    reloadShaders();
+    shouldReloadShaders = false;
   }
 }
 
@@ -58,4 +64,23 @@ void SceneWidget::processEvent() {
 
 void SceneWidget::onNewConfig(const ModelInfo& info) {
   newModelEvents.push(info);
+}
+
+void SceneWidget::onReloadShaders() {
+  shouldReloadShaders = true;
+}
+
+void SceneWidget::reloadShaders() {
+  Logger::get().logLine("Building shaders...");
+  try {
+    _scene->resetShader(
+        new Core::Shader(
+          Core::ShaderBuilder::createBuilder() 
+          ->addVertexShaderSource(VertexShaderEditor::get()->getText())
+          ->addFragmentShaderSource(FragmentShaderEditor::get()->getText())
+          ->build()));
+    Logger::get().logLine("Shaders built");
+  } catch (const std::string& err) {
+    Logger::get().logLine(err);
+  }
 }
