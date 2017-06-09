@@ -15,10 +15,12 @@ namespace Core {
   void WorldObject::scaleUp() {
     glm::mat4 scaleUpMatrix;
     scaleUpMatrix = glm::scale(scaleUpMatrix, glm::vec3(1.1f, 1.1f, 1.1f));
+    _transform = scaleUpMatrix * _transform;
   }
 
   void WorldObject::scaleDown() {
     glm::mat4 scaleDownMatrix;
     scaleDownMatrix = glm::scale(scaleDownMatrix, glm::vec3(0.9f, 0.9f, 0.9f));
+    _transform = scaleDownMatrix * _transform;
   }
 }

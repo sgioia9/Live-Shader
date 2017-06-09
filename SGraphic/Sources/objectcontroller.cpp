@@ -1,6 +1,7 @@
 #include <QWheelEvent>
 #include <iostream>
 #include "objectcontroller.hpp"
+#include "worldobject.hpp"
 
 ObjectController::ObjectController() { }
 
@@ -11,9 +12,9 @@ ObjectController::ObjectController(
 void ObjectController::wheelEvent(QWheelEvent* event) {
   if (event->modifiers() & Qt::ControlModifier) {
     if (event->delta() > 0) {
-      std::cerr << "should scale up" << std::endl;
+      _object->scaleUp();
     } else {
-      std::cerr << "should scale down" << std::endl;
+      _object->scaleDown();
     }
   }
 }
