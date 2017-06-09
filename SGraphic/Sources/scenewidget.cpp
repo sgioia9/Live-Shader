@@ -15,6 +15,7 @@
 #include "fragmentshadereditor.hpp"
 #include "logger.hpp"
 #include "configuration.hpp"
+#include "objectcontroller.hpp"
 
 SceneWidget* SceneWidget::instance = nullptr;
 
@@ -25,6 +26,7 @@ SceneWidget* SceneWidget::get() {
 
 SceneWidget::SceneWidget() { 
   shouldReloadShaders = false;
+  _objectController.reset(new NullObjectController());
 }
 SceneWidget::~SceneWidget() { }
 
@@ -54,8 +56,8 @@ void SceneWidget::processEvent() {
   try {
     ConfigScene* newScene = new ConfigScene(event);
     _scene.reset(newScene);
-    // TODO: attach controller;
     _camController.reset(new CamController(_scene->_camera, this));
+    _objectController.reset(new ObjectController(_scene->_object));
   } catch (const std::string& err) {
     Logger::get().logErrorLine(err);
   }
@@ -94,4 +96,5 @@ void SceneWidget::mousePressEvent(QMouseEvent* event) {
 }
 void SceneWidget::wheelEvent(QWheelEvent* event) {
   CameraWidget::wheelEvent(event);
+  _objectController->wheelEvent(event);
 }

@@ -13,6 +13,8 @@
 #include <queue>
 #include <QKeyEvent>
 
+class ObjectController;
+
 class SceneWidget: public CameraWidget {
 public:
   static SceneWidget* get();
@@ -41,6 +43,7 @@ private:
 
   std::unique_ptr<Scene> _scene;
   std::queue<ModelInfo> newModelEvents;
+  std::unique_ptr<ObjectController> _objectController;
 
   bool shouldReloadShaders;
 

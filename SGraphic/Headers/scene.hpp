@@ -17,7 +17,7 @@ public:
   virtual ~Scene() { }
 
   std::unique_ptr<Core::Shader> _shader;
-  std::unique_ptr<Core::WorldObject> _object;
+  std::shared_ptr<Core::WorldObject> _object;
   std::shared_ptr<Core::FPCamera> _camera;
 };
 
