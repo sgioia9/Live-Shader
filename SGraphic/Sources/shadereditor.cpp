@@ -36,3 +36,7 @@ std::string ShaderEditor::getText() {
   return _textEdit->toPlainText().toStdString();
 }
 
+void ShaderEditor::setText(const std::string& text) {
+  _textEdit->setText(QString::fromStdString(text));
+}
+

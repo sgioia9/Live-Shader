@@ -6,6 +6,7 @@
 
 namespace Util {
   std::string readShader(const std::string& filename);
+  std::string readFile(const std::string& path);
 }
 
 #endif

@@ -13,9 +13,7 @@ FragmentShaderEditor* FragmentShaderEditor::get() {
 
 FragmentShaderEditor::FragmentShaderEditor() { 
   try {
-    _textEdit->setText(
-       QString::fromStdString( 
-         Util::readShader("simple.frag")));
+    setText(Util::readShader("simple.frag"));
   } catch (const std::string& err) {
     Logger::get().logErrorLine(err);
   }

@@ -13,14 +13,12 @@ VertexShaderEditor* VertexShaderEditor::get() {
 
 VertexShaderEditor::VertexShaderEditor() {
   try {
-    _textEdit->setText(
-       QString::fromStdString( 
-         Util::readShader("simple.vert")));
+    setText(Util::readShader("simple.vert"));
   } catch (const std::string& err) {
     Logger::get().logErrorLine(err);
   }
 }
 
 void VertexShaderEditor::load() {
-  std::cerr << "vertex load" << std::endl;
+
 }

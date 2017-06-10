@@ -15,6 +15,9 @@ public:
 protected:
   QTextEdit* _textEdit;
   ShaderHightlighter* _highlighter;
+
+  void setText(const std::string& text);
+
 };
 
 #endif
