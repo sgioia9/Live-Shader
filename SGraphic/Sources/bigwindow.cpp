@@ -41,7 +41,6 @@ BigWindow::BigWindow(MainFrame* mainFrame) : _mainFrame(mainFrame) {
   openglAndRenderbtnLayout->setMargin(0);
 
   QWidget* openglAndRenderbtnWidget = new QWidget();
-  openglAndRenderbtnWidget->setMinimumSize(QSize(1000, 700));
   openglAndRenderbtnWidget->setLayout(openglAndRenderbtnLayout);
 
   mainLayout->addWidget(openglAndRenderbtnWidget);
