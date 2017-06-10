@@ -34,5 +34,5 @@ void FragmentShaderEditor::load() {
 
 void FragmentShaderEditor::save() {
   // TODO:
-  std::cerr << " fragment save" << std::endl;
+  Logger::get().logLine("Save not supported");
 }

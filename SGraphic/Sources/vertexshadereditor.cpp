@@ -33,5 +33,6 @@ void VertexShaderEditor::load() {
 }
 
 void VertexShaderEditor::save() {
-  std::cerr << "vertex save" << std::endl;
+  // TODO:
+  Logger::get().logLine("Save not supported");
 }
