@@ -20,14 +20,6 @@ VertexShaderEditor::VertexShaderEditor() {
   }
 }
 
-void VertexShaderEditor::onSaveButtonClick() {
-  save();
-}
-
-void VertexShaderEditor::onLoadButtonClick() {
-  load();
-}
-
 void VertexShaderEditor::load() {
   try {
     QString selectedFile = 

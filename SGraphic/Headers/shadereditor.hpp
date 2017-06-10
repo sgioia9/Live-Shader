@@ -14,8 +14,8 @@ public:
   std::string getText();
 
 protected slots:
-  virtual void onLoadButtonClick() = 0;
-  virtual void onSaveButtonClick() = 0;
+  virtual void onLoadButtonClick();
+  virtual void onSaveButtonClick();
 
 protected:
   QTextEdit* _textEdit;

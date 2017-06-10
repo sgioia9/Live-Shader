@@ -15,9 +15,6 @@ public:
   void operator=(const FragmentShaderEditor&) = delete;
 
 protected:
-  void onSaveButtonClick() Q_DECL_OVERRIDE;
-  void onLoadButtonClick() Q_DECL_OVERRIDE;
-
   void load() override;
   void save() override;
 

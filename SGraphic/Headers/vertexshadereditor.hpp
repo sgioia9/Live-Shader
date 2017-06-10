@@ -14,10 +14,6 @@ public:
   void operator=(const VertexShaderEditor&) = delete;
 
 protected:
-  void onSaveButtonClick() Q_DECL_OVERRIDE;
-  void onLoadButtonClick() Q_DECL_OVERRIDE;
-
-protected:
   void load() override;
   void save() override;
 

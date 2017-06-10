@@ -20,14 +20,6 @@ FragmentShaderEditor::FragmentShaderEditor() {
   }
 }
 
-void FragmentShaderEditor::onLoadButtonClick() {
-  load();
-}
-
-void FragmentShaderEditor::onSaveButtonClick() {
-  save();
-}
-
 void FragmentShaderEditor::load() {
   try {
     QString selectedFile = 

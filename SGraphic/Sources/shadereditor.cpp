@@ -46,3 +46,11 @@ std::string ShaderEditor::getText() {
 void ShaderEditor::setText(const std::string& text) {
   _textEdit->setText(QString::fromStdString(text));
 }
+
+void ShaderEditor::onLoadButtonClick() {
+  load();
+}
+
+void ShaderEditor::onSaveButtonClick() {
+  save();
+}
