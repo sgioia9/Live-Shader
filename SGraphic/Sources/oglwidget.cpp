@@ -1,5 +1,6 @@
 #include "oglwidget.hpp"
 #include <iostream>
+#include <QFileDialog>
 
 OglWidget::OglWidget(QWidget* parent) : QOpenGLWidget(parent) { }
 OglWidget::~OglWidget() { delete loopTimer; }
@@ -42,5 +43,15 @@ void OglWidget::pauseAutoUpdate() {
 void OglWidget::resumeAutoUpdate() {
   loopTimer->start(0);
 }
+
+QString OglWidget::browseFileDialog(
+    const QString& title, const std::string& directory, const QString& filters) {
+  pauseAutoUpdate();
+  QString fileName = 
+    QFileDialog::getOpenFileName(this, title, QString::fromStdString(directory), filters);
+  resumeAutoUpdate();
+  return fileName;
+}
+
 
 void OglWidget::teardownGL() { }

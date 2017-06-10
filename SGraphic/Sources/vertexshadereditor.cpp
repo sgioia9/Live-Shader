@@ -1,6 +1,7 @@
 #include "util.hpp"
 #include "logger.hpp"
 #include "vertexshadereditor.hpp"
+#include "scenewidget.hpp"
 #include <iostream>
 #include <QTextEdit>
 
@@ -20,5 +21,5 @@ VertexShaderEditor::VertexShaderEditor() {
 }
 
 void VertexShaderEditor::load() {
-
+  SceneWidget::get()->pauseAutoUpdate();
 }

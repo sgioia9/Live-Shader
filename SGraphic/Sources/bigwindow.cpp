@@ -51,13 +51,10 @@ BigWindow::BigWindow(MainFrame* mainFrame) : _mainFrame(mainFrame) {
 }
 
 void BigWindow::onLoadModel() {
-  _sceneWidget->pauseAutoUpdate();
-  QString fileName = QFileDialog::getOpenFileName(this, tr("Load model"),
-                                                  "",
-                                                  tr("Models (*.obj)"));
-  _displayedModelLabel->displayModelName(fileName.toStdString());
-  Configuration::get().setPathToModel(fileName.toStdString());
-  _sceneWidget->resumeAutoUpdate();
+  QString selectedFile =  
+    _sceneWidget->browseFileDialog(tr("Load model"), "", tr("Models (*.obj)"));
+  _displayedModelLabel->displayModelName(selectedFile.toStdString());
+  Configuration::get().setPathToModel(selectedFile.toStdString());
 }
 
 void BigWindow::onRender() {

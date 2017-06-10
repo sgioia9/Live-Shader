@@ -20,6 +20,8 @@ public:
   virtual QSize sizeHint() const override;
   void pauseAutoUpdate();
   void resumeAutoUpdate();
+  QString browseFileDialog(
+      const QString& title, const std::string& directory, const QString& filters);
 
 protected slots:
   virtual void teardownGL();
