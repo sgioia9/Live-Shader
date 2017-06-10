@@ -6,14 +6,20 @@
 class MainFrame;
 
 class VertexShaderEditor : public ShaderEditor {
+  Q_OBJECT
 public:
   static VertexShaderEditor* get();
   
   VertexShaderEditor(const VertexShaderEditor&) = delete;
   void operator=(const VertexShaderEditor&) = delete;
 
-private slots:
-  void load();
+protected:
+  void onSaveButtonClick() Q_DECL_OVERRIDE;
+  void onLoadButtonClick() Q_DECL_OVERRIDE;
+
+protected:
+  void load() override;
+  void save() override;
 
 private:
   VertexShaderEditor();

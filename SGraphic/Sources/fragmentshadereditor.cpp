@@ -20,6 +20,14 @@ FragmentShaderEditor::FragmentShaderEditor() {
   }
 }
 
+void FragmentShaderEditor::onLoadButtonClick() {
+  load();
+}
+
+void FragmentShaderEditor::onSaveButtonClick() {
+  save();
+}
+
 void FragmentShaderEditor::load() {
   try {
     QString selectedFile = 
@@ -30,4 +38,9 @@ void FragmentShaderEditor::load() {
   } catch (const std::string& err) {
     Logger::get().logErrorLine(err);
   }
+}
+
+void FragmentShaderEditor::save() {
+  // TODO:
+  std::cerr << " fragment save" << std::endl;
 }

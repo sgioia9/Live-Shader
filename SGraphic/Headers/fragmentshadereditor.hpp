@@ -7,14 +7,19 @@
 class MainFrame;
 
 class FragmentShaderEditor: public ShaderEditor {
+  Q_OBJECT
 public:
   static FragmentShaderEditor* get();
   
   FragmentShaderEditor(const FragmentShaderEditor&) = delete;
   void operator=(const FragmentShaderEditor&) = delete;
 
-private slots:
-  void load();
+protected:
+  void onSaveButtonClick() Q_DECL_OVERRIDE;
+  void onLoadButtonClick() Q_DECL_OVERRIDE;
+
+  void load() override;
+  void save() override;
 
 private:
   FragmentShaderEditor();

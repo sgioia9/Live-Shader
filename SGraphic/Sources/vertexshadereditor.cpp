@@ -20,6 +20,14 @@ VertexShaderEditor::VertexShaderEditor() {
   }
 }
 
+void VertexShaderEditor::onSaveButtonClick() {
+  save();
+}
+
+void VertexShaderEditor::onLoadButtonClick() {
+  load();
+}
+
 void VertexShaderEditor::load() {
   try {
     QString selectedFile = 
@@ -30,4 +38,8 @@ void VertexShaderEditor::load() {
   } catch (const std::string& err) {
     Logger::get().logErrorLine(err);
   }
+}
+
+void VertexShaderEditor::save() {
+  std::cerr << "vertex save" << std::endl;
 }

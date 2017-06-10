@@ -20,8 +20,15 @@ ShaderEditor::ShaderEditor() {
   QVBoxLayout* mainLayout = new QVBoxLayout();
 
   QHBoxLayout* buttonsLayout = new QHBoxLayout();
-  buttonsLayout->addWidget(new QPushButton(tr("Load ...")));
-  buttonsLayout->addWidget(new QPushButton(tr("Save as ...")));
+
+  QPushButton* loadButton = new QPushButton("Load ...");
+  connect(loadButton, SIGNAL (released()), this, SLOT (onLoadButtonClick()));
+  buttonsLayout->addWidget(loadButton);
+
+  QPushButton* saveButton = new QPushButton("Save as ...");
+  connect(saveButton, SIGNAL (released()), this, SLOT (onSaveButtonClick()));
+  buttonsLayout->addWidget(saveButton);
+
   buttonsLayout->setMargin(0);
 
   QWidget* buttonsWidget = new QWidget();
@@ -39,4 +46,3 @@ std::string ShaderEditor::getText() {
 void ShaderEditor::setText(const std::string& text) {
   _textEdit->setText(QString::fromStdString(text));
 }
-
