@@ -21,5 +21,13 @@ VertexShaderEditor::VertexShaderEditor() {
 }
 
 void VertexShaderEditor::load() {
-  SceneWidget::get()->pauseAutoUpdate();
+  try {
+    QString selectedFile = 
+      SceneWidget::get()->browseFileDialog(
+        tr("Load vertex shader"), "", tr("Vertex Shaders (*.vert)"));
+    if (selectedFile.isEmpty()) return;
+    setText(Util::readFile(selectedFile.toStdString()));
+  } catch (const std::string& err) {
+    Logger::get().logErrorLine(err);
+  }
 }
