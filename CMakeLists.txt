@@ -4,7 +4,7 @@ project(SGraphic)
 set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
-set(CMAKE_PREFIX_PATH "/home/stefano/Qt/5.8/gcc_64")
+set(CMAKE_PREFIX_PATH "C:/Qt/5.9/mingw53_32/lib/cmake/Qt5Widgets")
 
 find_package(Qt5Widgets REQUIRED)
 

@@ -1,17 +1,10 @@
 #include "mainframe.hpp"
 #include "scenewidget.hpp"
 #include <QHBoxLayout>
-#include <QVBoxLayout>
-#include <QPushButton>
-#include <QFileDialog>
 #include <QMessageBox>
 #include "editorsarea.hpp"
 #include "glconsole.hpp"
-#include "oglwidget.hpp"
-#include "configscene.hpp"
-#include "configuration.hpp"
 #include "displayedmodellabel.hpp"
-#include "camerawidget.hpp"
 #include "vertexshadereditor.hpp"
 #include "fragmentshadereditor.hpp"
 

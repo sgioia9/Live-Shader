@@ -1,14 +1,6 @@
 #include <QApplication>
 #include <QSurfaceFormat>
 #include "mainframe.hpp"
-#include <unordered_map>
-
-#include "glconsole.hpp"
-#include "logger.hpp"
-#include "resourceloader.hpp"
-#include <memory>
-
-#include <iostream>
 
 int main(int argc, char** argv) {
   QApplication app(argc, argv);

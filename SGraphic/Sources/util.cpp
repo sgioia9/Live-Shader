@@ -4,7 +4,7 @@
 #include "util.hpp"
 
 namespace Util {
-  static const std::string SHADER_PATH = "SGraphic/Resources/Shaders/";
+  static const std::string SHADER_PATH = "Resources/Shaders/";
 
   std::string readShader(const std::string& filename) {
     return readFile(SHADER_PATH + filename);
