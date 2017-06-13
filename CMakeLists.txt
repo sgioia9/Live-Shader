@@ -1,10 +1,15 @@
 cmake_minimum_required(VERSION 3.0)
 project(SGraphic)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
-set(CMAKE_PREFIX_PATH "C:/Qt/5.9/mingw53_32/lib/cmake/Qt5Widgets")
+if (WIN32)
+  set(CMAKE_PREFIX_PATH "C:/Qt/5.9/mingw53_32/lib/cmake/Qt5Widgets")
+else()
+  set(CMAKE_PREFIX_PATH "/usr/local/Cellar/qt/5.8.0_2")
+endif()
 
 find_package(Qt5Widgets REQUIRED)
 
