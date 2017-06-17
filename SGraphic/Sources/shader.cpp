@@ -45,6 +45,14 @@ void Shader::uniformFloat(const std::string& name, GLfloat value) {
   gl->glUniform1f(getLocation(name), value);
 }
 
+void Shader::uniformVec3(GLint location, const glm::vec3& vec) {
+  gl->glUniform3fv(location, 1, glm::value_ptr(vec));
+}
+
+void Shader::uniformVec3(const std::string& name, const glm::vec3& vec) {
+  gl->glUniform3fv(getLocation(name), 1, glm::value_ptr(vec));
+}
+
 GLint Shader::getLocation(const std::string& name) {
   return gl->glGetUniformLocation(_program, name.c_str());
 }

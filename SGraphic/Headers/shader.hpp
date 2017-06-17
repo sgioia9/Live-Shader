@@ -22,8 +22,11 @@ public:
   void uniformInt(GLint location, GLint value);
   void uniformFloat(GLint location, GLfloat value);
   void uniformFloat(const std::string& name, GLfloat value);
+  void uniformVec3(GLint location, const glm::vec3& vec);
+  void uniformVec3(const std::string& name, const glm::vec3& vec);
+
   GLint getLocation(const std::string& name);
-  
+
   GLuint _program;
 
 private:

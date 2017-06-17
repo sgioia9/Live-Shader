@@ -34,6 +34,7 @@ void ConfigScene::draw() {
 
   _shader->uniformMatrix("model", _object->_transform);
   _shader->uniformMatrix("vpMatrix", _camera->vp_matrix());
+  _shader->uniformVec3("cameraPosition", *_camera->position);
 
   _object->_model->draw(*_shader);
 }
