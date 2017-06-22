@@ -15,12 +15,12 @@
 
 MainFrame::MainFrame() { 
   QMenuBar* menuBar = new QMenuBar;
-
   setUpFileMenu(menuBar);
   setUpActionMenu(menuBar);
-
   setMenuBar(menuBar);
-  onAddNew();
+
+  _bigWindow = new BigWindow(this);
+  setCentralWidget(_bigWindow);
 }
 
 void MainFrame::setUpFileMenu(QMenuBar* menuBar) {
@@ -66,16 +66,6 @@ void MainFrame::setUpActionMenu(QMenuBar* menuBar) {
   renderModel->setShortcut(tr("F6"));
   menuAction->addAction(renderModel);
   connect(renderModel, &QAction::triggered, this, &MainFrame::onRenderModel);
-}
-
-
-void MainFrame::onAddNew() {
-  if (!centralWidget()) {
-    _bigWindow = new BigWindow(this);
-    setCentralWidget(_bigWindow);
-  } else {
-    QMessageBox::information(0, tr("Cannot add new window"), tr("Already occupied. Undock first."));
-  }
 }
 
 void MainFrame::onLoadModel() {

@@ -14,7 +14,6 @@ public:
   MainFrame();
 
 private slots:
-  void onAddNew();
   void onLoadModel();
   void onLoadVertexShader();
   void onLoadFragmentShader();
