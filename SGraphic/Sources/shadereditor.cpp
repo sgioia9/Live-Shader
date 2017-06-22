@@ -18,24 +18,7 @@ ShaderEditor::ShaderEditor() {
   _highlighter = new ShaderHightlighter(_textEdit->document());
 
   QVBoxLayout* mainLayout = new QVBoxLayout();
-
-  QHBoxLayout* buttonsLayout = new QHBoxLayout();
-
-  QPushButton* loadButton = new QPushButton("Load ...");
-  connect(loadButton, SIGNAL (released()), this, SLOT (onLoadButtonClick()));
-  buttonsLayout->addWidget(loadButton);
-
-  QPushButton* saveButton = new QPushButton("Save as ...");
-  connect(saveButton, SIGNAL (released()), this, SLOT (onSaveButtonClick()));
-  buttonsLayout->addWidget(saveButton);
-
-  buttonsLayout->setMargin(0);
-
-  QWidget* buttonsWidget = new QWidget();
-  buttonsWidget->setLayout(buttonsLayout);
-
   mainLayout->addWidget(_textEdit);
-  mainLayout->addWidget(buttonsWidget);
   setLayout(mainLayout);
 }
 
@@ -45,12 +28,4 @@ std::string ShaderEditor::getText() {
 
 void ShaderEditor::setText(const std::string& text) {
   _textEdit->setText(QString::fromStdString(text));
-}
-
-void ShaderEditor::onLoadButtonClick() {
-  load();
-}
-
-void ShaderEditor::onSaveButtonClick() {
-  save();
 }

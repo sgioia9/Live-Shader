@@ -91,11 +91,11 @@ void MainFrame::onReloadShaders() {
 }
 
 void MainFrame::onLoadVertexShader() {
-  _bigWindow->_editorsArea->_tabs->_vertexShaderEditor->onLoadButtonClick();
+  _bigWindow->_editorsArea->_tabs->_vertexShaderEditor->load();
 }
 
 void MainFrame::onLoadFragmentShader() {
-  _bigWindow->_editorsArea->_tabs->_fragmentShaderEditor->onSaveButtonClick();
+  _bigWindow->_editorsArea->_tabs->_fragmentShaderEditor->save();
 }
 
 

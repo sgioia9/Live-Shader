@@ -13,10 +13,6 @@ public:
   
   std::string getText();
 
-protected slots:
-  virtual void onLoadButtonClick();
-  virtual void onSaveButtonClick();
-
 protected:
   QTextEdit* _textEdit;
   ShaderHightlighter* _highlighter;
