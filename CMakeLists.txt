@@ -5,11 +5,6 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
-if (WIN32)
-  set(CMAKE_PREFIX_PATH "C:/Qt/5.9/mingw53_32/lib/cmake/Qt5Widgets")
-else()
-  set(CMAKE_PREFIX_PATH "/home/stefano/Qt/5.9/gcc_64/lib/cmake/Qt5Widgets")
-endif()
 
 find_package(Qt5Widgets REQUIRED)
 
